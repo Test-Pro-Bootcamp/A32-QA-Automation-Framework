@@ -21,7 +21,7 @@ public class LoginTests extends BaseTest {
         driver.quit();
     }
     @Test
-    public static void RegistrationTest(){
+    public static void RegistrationNavigation(){
         WebDriver driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 

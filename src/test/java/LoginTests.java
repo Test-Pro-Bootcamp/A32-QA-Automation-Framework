@@ -108,6 +108,19 @@ public class LoginTests extends BaseTest {
         System.out.println("==== This is our link text ==== " + link);
         driver.quit();
     }
+        @Test
+        public static void RegistrationNavigation() {
+            WebDriver driver = new ChromeDriver();
+            driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+
+            String url = "https://bbb.testpro.io/";
+            driver.get(url);
+            WebElement RegistrationLink = driver.findElement(By.xpath("//*[@id='hel']"));
+            RegistrationLink.click();
+            WebElement registrationField = driver.findElement(By.xpath("//*[@id='email']"));
+            Assert.assertTrue(registrationField.isDisplayed());
+            driver.quit();
+        }
 
 
 }

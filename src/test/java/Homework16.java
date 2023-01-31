@@ -14,7 +14,7 @@ public class Homework16  extends BaseTest {
         WebDriver driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
-        String url = "https://testpro.io/";
+        String url = "https://bbb.testpro.io/";
         driver.get(url);
 
         WebElement RegistrationSubmit = driver.findElement(By.cssSelector("[id='hel']"));

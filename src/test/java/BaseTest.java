@@ -14,7 +14,7 @@ import java.time.Duration;
 public class BaseTest {
 
     static WebDriver driver;
-    static String url = "https://bbb.testpro.io/";
+    static String url = "https://testpro.io/";
 
 
     @BeforeSuite

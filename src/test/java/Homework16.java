@@ -9,7 +9,7 @@ import java.time.Duration;
 
 public class Homework16  extends BaseTest {
     @Test
-    public static void RegistrationNavigation () {
+    public static void registrationNavigation () {
 
         WebDriver driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
@@ -17,11 +17,11 @@ public class Homework16  extends BaseTest {
         String url = "https://bbb.testpro.io/";
         driver.get(url);
 
-        WebElement RegistrationSubmit = driver.findElement(By.cssSelector("[id='hel']"));
-        RegistrationSubmit.click();
+        WebElement registrationSubmit = driver.findElement(By.cssSelector("[id='hel']"));
+        registrationSubmit.click();
 
-        WebElement Register = driver.findElement(By.cssSelector("[value='Register']"));
-        Assert.assertTrue(Register.isDisplayed());
+        WebElement register = driver.findElement(By.cssSelector("[value='Register']"));
+        Assert.assertTrue(register.isDisplayed());
 
         driver.quit();
     }

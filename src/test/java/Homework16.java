@@ -17,7 +17,7 @@ public class Homework16 extends BaseTest{
            String url="https://bbb.testpro.io/";
            currentDriver.get(url);
 
-           WebElement registrationInput = currentDriver.findElement(By.cssSelector("a[id='hel'])"));
+           WebElement registrationInput = currentDriver.findElement(By.cssSelector("#hel"));
            registrationInput.click();
            WebElement registerButton = currentDriver.findElement(By.cssSelector("input[value='Register']"));
            Assert.assertTrue(registerButton.isDisplayed());

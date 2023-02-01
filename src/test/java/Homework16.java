@@ -11,7 +11,7 @@ import java.time.Duration;
 public class Homework16 extends BaseTest{
 
     @Test
-    public static void RegistrationNavigationTest(){
+    public static void registrationNavigationTest(){
          WebDriver currentDriver= new ChromeDriver();
            currentDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
            String url="https://bbb.testpro.io/";

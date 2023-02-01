@@ -13,7 +13,7 @@ import java.time.Duration;
 
 
 public class BaseTest {
-    Webdriver driver;
+    static WebDriver driver;
 
     @BeforeSuite
     static void setupClass() {

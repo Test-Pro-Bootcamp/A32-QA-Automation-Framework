@@ -12,17 +12,13 @@ public class Homework16 extends BaseTest{
 
     @Test
     public static void registrationNavigationTest(){
-         WebDriver currentDriver= new ChromeDriver();
-           currentDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-           String url="https://bbb.testpro.io/";
-           currentDriver.get(url);
 
-           WebElement registrationInput = currentDriver.findElement(By.cssSelector("#hel"));
+        openLoginUrl();
+
+        WebElement registrationInput = myDriver.findElement(By.cssSelector("#hel"));
            registrationInput.click();
-           WebElement registerButton = currentDriver.findElement(By.cssSelector("input[value='Register']"));
+           WebElement registerButton = myDriver.findElement(By.cssSelector("input[value='Register']"));
            Assert.assertTrue(registerButton.isDisplayed());
-           currentDriver.quit();
-
 
     }
 }

@@ -9,7 +9,7 @@ import java.time.Duration;
 
 public class Homework16  extends BaseTest {
     @Test
-    public static void registrationNavigation() {
+    public static void RegistrationNavigation() {
 
         WebDriver driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
@@ -22,6 +22,7 @@ public class Homework16  extends BaseTest {
 
         WebElement register = driver.findElement(By.cssSelector("[value='Register']"));
         Assert.assertTrue(register.isDisplayed());
+        driver.quit();
 
     }
 

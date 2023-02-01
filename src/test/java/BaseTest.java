@@ -20,12 +20,12 @@ public class BaseTest {
         WebDriverManager.chromedriver().setup();
     }
     @BeforeMethod
-    public void setUpBrowser(){
+    public static void setUpBrowser(){
         WebDriver driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
     }
      @AfterMethod
-    public void tearDown() {
+    public static void tearDown() {
         driver.quit();
      }
 

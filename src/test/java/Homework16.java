@@ -23,7 +23,6 @@ public class Homework16  extends BaseTest {
         WebElement register = driver.findElement(By.cssSelector("[value='Register']"));
         Assert.assertTrue(register.isDisplayed());
 
-        driver.quit();
     }
 
 }

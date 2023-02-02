@@ -11,21 +11,15 @@ public class Homework16  extends BaseTest {
     @Test
     public static void RegistrationNavigation() {
 
-        WebDriver driver = new ChromeDriver();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-
-        String url = "https://bbb.testpro.io/";
-        driver.get(url);
 
         WebElement registrationSubmit = driver.findElement(By.cssSelector("[id='hel']"));
         registrationSubmit.click();
 
         WebElement register = driver.findElement(By.cssSelector("[value='Register']"));
         Assert.assertTrue(register.isDisplayed());
-        driver.quit();
 
     }
 
-}
+    }
 
 

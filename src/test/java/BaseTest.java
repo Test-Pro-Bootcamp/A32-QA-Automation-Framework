@@ -8,12 +8,15 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
-
+import org.openqa.selenium.By;
 import java.time.Duration;
 
 
 public class BaseTest {
     static WebDriver driver;
+    static String url = "https://bbb.testpro.io/";
+
+
 
     @BeforeSuite
     static void setupClass() {
@@ -29,7 +32,16 @@ public class BaseTest {
         driver.quit();
      }
 
+    public static void login() {
 
-}
+        WebElement emailInput = driver.findElement(By.cssSelector("[type='email']"));
+        emailInput.click();
+        emailInput.sendKeys("dashazhyrkova@gmail.com");
+        WebElement passwordInput = driver.findElement(By.cssSelector("[type='password']"));
+        passwordInput.click();
+
+
+    }
+    }
 
 

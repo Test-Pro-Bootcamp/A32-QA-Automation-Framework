@@ -24,11 +24,7 @@ public class LoginTests extends BaseTest {
     @Test
     public static void LoginSucceedTest () {
 
-        WebDriver driver = new ChromeDriver();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
-        String url = "https://bbb.testpro.io/";
-        driver.get(url);
         WebElement emailInput = driver.findElement(By.cssSelector("[type='email']"));
         emailInput.click();
         emailInput.sendKeys("demo@class.com");
@@ -39,7 +35,7 @@ public class LoginTests extends BaseTest {
         submitLogin.click();
         WebElement avatar = driver.findElement(By.cssSelector(".avatar"));
         Assert.assertTrue(avatar.isDisplayed());
-        driver.quit();
+
     }
 
 

@@ -9,7 +9,7 @@ import java.time.Duration;
 
 public class Homework16  extends BaseTest {
     @Test
-    public static void RegistrationNavigation() {
+    public static void registrationNavigation() {
         loginKoel();
 
 

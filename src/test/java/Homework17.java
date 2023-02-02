@@ -36,7 +36,7 @@ public class Homework17 extends BaseTest{
 
     @Test
     public static void addSongToPlaylist() {
-        login();
+        loginKoel();
         WebElement allSongs = driver.findElement(By.xpath("//a[@href=\"#!/songs\"]"));
         allSongs.click();
         WebElement song = driver.findElement(By.xpath("//*[@id='songsWrapper']/div/div/div[1]/table/tr[2]/td[2]"));

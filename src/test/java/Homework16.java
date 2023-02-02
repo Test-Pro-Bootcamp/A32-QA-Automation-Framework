@@ -10,6 +10,7 @@ import java.time.Duration;
 public class Homework16  extends BaseTest {
     @Test
     public static void RegistrationNavigation() {
+        login();
 
 
         WebElement registrationSubmit = driver.findElement(By.cssSelector("[id='hel']"));

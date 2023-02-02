@@ -12,11 +12,9 @@ public class LoginTests extends BaseTest {
     @Test
     public static void LoginEmptyEmailPasswordTest () {
 
-        WebDriver driver = new ChromeDriver();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
-        String url = "https://testpro.io/";
-        driver.get(url);
+
+
         Assert.assertEquals(driver.getCurrentUrl(), url);
         driver.quit();
     }
@@ -42,11 +40,6 @@ public class LoginTests extends BaseTest {
     @Test
     public static void LoginWrongPasswordTest () {
 
-        WebDriver driver = new ChromeDriver();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-
-        String url = "https://bbb.testpro.io/";
-        driver.get(url);
         WebElement emailInput = driver.findElement(By.cssSelector("[type='email']"));
         emailInput.click();
         emailInput.sendKeys("demo@class.com");
@@ -57,18 +50,14 @@ public class LoginTests extends BaseTest {
         submitLogin.click();
         Assert.assertEquals(driver.getCurrentUrl(), url);
         Assert.assertTrue(submitLogin.isDisplayed());
-        driver.quit();
     }
 
 
     @Test
     public static void LoginEmptyPasswordTest () {
 
-        WebDriver driver = new ChromeDriver();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
-        String url = "https://bbb.testpro.io/";
-        driver.get(url);
+
         WebElement emailInput = driver.findElement(By.cssSelector("[type='email']"));
         emailInput.click();
         emailInput.sendKeys("demo@class.com");
@@ -76,19 +65,15 @@ public class LoginTests extends BaseTest {
         submitLogin.click();
         Assert.assertEquals(driver.getCurrentUrl(), url);
         Assert.assertTrue(submitLogin.isDisplayed());
-        WebElement registationLink = driver.findElement(By.id("hel"));
-        Assert.assertTrue(registationLink.isDisplayed(), "==== Registation link displayed ====");
-        driver.quit();
+        WebElement registrationLink = driver.findElement(By.id("hel"));
+        Assert.assertTrue(registrationLink.isDisplayed(), "==== Registation link displayed ====");
+
     }
 
     @Test
     public static void LoginWrongEmailTest () {
 
-        WebDriver driver = new ChromeDriver();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
-        String url = "https://bbb.testpro.io/";
-        driver.get(url);
         WebElement emailInput = driver.findElement(By.cssSelector("[type='email']"));
         emailInput.click();
         emailInput.sendKeys("dem@class.com");
@@ -99,10 +84,10 @@ public class LoginTests extends BaseTest {
         submitLogin.click();
         Assert.assertEquals(driver.getCurrentUrl(), url);
         Assert.assertTrue(submitLogin.isDisplayed());
-        WebElement registationLink = driver.findElement(By.id("hel"));
-        String link = registationLink.getText();
+        WebElement registrationLink = driver.findElement(By.id("hel"));
+        String link = registrationLink.getText();
         System.out.println("==== This is our link text ==== " + link);
-        driver.quit();
+
     }
 
 

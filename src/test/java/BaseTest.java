@@ -16,8 +16,6 @@ public class BaseTest {
     static WebDriver driver;
     static String url = "https://bbb.testpro.io/";
 
-
-
     @BeforeSuite
     static void setupClass() {
         WebDriverManager.chromedriver().setup();
@@ -26,6 +24,7 @@ public class BaseTest {
     public static void setUpBrowser(){
         WebDriver driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+
     }
      @AfterMethod
     public static void tearDown() {
@@ -39,6 +38,9 @@ public class BaseTest {
         emailInput.sendKeys("dashazhyrkova@gmail.com");
         WebElement passwordInput = driver.findElement(By.cssSelector("[type='password']"));
         passwordInput.click();
+        passwordInput.sendKeys("te$t$tudent28");
+        WebElement submitLogin = driver.findElement(By.cssSelector("button[type='submit']"));
+        submitLogin.click();
 
 
     }

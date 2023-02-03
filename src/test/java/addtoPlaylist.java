@@ -33,6 +33,9 @@ public class addtoPlaylist extends BaseTest {
         AllSongs.click();
         WebElement Favorite = driver.findElement(By.xpath("//tr[1]/td[6]/button/i"));
         Favorite.click();
+        WebElement favoritetab = driver.findElement(By.xpath("//section[@id='playlists']/ul//a[@href='#!/favorites']"));
+        favoritetab.click();
+        WebElement song = driver.findElement(By.xpath("//section[@id='favoritesWrapper']//div[@class='item-container']/table[@class='items']//td[@class='title']"));
         driver.quit();
 
     }

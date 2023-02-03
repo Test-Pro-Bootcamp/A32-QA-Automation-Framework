@@ -57,7 +57,4 @@ public class BaseTest {
         WebElement submitLogin = driver.findElement(By.cssSelector("button[type='submit']"));
         submitLogin.click();
     }
-
-
-
 }

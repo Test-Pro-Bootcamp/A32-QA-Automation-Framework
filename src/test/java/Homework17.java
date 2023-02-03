@@ -18,9 +18,6 @@ public class Homework17 extends BaseTest{
         chooseSong();
         clickAddTo();
         checkSongInAlbum();
-
-
-
     }
     public static void clickAllSongs() {
         WebElement clickAllSongs = driver.findElement(By.cssSelector("a[href='#!/songs']"));
@@ -41,15 +38,12 @@ public class Homework17 extends BaseTest{
 
     }
 
-
     public static void checkSongInAlbum() {
         WebElement myPlaylist = driver.findElement(By.xpath("//section[@id='playlists']/ul/li[3]"));
         myPlaylist.click();
         WebElement songcheck = driver.findElement(By.cssSelector(".all-songs .song-item:nth-of-type(5) .title"));
         songcheck.isDisplayed();
     }
-
-
 }
 
 

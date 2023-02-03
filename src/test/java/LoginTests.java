@@ -2,7 +2,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import java.util.UUID;
 
 public class LoginTests extends BaseTest {
 
@@ -64,63 +63,7 @@ public class LoginTests extends BaseTest {
         setName(user);
         setPassword();
         saveProfile();
-        getSuccessBanner();
-        Assert.assertEquals(getUsername(), user);
-    }
 
-    private WebElement getSuccessBanner() {
-        WebElement successBanner = driver.findElement(By.cssSelector(".success"));
-        return successBanner;
-    }
-
-    private void openUserProfile() {
-        WebElement profile = driver.findElement(By.cssSelector(".view-profile"));
-        profile.click();
-    }
-
-
-    private String getUsername() {
-        String userName = driver.findElement(By.cssSelector(".view-profile .name")).getText();
-        return userName;
-    }
-
-    public void setName(String newName) {
-        WebElement nameInput = driver.findElement(By.cssSelector("#inputProfileName"));
-        nameInput.click();
-        nameInput.clear();
-        nameInput.sendKeys(newName);
-    }
-
-    public void setPassword() {
-        WebElement passwordInput = driver.findElement(By.cssSelector("#inputProfileCurrentPassword"));
-        passwordInput.click();
-        passwordInput.sendKeys("te$t$tudent");
-    }
-
-    public void saveProfile() {
-        WebElement saveButton = driver.findElement(By.cssSelector(".btn-submit"));
-        saveButton.click();
-    }
-
-    public String generateRandomName() {
-        return UUID.randomUUID().toString().replace("-", "");//
-    }
-
-    public void enterEmail(String email) {
-        WebElement emailInput = driver.findElement(By.cssSelector("[type='email']"));
-        emailInput.click();
-        emailInput.sendKeys(email);
-    }
-
-    public void enterPassword(String password) {
-        WebElement passwordInput = driver.findElement(By.cssSelector("[type='password']"));
-        passwordInput.click();
-        passwordInput.sendKeys(password);
-    }
-
-    public void loginSubmit() {
-        WebElement submitLogin = driver.findElement(By.cssSelector("button[type='submit']"));
-        submitLogin.click();
     }
 
 

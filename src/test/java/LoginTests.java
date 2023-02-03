@@ -54,8 +54,7 @@ public class LoginTests extends BaseTest {
 
 
     @Test
-    public static void LoginEmptyPasswordTest () {
-
+    public static void LoginEmptyPasswordTest() {
 
 
         WebElement emailInput = driver.findElement(By.cssSelector("[type='email']"));
@@ -71,7 +70,7 @@ public class LoginTests extends BaseTest {
     }
 
     @Test
-    public static void LoginWrongEmailTest () {
+    public static void LoginWrongEmailTest() {
 
 
         WebElement emailInput = driver.findElement(By.cssSelector("[type='email']"));

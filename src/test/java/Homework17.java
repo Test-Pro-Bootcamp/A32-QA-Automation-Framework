@@ -7,38 +7,30 @@ import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import java.util.Scanner;
-
+import org.openqa.selenium.Keys;
 public class Homework17 extends BaseTest{
-  //  @Test
-    //public static void CreatePlaylist() {
+
+    @Test
+    public static void CreatePlaylist() {
 
 
-
-
-       // WebElement createNewPlaylist = driver.findElement(By.xpath("//i[@title='Create a new playlist']"));
-      //  createNewPlaylist.click();
-     //   WebElement newPlaylist = driver.findElement(By.xpath("//li[@data-testid='playlist-context-menu-create-simple']"));
-      //  newPlaylist.click();
-
-      //  WebElement playlistInput = driver.findElement(By.xpath("//input[@name='name']"));
-      //  playlistInput.sendKeys("My playlist");
-
-        //I tried to find code for pressing Enter button. But I did it wrong and I don't know how to fix it
-
-       // Scanner keybord = new Scanner(System.in);
-       // keybord.nextLine();
-
-
-      //  WebElement student = driver.findElement(By.xpath("//a[text()='My playlist']"));
-      //  Assert.assertTrue(student.isDisplayed());
-   // }
+        loginKoel();
+        WebElement createNewPlaylist = driver.findElement(By.cssSelector("[data-testid='sidebar-create-playlist-btn']"));
+        createNewPlaylist.click();
+        WebElement newPlaylist = driver.findElement(By.cssSelector("[data-testid='playlist-context-menu-create-simple']"));
+        newPlaylist.click();
+        WebElement playlistInput = driver.findElement(By.xpath("//input[@name='name']"));
+        playlistInput.sendKeys("My playlist");
+        playlistInput.sendKeys(Keys.ENTER);
+        WebElement student = driver.findElement(By.xpath("//a[text()='My playlist']"));
+        Assert.assertTrue(student.isDisplayed());
+    }
 
 
     @Test
     public static void addSongToPlaylist() {
         loginKoel();
-        WebElement allSongs = driver.findElement(By.xpath("//a[@href=\"#!/songs\"]"));
-        allSongs.click();
+        navigateToAllSongs();
         WebElement song = driver.findElement(By.xpath("//*[@id='songsWrapper']/div/div/div[1]/table/tr[2]/td[2]"));
         song.click();
         WebElement addTo = driver.findElement(By.xpath("//button[@class='btn-add-to']"));
@@ -53,4 +45,4 @@ public class Homework17 extends BaseTest{
     }
 
 
-    }
+}

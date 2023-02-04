@@ -12,16 +12,12 @@ public class LoginTests extends BaseTest {
     @Test
     public static void LoginEmptyEmailPasswordTest () {
 
-
-
-
         Assert.assertEquals(driver.getCurrentUrl(), url);
         driver.quit();
     }
 
     @Test
     public static void LoginSucceedTest () {
-
 
         WebElement emailInput = driver.findElement(By.cssSelector("[type='email']"));
         emailInput.click();
@@ -35,7 +31,6 @@ public class LoginTests extends BaseTest {
         Assert.assertTrue(avatar.isDisplayed());
 
     }
-
 
     @Test
     public static void LoginWrongPasswordTest () {
@@ -51,7 +46,6 @@ public class LoginTests extends BaseTest {
         Assert.assertEquals(driver.getCurrentUrl(), url);
         Assert.assertTrue(submitLogin.isDisplayed());
     }
-
 
     @Test
     public static void LoginEmptyPasswordTest() {
@@ -72,7 +66,6 @@ public class LoginTests extends BaseTest {
     @Test
     public static void LoginWrongEmailTest() {
 
-
         WebElement emailInput = driver.findElement(By.cssSelector("[type='email']"));
         emailInput.click();
         emailInput.sendKeys("dem@class.com");
@@ -88,7 +81,6 @@ public class LoginTests extends BaseTest {
         System.out.println("==== This is our link text ==== " + link);
 
     }
-
 
 }
 //        Email("demo@class.com");

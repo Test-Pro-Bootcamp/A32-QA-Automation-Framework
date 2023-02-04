@@ -11,6 +11,9 @@ import org.testng.annotations.BeforeSuite;
 import org.openqa.selenium.By;
 import org.openqa.selenium.interactions.Actions;
 import java.time.Duration;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.PageLoadStrategy;
 
 
 public class BaseTest {
@@ -46,7 +49,6 @@ public class BaseTest {
         Assert.assertTrue(songIsPlaying.isDisplayed());
     }
 
-
     @BeforeSuite
     static void setupClass() {
         WebDriverManager.chromedriver().setup();
@@ -55,6 +57,9 @@ public class BaseTest {
     @BeforeMethod
     public void setUpBrowser() {
         driver = new ChromeDriver();
+        //ChromeOptions chromeOptions = new ChromeOptions();
+       // chromeOptions.addArguments("--disable-notifications");
+        //driver = new ChromeDriver(chromeOptions);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.get(url);
     }
@@ -63,7 +68,6 @@ public class BaseTest {
     public void tearDown() {
         driver.quit();
     }
-
 
 }
 

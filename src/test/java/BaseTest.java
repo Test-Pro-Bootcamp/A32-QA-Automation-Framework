@@ -57,9 +57,6 @@ public class BaseTest {
     @BeforeMethod
     public void setUpBrowser() {
         driver = new ChromeDriver();
-        //ChromeOptions chromeOptions = new ChromeOptions();
-       // chromeOptions.addArguments("--disable-notifications");
-        //driver = new ChromeDriver(chromeOptions);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.get(url);
     }

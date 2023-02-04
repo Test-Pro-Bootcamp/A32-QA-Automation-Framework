@@ -17,7 +17,7 @@ dependencies {
 
 test {
     useTestNG() {
-        suites "src/test/resources/PlaySong.xml"
+        suites "src/test/resources/DeletePlaylist.xml"
     }
 }
 

@@ -7,11 +7,9 @@ public class LoginTests extends BaseTest {
 
     @Test
     public static void loginEmptyEmailPasswordTest () {
-
         String url = "https://testpro.io/";
         myDriver.get(url);
         Assert.assertEquals(myDriver.getCurrentUrl(), url);
-
     }
 
     @Test(description = "Login with valid credentials")
@@ -24,6 +22,4 @@ public class LoginTests extends BaseTest {
        WebElement searchField = myDriver.findElement(By.cssSelector("input[placeholder='Press F to search']"));
        Assert.assertTrue(searchField.isDisplayed());
     }
-
-
 }

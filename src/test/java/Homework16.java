@@ -14,11 +14,9 @@ public class Homework16 extends BaseTest{
     public static void registrationNavigationTest(){
 
         openLoginUrl();
-
         WebElement registrationInput = myDriver.findElement(By.cssSelector("#hel"));
            registrationInput.click();
            WebElement registerButton = myDriver.findElement(By.cssSelector("input[value='Register']"));
            Assert.assertTrue(registerButton.isDisplayed());
-
     }
 }

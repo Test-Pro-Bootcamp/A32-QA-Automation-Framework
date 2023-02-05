@@ -13,8 +13,6 @@ public class Homework17 extends BaseTest{
         login("demo@class.com","te$t$tudent");
         myDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         pickSong();
-
-
     }
 
     private void pickSong() {
@@ -22,7 +20,6 @@ public class Homework17 extends BaseTest{
         WebElement playlist = myDriver.findElement(By.xpath("//section[@id='playlists']//li[5]"));
         Actions acts = new Actions(myDriver);
         acts.clickAndHold(song).release(playlist).build().perform();
-
         playlist.click();
     }
 

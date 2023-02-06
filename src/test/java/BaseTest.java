@@ -15,6 +15,22 @@ import java.time.Duration;
 public class BaseTest {
     static WebDriver driver;
     public String url = null;
+    public static void loginKoel() {
+
+        WebElement emailInput = driver.findElement(By.cssSelector("[type='email']"));
+        emailInput.click();
+        emailInput.sendKeys("dashazhyrkova@gmail.com");
+        WebElement passwordInput = driver.findElement(By.cssSelector("[type='password']"));
+        passwordInput.click();
+        passwordInput.sendKeys("te$t$tudent28");
+        WebElement submitLogin = driver.findElement(By.cssSelector("button[type='submit']"));
+        submitLogin.click();
+    }
+
+    public static void navigateToAllSongs() {
+        WebElement navigateToAllSongsPage = driver.findElement(By.xpath("//a[@href='#!/songs']"));
+        navigateToAllSongsPage.click();
+    }
 
 
     @BeforeSuite

@@ -4,6 +4,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.interactions.Actions;
+import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
@@ -32,6 +34,17 @@ public class BaseTest {
         navigateToAllSongsPage.click();
     }
 
+    public static void songDoubleClick() {
+        Actions act = new Actions(driver);
+        WebElement songDoubleClick = driver.findElement(By.cssSelector("[class='song-item']"));
+        act.doubleClick(songDoubleClick).perform();
+    }
+
+
+    public static void songIsPlaying() {
+        WebElement songIsPlaying = driver.findElement(By.cssSelector("[alt='Sound bars']"));
+        Assert.assertTrue(songIsPlaying.isDisplayed());
+    }
 
     @BeforeSuite
     static void setupClass() {

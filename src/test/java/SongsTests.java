@@ -6,6 +6,11 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
+import org.openqa.selenium.*;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.WebDriver;
 
 public class SongsTests extends BaseTest {
 
@@ -37,6 +42,7 @@ public class SongsTests extends BaseTest {
         enterEmail("demo@class.com");
         enterPassword("te$t$tudent");
         loginSubmit();
+        WebDriverWait wait = new WebDriverWait(driver,3);
         WebElement title = wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("title")));
         String text = title.getText();
         System.out.println(text);

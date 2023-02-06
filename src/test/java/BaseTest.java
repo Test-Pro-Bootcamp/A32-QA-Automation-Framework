@@ -56,9 +56,4 @@ public class BaseTest {
         submitLogin.click();
     }
 
-    public void login(String email, String password){
-        enterEmail(email);
-        enterPassword(password);
-        loginSubmit();
-    }
 }

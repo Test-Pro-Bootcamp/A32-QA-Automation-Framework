@@ -11,6 +11,8 @@ import org.testng.annotations.Parameters;
 
 import java.time.Duration;
 
+import static java.lang.Thread.*;
+
 
 public class BaseTest {
     static WebDriver driver;
@@ -23,15 +25,14 @@ public class BaseTest {
     }
 
     @BeforeMethod
-    @Parameters({"baseURL"})
-    public void setUpBrowser(String baseURL) {
-       url = baseURL;
+    
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--disable-notifications");
         driver = new ChromeDriver(options);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.manage().window().maximize();
         driver.get(url);
+        driver.manage().window().maximize();
     }
 
     @AfterMethod
@@ -39,26 +40,14 @@ public class BaseTest {
         driver.quit();
     }
 
-    public void enterEmail(String email) {
         WebElement emailInput = driver.findElement(By.cssSelector("[type='email']"));
         emailInput.click();
         emailInput.sendKeys(email);
     }
 
-    public void enterPassword(String password) {
         WebElement passwordInput = driver.findElement(By.cssSelector("[type='password']"));
         passwordInput.click();
         passwordInput.sendKeys(password);
     }
 
-    public void loginSubmit() {
-        WebElement submitLogin = driver.findElement(By.cssSelector("button[type='submit']"));
-        submitLogin.click();
-    }
 
-    public void login(String email, String password){
-        enterEmail(email);
-        enterPassword(password);
-        loginSubmit();
-    }
-}

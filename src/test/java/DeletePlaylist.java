@@ -1,11 +1,12 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class DeletePlaylist extends BaseTest {
     @Test
-    public void deletePlaylist() throws InterruptedException {
+    public void deletePlaylist()  {
         enterEmail("rumkostia92@gmail.com");
         enterPassword("te$t$tudent");
         loginSubmit();
@@ -18,14 +19,15 @@ public class DeletePlaylist extends BaseTest {
 
     }
     public void deleteActions(){
-        WebElement playlist = driver.findElement(By.cssSelector("li[class='playlist playlist']"));
+
+        WebElement playlist= wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("li[class='playlist playlist']")));
         playlist.click();
-        WebElement deleteButton = driver.findElement(By.cssSelector("button[title='Delete this playlist']"));
+        WebElement deleteButton = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("button[title='Delete this playlist']")));
         deleteButton.click();
 
     }
     public void isPlaylistDeleted(){
-        WebElement notification = driver.findElement(By.cssSelector("[class='success show']"));
+        WebElement notification = wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("[class='success show']")));
         Assert.assertTrue(notification.isDisplayed());
     }
 }

@@ -8,9 +8,9 @@
         <classes>
             <class name="LoginTests"/>
             <class name="BaseTest"/>
+            <class name="HomeWork17"/>
             <class name="SongsTests"/>
             <class name="CSVDataProviderTest"/>
-            <class name="Homework17"/>
         </classes>
     </test>
 </suite>

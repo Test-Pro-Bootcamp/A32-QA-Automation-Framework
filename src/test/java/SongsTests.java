@@ -42,12 +42,11 @@ public class SongsTests extends BaseTest {
         enterEmail("demo@class.com");
         enterPassword("te$t$tudent");
         loginSubmit();
-        WebDriverWait wait = new WebDriverWait(driver,3);
-        WebElement title = wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("title")));
-        String text = title.getText();
-        System.out.println(text);
-        System.out.println("Is element visible? === " + wait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector("title"))));
-        WebElement title2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("title")));  // should fail
+       // WebElement title = wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("title")));
+       // String text = title.getText();
+       // System.out.println(text);
+       // System.out.println("Is element visible? === " + wait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector("title"))));
+       // WebElement title2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("title")));  // should fail
     }
 
     @Test

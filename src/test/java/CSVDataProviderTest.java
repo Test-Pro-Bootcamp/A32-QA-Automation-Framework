@@ -2,7 +2,6 @@ import com.opencsv.CSVReader;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-
 import java.io.Reader;
 import java.nio.file.Files;
 import java.nio.file.Paths;

@@ -10,13 +10,18 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Parameters;
-
+import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
+import java.util.concurrent.TimeUnit;
+import org.openqa.selenium.*;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 
 public class BaseTest {
     static WebDriver driver;
     public String url = null;
+    //static WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
+
     public static void loginKoel() {
 
         WebElement emailInput = driver.findElement(By.cssSelector("[type='email']"));
@@ -46,6 +51,22 @@ public class BaseTest {
         Assert.assertTrue(songIsPlaying.isDisplayed());
     }
 
+    public static void openPlaylistPage() {
+        WebElement myPlaylist = driver.findElement(By.xpath("//a[text()='My playlist']"));
+        myPlaylist.click();
+    }
+
+    public static void clickDeleteBtn() {
+        WebElement playlistDelete = driver.findElement(By.cssSelector("[class='del btn-delete-playlist']"));
+        playlistDelete.click();
+    }
+
+    public static void verifyPlaylistDeleted() {
+        WebElement playlistDelete = driver.findElement(By.cssSelector("[class='success show']"));
+        Assert.assertTrue(playlistDelete.isDisplayed());
+
+    }
+
     @BeforeSuite
     static void setupClass() {
         WebDriverManager.chromedriver().setup();
@@ -54,7 +75,7 @@ public class BaseTest {
     @BeforeMethod
     @Parameters({"baseURL"})
     public void setUpBrowser(String baseURL) {
-       url = baseURL;
+        url = baseURL;
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--disable-notifications");
         driver = new ChromeDriver(options);
@@ -85,7 +106,7 @@ public class BaseTest {
         submitLogin.click();
     }
 
-    public void login(String email, String password){
+    public void login(String email, String password) {
         enterEmail(email);
         enterPassword(password);
         loginSubmit();

@@ -3,10 +3,12 @@
 
 <suite name="Regression">
     <test name="Regression Test" preserve-order="false">
-        <parameter name = "baseURL" value="https://bbb.testpro.io/"/>
         <classes>
             <class name="LoginTests"/>
             <class name="BaseTest"/>
+            <class name="HW16"/>
+            <class name="HW17"/>
+            <class name="HW18"/>
         </classes>
     </test>
 </suite>

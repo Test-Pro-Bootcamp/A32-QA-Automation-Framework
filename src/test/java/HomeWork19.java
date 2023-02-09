@@ -1,5 +1,6 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class HomeWork19 extends BaseTest {
@@ -22,6 +23,6 @@ public class HomeWork19 extends BaseTest {
 
     public void displayedNotification() {
         WebElement notification = driver.findElement(By.cssSelector(".success"));
-        notification.isDisplayed();
+        Assert.assertTrue((notification.isDisplayed()));
     }
 }

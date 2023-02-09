@@ -25,7 +25,7 @@ public class BaseTest {
     @BeforeMethod
     @Parameters({"baseURL"})
     public void setUpBrowser(String baseURL) {
-       url = baseURL;
+        url = baseURL;
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--disable-notifications");
         driver = new ChromeDriver(options);
@@ -56,7 +56,7 @@ public class BaseTest {
         submitLogin.click();
     }
 
-    public void login(String email, String password){
+    public void login(String email, String password) {
         enterEmail(email);
         enterPassword(password);
         loginSubmit();

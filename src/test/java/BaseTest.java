@@ -14,25 +14,27 @@ import java.time.Duration;
 
 public class BaseTest {
     @BeforeSuite
-    @Parameters("baseUrl")
-    public void setUpBrowser(String baseUrl){
-    }
-
-    @BeforeSuite
     static void setupClass() {
         WebDriverManager.chromedriver().setup();
     }
-    public static void logIn (String email, String password) {
+    @BeforeMethod
+    @Parameters("baseUrl")
+    public void setUpBrowser(String baseUrl) {
         WebDriver driver = new ChromeDriver();
-        WebElement emailfield = driver.findElement(By.cssSelector("[type='email']"));
-        emailfield.sendKeys(email);
-        WebElement passwordfield = driver.findElement(By.cssSelector("[type='password']"));
-        passwordfield.sendKeys(password);
-        WebElement submit = driver.findElement(By.cssSelector("[type='submit']"));
-        submit.click();
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        driver.manage().window().maximize();
+        driver.get(baseUrl);
     }
-
-
-
+    public void logIn(String email, String password) {
+        WebDriver driver = new ChromeDriver();
+        WebElement emailadress = driver.findElement(By.cssSelector("[type='email']"));
+        emailadress.click();
+        emailadress.sendKeys(email);
+        WebElement passwordField = driver.findElement(By.cssSelector("[type='password']"));
+        passwordField.click();
+        passwordField.sendKeys(password);
+        WebElement submitBtn = driver.findElement(By.cssSelector("[type='submit']"));
+        submitBtn.click();
+    }
 
 }

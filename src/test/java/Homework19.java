@@ -9,21 +9,36 @@ import java.time.Duration;
 import java.util.List;
 
 public class Homework19 extends BaseTest {
+    String nameNewPlaylist = "AutomationGuru";
     @Test
-    public void deletePlayListTest() throws InterruptedException {
+    public void createAndDeletePlayListTest() throws InterruptedException {
         openLoginUrl();
-        login("demo@class.com", "te$t$tudent");
+        login("vlina7078@yahoo.com", "te$t$tudent");
         myDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         createNewPlayList();
-
         Thread.sleep(5000);
         deletePlaylist();
-
         Thread.sleep(5000);
         Assert.assertTrue(confirmPlaylistDeleted());
     }
 
-    String nameNewPlaylist = "Goldcluster Test Playlist";
+    @Test
+    //Test to delete existing playlist with the name defined above for "String nameNewPlaylist = "AutomationGuru";"
+    public void deleteExistingPlayListTest() throws InterruptedException {
+        openLoginUrl();
+        login("vlina7078@yahoo.com", "te$t$tudent");
+        myDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+        Thread.sleep(5000);
+        searchPlaylist();
+        deletePlaylist();
+        Thread.sleep(5000);
+        Assert.assertTrue(confirmPlaylistDeleted());
+    }
+
+    private void searchPlaylist() {
+        WebElement testPlaylist = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//li/a[text()='" + nameNewPlaylist + "']")));
+        testPlaylist.click();
+    }
 
     public void createNewPlayList() {
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//i[@title='Create a new playlist']"))).click();

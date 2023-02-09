@@ -5,6 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.safari.SafariDriver;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -13,6 +14,7 @@ import org.testng.annotations.BeforeTest;
 import java.time.Duration;
 
 public class BaseTest {
+    public WebDriverWait wait = null;
     static WebDriver myDriver;
     @BeforeSuite
     static void setupClass() {
@@ -22,7 +24,13 @@ public class BaseTest {
     public void setUpBrowser(){
         myDriver = new ChromeDriver();
         myDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+        wait = new WebDriverWait(getMyDriver(),Duration.ofSeconds(5));
     }
+
+    public static WebDriver getMyDriver() {
+        return myDriver;
+    }
+
     @AfterMethod
     public void tearDown(){
         myDriver.quit();

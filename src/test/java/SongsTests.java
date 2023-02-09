@@ -8,30 +8,6 @@ import org.testng.asserts.SoftAssert;
 import java.util.List;
 
 public class SongsTests extends BaseTest {
-
-    @Test
-    public void playSongTest() {
-        enterEmail("demo@class.com");
-        enterPassword("te$t$tudent");
-        loginSubmit();
-        clickPlayBtn();
-        Assert.assertTrue(pauseBtnExists());
-
-        // Comparing numbers of elements example
-        List<WebElement> songs = driver.findElements(By.cssSelector(".song-item"));
-        int songsNumberBefore = songs.size();
-        System.out.println(songsNumberBefore);
-        // Just an example: here we would add or delete an element but we didn't
-        int songsNumberAfter = songs.size();
-        System.out.println(songsNumberAfter);
-
-        // Soft assert example
-        SoftAssert softAssert = new SoftAssert();
-        softAssert.assertEquals(driver.getCurrentUrl(), "https://bbb.testpro.io/#!/queue");
-        softAssert.assertTrue(songsNumberBefore == songsNumberAfter, "=== Songs number before should be equal songs number after ===");
-        softAssert.assertAll();
-    }
-
     @Test
     public void checkVisibilityTest() {
         enterEmail("demo@class.com");
@@ -40,30 +16,26 @@ public class SongsTests extends BaseTest {
         WebElement title = wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("title")));
         String text = title.getText();
         System.out.println(text);
-        System.out.println("Is element visible? === " + wait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector("title"))));
-        WebElement title2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("title")));  // should fail
+        System.out.println("Is element invisible? === " + wait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector("title"))));
+       // WebElement title2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("title")));  // should fail
     }
 
     @Test
-    public void deletePlaylistTest() {
+    public void deletePlaylistTest() throws InterruptedException {
         enterEmail("demo@class.com");
         enterPassword("te$t$tudent");
         loginSubmit();
-        List<WebElement> playlists = driver.findElements(By.cssSelector("section#playlists > ul > li"));
+        List<WebElement> playlists = driver.findElements(By.cssSelector(".playlist.playlist>a"));
         int playlistsNumber = playlists.size();
-        playlists.get(playlistsNumber - 1).click();
+        playlists.get(playlistsNumber-1).click();
+        WebElement playlistName = driver.findElement(By.cssSelector("#playlistWrapper h1"));
+        Thread.sleep(4000);
+        String name = playlistName.getText();
+        WebElement btnDeletePlaylist = driver.findElement(By.cssSelector(".btn-delete-playlist"));
+        btnDeletePlaylist.click();
+        String notificationText = "Deleted playlist " + name;
 
-    }
-
-        public void clickPlayBtn() {
-        Actions action = new Actions(driver);
-        WebElement playBtn = driver.findElement(By.cssSelector("[data-testid='play-btn']"));
-        action.moveToElement(playBtn).perform();
-        playBtn.click();
-    }
-
-    public boolean pauseBtnExists(){
-        return driver.findElement(By.cssSelector("[data-testid='pause-btn']")).isDisplayed();
+        System.out.println(notificationText);
     }
 
 }

@@ -3,12 +3,11 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class RenamePlaylist extends BaseTest{
     @Test
-    public void renamePlaylist() throws InterruptedException {
+    public void renamePlaylist() {
         enterEmail("rumkostia92@gmail.com");
         enterPassword("te$t$tudent");
         loginSubmit();
@@ -25,7 +24,7 @@ public class RenamePlaylist extends BaseTest{
         WebElement playlistField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[data-testid='inline-playlist-name-input']")));
         playlistField.sendKeys(Keys.CONTROL + "a");
         playlistField.sendKeys(Keys.DELETE);
-        playlistField.sendKeys("ABCr", Keys.ENTER);
+        playlistField.sendKeys("ABCrv", Keys.ENTER);
         WebElement notification = wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("div[class='success show']")));
     }
 

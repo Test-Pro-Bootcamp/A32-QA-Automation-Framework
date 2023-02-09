@@ -12,11 +12,6 @@ public class DeletePlaylist extends BaseTest {
         loginSubmit();
         deleteActions();
         isPlaylistDeleted();
-
-
-
-
-
     }
     public void deleteActions(){
 
@@ -24,7 +19,6 @@ public class DeletePlaylist extends BaseTest {
         playlist.click();
         WebElement deleteButton = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("button[title='Delete this playlist']")));
         deleteButton.click();
-
     }
     public void isPlaylistDeleted(){
         WebElement notification = wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("[class='success show']")));

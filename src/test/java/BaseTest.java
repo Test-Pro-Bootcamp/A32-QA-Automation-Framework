@@ -15,16 +15,19 @@ import java.time.Duration;
 
 public class BaseTest {
     public WebDriverWait wait = null;
+    public WebDriverWait wait1 = null;
     static WebDriver myDriver;
     @BeforeSuite
     static void setupClass() {
         WebDriverManager.chromedriver().setup();
     }
     @BeforeMethod
+
     public void setUpBrowser(){
         myDriver = new ChromeDriver();
-        myDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-        wait = new WebDriverWait(getMyDriver(),Duration.ofSeconds(5));
+        myDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5)); //implicit wait
+        wait = new WebDriverWait(getMyDriver(), Duration.ofSeconds(3)); //explicit wait
+        wait1 = new WebDriverWait(getMyDriver(), Duration.ofSeconds(5, 200));
     }
 
     public static WebDriver getMyDriver() {

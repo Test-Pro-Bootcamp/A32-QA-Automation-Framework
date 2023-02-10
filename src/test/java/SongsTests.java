@@ -13,7 +13,16 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.WebDriver;
 
 public class SongsTests extends BaseTest {
+    @Test
+    public static void registrationNavigation() {
+        loginKoel();
+        WebElement registrationSubmit = driver.findElement(By.cssSelector("[id='hel']"));
+        registrationSubmit.click();
 
+        WebElement register = driver.findElement(By.cssSelector("[value='Register']"));
+        Assert.assertTrue(register.isDisplayed());
+
+    }
     @Test
     public void playSongTest() {
         enterEmail("demo@class.com");

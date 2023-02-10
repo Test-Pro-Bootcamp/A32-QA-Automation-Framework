@@ -23,22 +23,7 @@ public class Homework20 extends BaseTest {
         Assert.assertTrue(confirmPlaylistDeleted());
     }
 
-    @Test
-    //Test to delete existing playlist with the name defined above for "String nameNewPlaylist = "AutomationGuru";"
-    public void deleteExistingPlayListTest() throws InterruptedException {
-        openLoginUrl();
-        login("vlina7078@yahoo.com", "te$t$tudent");
-        searchPlaylist();
-        deletePlaylist();
-        Assert.assertTrue(confirmPlaylistDeleted());
-    }
-
     //Methods
-    private void searchPlaylist() {
-        WebElement testPlaylist = wait.until(ExpectedConditions.elementToBeClickable
-                (By.xpath("//li/a[text()='" + nameNewPlaylist + "']")));
-        testPlaylist.click();
-    }
 
     public void createNewPlayList() {
         wait.until(ExpectedConditions.elementToBeClickable

@@ -35,7 +35,7 @@ public class Homework19 extends BaseTest {
         Assert.assertTrue(confirmPlaylistDeleted());
     }
 
-    private void searchPlaylist() {
+    public void searchPlaylist() {
         WebElement testPlaylist = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//li/a[text()='" + nameNewPlaylist + "']")));
         testPlaylist.click();
     }

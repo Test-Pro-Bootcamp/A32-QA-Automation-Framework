@@ -1,17 +1,13 @@
-
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.testng.Assert;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
-import java.util.Scanner;
-import org.openqa.selenium.Keys;
-public class Homework17 extends BaseTest{
 
+public class Homework20 extends BaseTest {
+    @Test
+    public static void playSong() {
+        loginKoel();
+        navigateToAllSongs();
+        songDoubleClick();
+        songIsPlaying();
+    }
     @Test
     public static void CreatePlaylist() {
         loginKoel();
@@ -20,7 +16,6 @@ public class Homework17 extends BaseTest{
         enterPlaylistName();
         verifyPlaylistCreated();
     }
-
     @Test
     public static void addSongToPlaylist() {
         loginKoel();
@@ -31,4 +26,12 @@ public class Homework17 extends BaseTest{
         open_m_Playlist();
         verifySongIsAdded();
     }
+    @Test
+    public static void deletePlaylist() {
+        loginKoel();
+        openPlaylistPage();
+        clickDeleteBtn();
+        verifySuccessDeleted();
+    }
+
 }

@@ -6,9 +6,6 @@ public class Homework19 extends BaseTest {
         loginKoel();
         openPlaylistPage();
         clickDeleteBtn();
-        verifyPlaylistDeleted();
-
-
+        verifySuccessDeleted();
     }
-
 }

@@ -8,6 +8,5 @@ public class Homework18 extends BaseTest {
         navigateToAllSongs();
         songDoubleClick();
         songIsPlaying();
-
     }
 }

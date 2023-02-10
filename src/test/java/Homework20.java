@@ -1,3 +1,5 @@
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
 
 public class Homework20 extends BaseTest {
@@ -16,6 +18,7 @@ public class Homework20 extends BaseTest {
         enterPlaylistName();
         verifyPlaylistCreated();
     }
+
     @Test
     public static void addSongToPlaylist() {
         loginKoel();
@@ -26,6 +29,7 @@ public class Homework20 extends BaseTest {
         open_m_Playlist();
         verifySongIsAdded();
     }
+
     @Test
     public static void deletePlaylist() {
         loginKoel();
@@ -33,5 +37,4 @@ public class Homework20 extends BaseTest {
         clickDeleteBtn();
         verifySuccessDeleted();
     }
-
 }

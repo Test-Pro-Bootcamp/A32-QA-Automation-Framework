@@ -6,20 +6,23 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import java.util.List;
+
 import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.WebDriver;
 
+import static org.openqa.selenium.support.ui.ExpectedConditions.*;
+
 public class SongsTests extends BaseTest {
     @Test
     public static void registrationNavigation() {
         loginKoel();
-        WebElement registrationSubmit = driver.findElement(By.cssSelector("[id='hel']"));
+        WebElement registrationSubmit = wait.until(elementToBeClickable(By.cssSelector("[id='hel']")));
         registrationSubmit.click();
 
-        WebElement register = driver.findElement(By.cssSelector("[value='Register']"));
+        WebElement register = wait.until(elementToBeClickable(By.cssSelector("[value='Register']")));
         Assert.assertTrue(register.isDisplayed());
 
     }
@@ -32,7 +35,7 @@ public class SongsTests extends BaseTest {
         Assert.assertTrue(pauseBtnExists());
 
         // Comparing numbers of elements example
-        List<WebElement> songs = driver.findElements(By.cssSelector(".song-item"));
+        List<WebElement> songs = wait.until(visibilityOfAllElementsLocatedBy(By.cssSelector("[class='song-item']")));
         int songsNumberBefore = songs.size();
         System.out.println(songsNumberBefore);
         // Just an example: here we would add or delete an element but we didn't
@@ -51,11 +54,11 @@ public class SongsTests extends BaseTest {
         enterEmail("demo@class.com");
         enterPassword("te$t$tudent");
         loginSubmit();
-        WebElement title = wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("title")));
+        WebElement title = wait.until(presenceOfElementLocated(By.cssSelector("title")));
         String text = title.getText();
         System.out.println(text);
-        System.out.println("Is element visible? === " + wait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector("title"))));
-        WebElement title2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("title")));  // should fail
+        System.out.println("Is element visible? === " + wait.until(invisibilityOfElementLocated(By.cssSelector("title"))));
+        WebElement title2 = wait.until(visibilityOfElementLocated(By.cssSelector("title")));  // should fail
     }
 
     @Test
@@ -63,7 +66,7 @@ public class SongsTests extends BaseTest {
         enterEmail("demo@class.com");
         enterPassword("te$t$tudent");
         loginSubmit();
-        List<WebElement> playlists = driver.findElements(By.cssSelector("section#playlists > ul > li"));
+        List<WebElement> playlists = wait.until(visibilityOfAllElementsLocatedBy(By.cssSelector("section#playlists > ul > li")));
         int playlistsNumber = playlists.size();
         playlists.get(playlistsNumber - 1).click();
 
@@ -71,7 +74,7 @@ public class SongsTests extends BaseTest {
 
         public void clickPlayBtn() {
         Actions action = new Actions(driver);
-        WebElement playBtn = driver.findElement(By.cssSelector("[data-testid='play-btn']"));
+        WebElement playBtn = wait.until(elementToBeClickable(By.cssSelector("[data-testid='play-btn']")));
         action.moveToElement(playBtn).perform();
         playBtn.click();
     }

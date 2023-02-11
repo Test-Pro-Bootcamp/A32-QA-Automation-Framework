@@ -10,7 +10,7 @@ public class Homework20 extends BaseTest {
     String nameNewPlaylist = "AutomationGuruGroove";
 
     @Test
-    public void createAndDeletePlayListTest() throws InterruptedException {
+    public void createAndDeletePlayListTest(){
         openLoginUrl();
         login("vlina7078@yahoo.com", "te$t$tudent");
         createNewPlayList();

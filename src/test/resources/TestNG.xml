@@ -8,10 +8,7 @@
         <classes>
             <class name="LoginTests"/>
             <class name="BaseTest"/>
-            <class name="SongsTests"/>
-            <class name="CSVDataProviderTest"/>
-            <class name="PlaylistsTests"/>
-            <class name="ActionsTests"/>
+            <class name="HW20"/>
         </classes>
     </test>
 </suite>

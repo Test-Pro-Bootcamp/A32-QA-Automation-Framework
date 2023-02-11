@@ -35,7 +35,7 @@ public class LoginTests extends BaseTest {
 
     @Test
     public void loginWrongPasswordTest() {
-        login("demo@class.com", "student");
+        logIn("demo@class.com", "student");
         loginSubmit();
         Assert.assertEquals(driver.getCurrentUrl(), url);
         WebElement submitLogin = driver.findElement(By.cssSelector("button[type='submit']"));

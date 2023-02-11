@@ -3,9 +3,9 @@ import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-import pageobject.LoginPage;
+import pageObject.HomePage;
+import pageObject.LoginPage;
 public class LoginTests extends BaseTest {
-
     @DataProvider(name="IncorrectLoginProviders")
     public static Object[][] getDataFromDataProviders(){
         return new Object[][]{
@@ -14,7 +14,6 @@ public class LoginTests extends BaseTest {
                 {"", ""},
         };
     }
-
     @Test(dataProvider = "IncorrectLoginProviders")
     public void negativeLoginTests(String email, String password) {
         LoginPage loginPage = new LoginPage(driver);
@@ -23,18 +22,14 @@ public class LoginTests extends BaseTest {
         loginPage.clickSubmitBtn();
         Assert.assertEquals(driver.getCurrentUrl(), url);
     }
-
     @Test
     public void loginSucceedTest() {
         LoginPage loginPage = new LoginPage(driver);
-        loginPage.provideEmail("demo@class.com");
-        loginPage.providePassword("te$t$tudent");
+        HomePage homePage = new HomePage(driver);
+        loginPage.login("burkovads@mail.ru", "Julka@0721");
         loginPage.clickSubmitBtn();
-
-        WebElement avatar = driver.findElement(By.cssSelector(".avatar"));
-        Assert.assertTrue(avatar.isDisplayed());
+        Assert.assertTrue(homePage.getUserAvatar().isDisplayed());
     }
-
     @Test
     public void loginWrongPasswordTest() {
         LoginPage loginPage = new LoginPage(driver);
@@ -44,7 +39,6 @@ public class LoginTests extends BaseTest {
         WebElement submitLogin = driver.findElement(By.cssSelector("button[type='submit']"));
         Assert.assertTrue(submitLogin.isDisplayed());
     }
-
     @Test
     public void loginEmptyPasswordTest() {
         LoginPage loginPage = new LoginPage(driver);
@@ -53,7 +47,6 @@ public class LoginTests extends BaseTest {
         Assert.assertTrue(loginPage.submitLoginButton().isDisplayed());
         Assert.assertTrue(loginPage.registrationLink().isDisplayed(), "==== Registration link displayed ====");
     }
-
     @Test
     public void loginWrongEmailTest() {
         LoginPage loginPage = new LoginPage(driver);
@@ -65,10 +58,10 @@ public class LoginTests extends BaseTest {
         String link = loginPage.registrationLink().getText();
         System.out.println("==== This is our link text ==== " + link);
     }
-
     @Test
     public void changeProfileNameTest() {
         LoginPage loginPage = new LoginPage(driver);
+        HomePage homePage = new HomePage(driver);
         loginPage.provideEmail("demo@class.com");
         loginPage.providePassword("te$t$tudent");
         loginPage.clickSubmitBtn();
@@ -77,7 +70,7 @@ public class LoginTests extends BaseTest {
         loginPage.setName(user);
         loginPage.setPassword();
         loginPage.saveProfile();
-        loginPage.getSuccessBanner();
+        homePage.getSuccessBanner();
         Assert.assertEquals(loginPage.getUsername(), user);
     }
 }

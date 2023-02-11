@@ -10,7 +10,7 @@
             <class name="BaseTest"/>
             <class name="SongsTests"/>
             <class name="CSVDataProviderTest"/>
-            <class name="PlaylistsTests"/>
+            <class name="HomeWork21"/>
             <class name="ActionsTests"/>
         </classes>
     </test>

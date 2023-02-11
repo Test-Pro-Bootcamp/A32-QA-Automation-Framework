@@ -17,7 +17,6 @@ public class Homework20 extends BaseTest {
         deletePlaylist();
         Assert.assertTrue(confirmPlaylistDeleted());
     }
-
     //Methods
 
     public void createNewPlayList() {

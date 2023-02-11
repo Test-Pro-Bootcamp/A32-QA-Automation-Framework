@@ -23,7 +23,7 @@ public class HomeWork20 extends BaseTest {
     }
 
     public void displayedNotification() {
-        WebElement notification = wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".success")));
+        WebElement notification = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".success")));
         Assert.assertTrue((notification.isDisplayed()));
     }
 }

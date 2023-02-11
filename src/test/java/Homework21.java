@@ -11,7 +11,7 @@ public class Homework21 extends BaseTest {
     String topPlaylist = ".playlist:nth-child(3)";
 
     @Test
-    public void createAndRenamePlayListTest() throws InterruptedException {
+    public void createAndRenamePlayListTest() {
         openLoginUrl();
         login("vlina7078@yahoo.com", "te$t$tudent");
         createNewPlayList();

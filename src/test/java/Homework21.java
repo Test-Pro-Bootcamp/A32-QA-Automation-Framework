@@ -3,10 +3,10 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class Homework21 extends BaseTest {
-
 
     @Test
     public static void createPlaylist() {
@@ -14,7 +14,7 @@ public class Homework21 extends BaseTest {
         addPlaylist();
         selectPlaylist();
         enterNamePlaylist();
-        notificationText();
+        assertNotificationText();
     }
 
     @Test
@@ -23,7 +23,7 @@ public class Homework21 extends BaseTest {
         login("ksenia.strigkova@gmail.com", "te$t$tudent");
         doubleClickOnPlaylist();
         enterNewNamePlaylist("blabla22");
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("blabla22")));
+        assertRenamePlaylist();
     }
 
     public static void addPlaylist() {
@@ -43,9 +43,8 @@ public class Homework21 extends BaseTest {
         inputName.sendKeys(Keys.ENTER);
     }
 
-    public static void notificationText() {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".success")));
-    }
+    public static boolean assertNotificationText() {
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".success"))).isDisplayed();}
 
     private static void doubleClickOnPlaylist() {
         WebElement playlist = wait.until(ExpectedConditions.elementToBeClickable(By.linkText("lalala666")));
@@ -59,4 +58,10 @@ public class Homework21 extends BaseTest {
         inputPlaylistName.sendKeys(Keys.HOME, Keys.chord(Keys.SHIFT, Keys.END), name);
         inputPlaylistName.sendKeys(Keys.ENTER);
     }
+
+    public static void assertRenamePlaylist() {
+        WebElement newNamePlaylist = wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("blabla22")));
+        Assert.assertTrue(newNamePlaylist.isDisplayed());
+    }
 }
+

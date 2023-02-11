@@ -10,6 +10,5 @@ public class Homework21 extends BaseTest {
         playlistDoubleClick();
         renamePlaylistName(playlistName);
         Assert.assertEquals(playlistName, newName);
-
     }
 }

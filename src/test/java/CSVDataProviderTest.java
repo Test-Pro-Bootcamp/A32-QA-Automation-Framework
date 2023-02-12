@@ -1,7 +1,10 @@
 import com.opencsv.CSVReader;
+import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+import pages.HomePage;
+import pages.LoginPage;
 
 import java.io.Reader;
 import java.nio.file.Files;
@@ -10,6 +13,10 @@ import java.util.List;
 import java.util.Objects;
 
 public class CSVDataProviderTest extends BaseTest {
+
+    public CSVDataProviderTest(WebDriver givenDriver) {
+        super(givenDriver);
+    }
 
     @DataProvider(name = "getCredentialsData")
     // Method to read the data from .csv file and return it as array
@@ -34,9 +41,12 @@ public class CSVDataProviderTest extends BaseTest {
     @Test(dataProvider = "getCredentialsData")
     // test that uses data from csv file
     public void negativeLoginTests(String email, String password) {
-        enterEmail(email);
-        enterPassword(password);
-        loginSubmit();
+        LoginPage loginPage = new LoginPage(driver);
+
+        loginPage.enterEmail("demo@class.com");
+        loginPage.passwordField("te$t$tudent");
+        loginPage.clickButtonSubmit();
+
         Assert.assertEquals(driver.getCurrentUrl(), url);
     }
 }

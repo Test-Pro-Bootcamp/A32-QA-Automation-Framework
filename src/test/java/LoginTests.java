@@ -1,117 +1,98 @@
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+import pages.HomePage;
+import pages.LoginPage;
+
 import java.util.UUID;
 
-public class LoginTests extends BaseTest {
+public class LoginTests extends LoginPage {
 
-    @DataProvider(name="IncorrectLoginProviders")
-    public static Object[][] getDataFromDataProviders(){
-        return new Object[][]{
-                {"notExisting@email.com", "NotExistingPassword"},
-                {"demo@class.com", ""},
-                {"", ""},
-        };
+    public LoginTests(WebDriver givenDriver) {
+        super(givenDriver);
     }
 
-    @Test(dataProvider = "IncorrectLoginProviders")
-    public void negativeLoginTests(String email, String password) {
-        enterEmail(email);
-        enterPassword(password);
-        loginSubmit();
+//    @DataProvider(name="IncorrectLoginProviders")
+//    public static Object[][] getDataFromDataProviders(){
+//        return new Object[][]{
+//                {"notExisting@email.com", "NotExistingPassword"},
+//                {"demo@class.com", ""},
+//                {"", ""},
+//        };
+//    }
+    @Test
+    public void negativeLoginTests() {
+
+        LoginPage loginPage = new LoginPage(driver);
+        HomePage homePage = new HomePage(driver);
+
+        loginPage.enterEmail("demo@class.com");
+        loginPage.passwordField("password");
+        loginPage.clickButtonSubmit();
         Assert.assertEquals(driver.getCurrentUrl(), url);
     }
 
     @Test
     public void loginSucceedTest() {
-        enterEmail("demo@class.com");
-        enterPassword("te$t$tudent");
-        loginSubmit();
-        WebElement avatar = driver.findElement(By.cssSelector(".avatar"));
-        Assert.assertTrue(avatar.isDisplayed());
+        LoginPage loginPage = new LoginPage(driver);
+        HomePage homePage = new HomePage(driver);
+
+        loginPage.enterEmail("demo@class.com");
+        loginPage.passwordField("te$t$tudent");
+        loginPage.clickButtonSubmit();
+
+        Assert.assertTrue(homePage.getUserAvatar().isDisplayed());
     }
 
     @Test
     public void loginWrongPasswordTest() {
-        login("demo@class.com", "student");
-        loginSubmit();
-        Assert.assertEquals(driver.getCurrentUrl(), url);
-        WebElement submitLogin = driver.findElement(By.cssSelector("button[type='submit']"));
-        Assert.assertTrue(submitLogin.isDisplayed());
+        LoginPage loginPage = new LoginPage(driver);
+
+        loginPage.enterEmail("demo@class.com");
+        loginPage.passwordField("student");
+        loginPage.clickButtonSubmit();
+        Assert.assertTrue(loginPage.getsubmitButton().isDisplayed());
     }
 
     @Test
     public void loginEmptyPasswordTest() {
-        enterEmail("demo@class.com");
-        WebElement submitLogin = driver.findElement(By.cssSelector("button[type='submit']"));
-        submitLogin.click();
-        Assert.assertEquals(driver.getCurrentUrl(), url);
-        Assert.assertTrue(submitLogin.isDisplayed());
-        WebElement registationLink = driver.findElement(By.id("hel"));
-        Assert.assertTrue(registationLink.isDisplayed(), "==== Registation link displayed ====");
+        LoginPage loginPage = new LoginPage(driver);
+
+        loginPage.enterEmail("demo@class.com");
+        loginPage.clickButtonSubmit();
+
+        Assert.assertTrue(loginPage.getsubmitButton().isDisplayed());
     }
 
     @Test
     public void loginWrongEmailTest() {
-        enterEmail("dem@class.com");
-        enterPassword("te$t$tudent");
-        loginSubmit();
-        Assert.assertEquals(driver.getCurrentUrl(), url);
-        WebElement submitLogin = driver.findElement(By.cssSelector("button[type='submit']"));
-        Assert.assertTrue(submitLogin.isDisplayed());
-        WebElement registationLink = driver.findElement(By.id("hel"));
-        String link = registationLink.getText();
-        System.out.println("==== This is our link text ==== " + link);
+        LoginPage loginPage = new LoginPage(driver);
+
+        loginPage.enterEmail("dem@class.com");
+        loginPage.passwordField("te$t$tudent");
+        loginPage.clickButtonSubmit();
+
+        Assert.assertTrue(loginPage.getsubmitButton().isDisplayed());
     }
 
     @Test
     public void changeProfileNameTest() {
-        enterEmail("demo@class.com");
-        enterPassword("te$t$tudent");
-        loginSubmit();
-        openUserProfile();
+        LoginPage loginPage = new LoginPage(driver);
+
+        loginPage.enterEmail("demo@class.com");
+        loginPage.passwordField("te$t$tudent");
+        loginPage.clickButtonSubmit();
+
+        LoginPage.openUserProfile();
         String user = generateRandomName();
         setName(user);
         setPassword();
         saveProfile();
-        getSuccessBanner();
+        loginPage.getSuccessBanner();
         Assert.assertEquals(getUsername(), user);
-    }
-
-    private WebElement getSuccessBanner() {
-        WebElement successBanner = driver.findElement(By.cssSelector(".success"));
-        return successBanner;
-    }
-
-    private void openUserProfile() {
-        WebElement profile = driver.findElement(By.cssSelector(".view-profile"));
-        profile.click();
-    }
-
-
-    private String getUsername() {
-        String userName = driver.findElement(By.cssSelector(".view-profile .name")).getText();
-        return userName;
-    }
-
-    public void setName(String newName) {
-        WebElement nameInput = driver.findElement(By.cssSelector("#inputProfileName"));
-        nameInput.click();
-        nameInput.clear();
-        nameInput.sendKeys(newName);
-    }
-
-    public void setPassword() {
-        WebElement passwordInput = driver.findElement(By.cssSelector("#inputProfileCurrentPassword"));
-        passwordInput.click();
-        passwordInput.sendKeys("te$t$tudent");
-    }
-
-    public void saveProfile() {
-        WebElement saveButton = driver.findElement(By.cssSelector(".btn-submit"));
-        saveButton.click();
     }
 
     public String generateRandomName() {

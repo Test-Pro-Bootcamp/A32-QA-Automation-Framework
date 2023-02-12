@@ -1,18 +1,29 @@
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
+import pages.HomePage;
+import pages.LoginPage;
+
 import java.util.List;
 
 public class SongsTests extends BaseTest {
+    public SongsTests(WebDriver givenDriver) {
+        super(givenDriver);
+    }
+
     @Test
     public void checkVisibilityTest() {
-        enterEmail("demo@class.com");
-        enterPassword("te$t$tudent");
-        loginSubmit();
+        LoginPage loginPage = new LoginPage(driver);
+
+        loginPage.enterEmail("demo@class.com");
+        loginPage.passwordField("te$t$tudent");
+        loginPage.clickButtonSubmit();
+
         WebElement title = wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("title")));
         String text = title.getText();
         System.out.println(text);
@@ -22,9 +33,12 @@ public class SongsTests extends BaseTest {
 
     @Test
     public void deletePlaylistTest() throws InterruptedException {
-        enterEmail("demo@class.com");
-        enterPassword("te$t$tudent");
-        loginSubmit();
+        LoginPage loginPage = new LoginPage(driver);
+
+        loginPage.enterEmail("demo@class.com");
+        loginPage.passwordField("te$t$tudent");
+        loginPage.clickButtonSubmit();
+
         List<WebElement> playlists = driver.findElements(By.cssSelector(".playlist.playlist>a"));
         int playlistsNumber = playlists.size();
         playlists.get(playlistsNumber-1).click();

@@ -1,22 +1,33 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
+import pages.HomePage;
+import pages.LoginPage;
 
 import java.util.List;
 
 public class ActionsTests extends BaseTest {
 
+    public ActionsTests(WebDriver givenDriver) {
+        super(givenDriver);
+    }
+
     @Test
     public void playSongTest() {
         // hover over in clickPlayBtn
-        enterEmail("demo@class.com");
-        enterPassword("te$t$tudent");
-        loginSubmit();
+        LoginPage loginPage = new LoginPage(driver);
+        HomePage homePage = new HomePage(driver);
+
+        loginPage.enterEmail("demo@class.com");
+        loginPage.passwordField("te$t$tudent");
+        loginPage.clickButtonSubmit();
+
         clickPlayBtn();
         Assert.assertTrue(pauseBtnExists());
 
@@ -42,7 +53,13 @@ public class ActionsTests extends BaseTest {
         // double click
         String playlistName = "Summer songs";
 
-        login("demo@class.com", "te$t$tudent");
+        LoginPage loginPage = new LoginPage(driver);
+        HomePage homePage = new HomePage(driver);
+
+        loginPage.enterEmail("demo@class.com");
+        loginPage.passwordField("te$t$tudent");
+        loginPage.clickButtonSubmit();
+
         doubleClickChoosePlaylist();
         enterPlaylistName(playlistName);
         String newName = getPlaylistName();
@@ -52,7 +69,13 @@ public class ActionsTests extends BaseTest {
     @Test
     public void playSongFromListTest() throws InterruptedException {
         // right click
-        login("demo@class.com", "te$t$tudent");
+        LoginPage loginPage = new LoginPage(driver);
+        HomePage homePage = new HomePage(driver);
+
+        loginPage.enterEmail("demo@class.com");
+        loginPage.passwordField("te$t$tudent");
+        loginPage.clickButtonSubmit();
+
         goToAllSongs();
         WebElement firstSong = driver.findElement(By.cssSelector(".song-item"));
         Actions actions = new Actions(driver);
@@ -105,7 +128,13 @@ public class ActionsTests extends BaseTest {
     @Test
     public void countSongsInPlaylist() {
 
-        login("demo@class.com", "te$t$tudent");
+        LoginPage loginPage = new LoginPage(driver);
+        HomePage homePage = new HomePage(driver);
+
+        loginPage.enterEmail("demo@class.com");
+        loginPage.passwordField("te$t$tudent");
+        loginPage.clickButtonSubmit();
+
         WebElement playlist = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".playlist:nth-child(4)")));
         playlist.click();
         List<WebElement> songs = driver.findElements(By.cssSelector("#playlistWrapper .song-item"));

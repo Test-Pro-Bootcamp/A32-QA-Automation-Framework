@@ -7,6 +7,7 @@
         <parameter name="baseURL" value="https://bbb.testpro.io/" />
         <classes>
             <class name="LoginTests"/>
+            <class name="Homework17"/>
             <class name="BaseTest"/>
             <class name="SongsTests"/>
             <class name="CSVDataProviderTest"/>

@@ -5,7 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 public class PlaylistPage extends BasePage {
-    By playlistDeleteButton = By.cssSelector(".btn-delete-playlist");
+    private By playlistDeleteButton = By.cssSelector(".btn-delete-playlist");
     public PlaylistPage(WebDriver givenDriver) {
         super(givenDriver);
     }

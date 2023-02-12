@@ -6,14 +6,14 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 public class HomePage extends BasePage {
-    By userAvatarIcon = By.cssSelector("img.avatar");
-    By titleLocator = By.cssSelector("title");
-    By playButtonLocator = By.cssSelector("[data-testid='play-btn']");
-    By pauseButtonLocator = By.cssSelector("[data-testid='pause-btn']");
-    By allSongsLocator = By.cssSelector(".songs");
-    By userPlaylistElement3 = By.cssSelector(".playlist:nth-child(3)");
-    By userPlaylistInputField = By.cssSelector("input[name='name']");
-    By successBanerLocator = By.cssSelector(".success");
+    private By userAvatarIcon = By.cssSelector("img.avatar");
+    private By titleLocator = By.cssSelector("title");
+    private By playButtonLocator = By.cssSelector("[data-testid='play-btn']");
+    private By pauseButtonLocator = By.cssSelector("[data-testid='pause-btn']");
+    private By allSongsLocator = By.cssSelector(".songs");
+    private By userPlaylistElement3 = By.cssSelector(".playlist:nth-child(3)");
+    private By userPlaylistInputField = By.cssSelector("input[name='name']");
+    private By successBanerLocator = By.cssSelector(".success");
     public HomePage(WebDriver givenDriver) {
         super(givenDriver);
     }

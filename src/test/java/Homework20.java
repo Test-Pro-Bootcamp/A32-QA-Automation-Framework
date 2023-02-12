@@ -11,7 +11,7 @@ public class Homework20 extends BaseTest {
         songIsPlaying();
     }
     @Test
-    public static void CreatePlaylist() {
+    public static void createPlaylist() {
         loginKoel();
         createNewPlaylist();
         selectNewPlaylist();

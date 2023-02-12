@@ -52,16 +52,16 @@ public class BaseTest {
         WebElement playlistDblClick = driver.findElement(By.cssSelector(".playlist:nth-child(3)"));
         actn.doubleClick(playlistDblClick).perform();
     }
-    public static void renamePlaylistName(String name) {
+    public static void renamePlaylistName() {
         WebElement playlistRenameInput = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[data-testid='inline-playlist-name-input'")));
-        playlistRenameInput.sendKeys(Keys.HOME, Keys.chord(Keys.SHIFT, Keys.END), name);
+        playlistRenameInput.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.BACK_SPACE));
         playlistRenameInput.sendKeys("My new playlist");
         playlistRenameInput.sendKeys(Keys.ENTER);
     }
-    public static String getPlaylistName() {
-        WebElement playlistElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".playlist:nth-child(3)>a")));
-        String name = playlistElement.getText();
-        return name;
+    public static void verifyPlaylistRenamed() {
+        WebElement myNewPlaylist = wait.until(ExpectedConditions
+                .visibilityOfElementLocated(By.xpath("//a[text()='My new playlist']")));
+        Assert.assertTrue(myNewPlaylist.isDisplayed());
     }
     public static void songIsPlaying() {
         WebElement songPlaying = wait.until(ExpectedConditions

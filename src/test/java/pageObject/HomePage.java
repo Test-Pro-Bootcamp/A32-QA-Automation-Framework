@@ -6,20 +6,21 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 public class HomePage extends BasePage {
-    private By userAvatarIcon = By.cssSelector("img.avatar");
-    private By titleLocator = By.cssSelector("title");
-    private By playButtonLocator = By.cssSelector("[data-testid='play-btn']");
-    private By pauseButtonLocator = By.cssSelector("[data-testid='pause-btn']");
-    private By allSongsLocator = By.cssSelector(".songs");
-    private By userPlaylistElement3 = By.cssSelector(".playlist:nth-child(3)");
-    private By userPlaylistInputField = By.cssSelector("input[name='name']");
-    private By successBanerLocator = By.cssSelector(".success");
+    private final By userAvatarIcon = By.cssSelector("img.avatar");
+    private final By titleLocator = By.cssSelector("title");
+    private final By playButtonLocator = By.cssSelector("[data-testid='play-btn']");
+    private final By pauseButtonLocator = By.cssSelector("[data-testid='pause-btn']");
+    private final By allSongsLocator = By.cssSelector(".songs");
+    private final By userPlaylistElement3 = By.cssSelector(".playlist:nth-child(3)");
+    private final By userPlaylistInputField = By.cssSelector("input[name='name']");
+    private final By successBanerLocator = By.cssSelector(".success");
     public HomePage(WebDriver givenDriver) {
         super(givenDriver);
     }
     public WebElement getUserAvatar () {
         return wait.until((ExpectedConditions.visibilityOfElementLocated(userAvatarIcon)));
     }
+
     public WebElement title() {
         return wait.until(ExpectedConditions.presenceOfElementLocated(titleLocator));
     }

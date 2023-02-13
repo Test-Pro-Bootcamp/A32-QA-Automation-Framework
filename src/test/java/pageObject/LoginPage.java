@@ -4,16 +4,16 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import java.util.UUID;
 public class LoginPage extends BasePage {
-    private By emailField = By.cssSelector("[type='email']");
-    private By passwordField = By.cssSelector("[type='password']");
-    private By submitButtonLocator = By.cssSelector("[type='submit']");
-    private By submitButtonLoginLocator = By.cssSelector("button[type='submit']");
-    private By profileLocator = By.cssSelector(".view-profile");
-    private By userNameField = By.cssSelector(".view-profile .name");
-    private By nameInputField = By.cssSelector("#inputProfileName");
-    private By passwordInputField = By.cssSelector("#inputProfileCurrentPassword");
-    private By saveButtonLocator = By.cssSelector(".btn-submit");
-    private By registrationLinkLocator = By.id("hel");
+    private final By emailField = By.cssSelector("[type='email']");
+    private final By passwordField = By.cssSelector("[type='password']");
+    private final By submitButtonLocator = By.cssSelector("[type='submit']");
+    private final By submitButtonLoginLocator = By.cssSelector("button[type='submit']");
+    private final By profileLocator = By.cssSelector(".view-profile");
+    private final By userNameField = By.cssSelector(".view-profile .name");
+    private final By nameInputField = By.cssSelector("[name='name']");
+    private final By passwordInputField = By.cssSelector("#inputProfileCurrentPassword");
+    private final By saveButtonLocator = By.cssSelector(".btn-submit");
+    private final By registrationLinkLocator = By.id("hel");
     public LoginPage(WebDriver givenDriver) {
         super(givenDriver);
     }

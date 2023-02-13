@@ -19,7 +19,6 @@ public class ActionsTests extends BaseTest {
         loginSubmit();
         clickPlayBtn();
         Assert.assertTrue(pauseBtnExists());
-
         // Comparing numbers of elements example
         List<WebElement> songs = driver.findElements(By.cssSelector("[data-test='song-card']"));
 
@@ -28,7 +27,6 @@ public class ActionsTests extends BaseTest {
         // Just an example: here we would add or delete an element but we didn't
         int songsNumberAfter = songs.size();
         System.out.println(songsNumberAfter);
-
         // Soft assert example
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertEquals(driver.getCurrentUrl(), "https://bbb.testpro.io/#!/queue");

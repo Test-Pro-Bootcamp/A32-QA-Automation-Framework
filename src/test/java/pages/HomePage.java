@@ -3,21 +3,19 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 
 public class HomePage extends BasePage {
-    By NotificationLocator = By.cssSelector("[class='success show']");
-    By playlistLocator = By.xpath("//li[@class='playlist playlist']");
-    By playlistFieldLocator = By.cssSelector("[data-testid='inline-playlist-name-input']");
-    By avatarLocator = By.cssSelector(".avatar");
-    By createPlaylistBtnLocator = By.cssSelector("[title='Create a new playlist']");
-    By newPlaylistBtnLocator = By.cssSelector("[data-testid='playlist-context-menu-create-simple']");
-    By newPlaylistFieldLocator= By.cssSelector("input[name='name']");
+    private final By NotificationLocator = By.cssSelector("[class='success show']");
+    private final By playlistLocator = By.xpath("//li[@class='playlist playlist']");
+    private final By playlistFieldLocator = By.cssSelector("[data-testid='inline-playlist-name-input']");
+    private final By avatarLocator = By.cssSelector(".avatar");
+    private final By createPlaylistBtnLocator = By.cssSelector("[title='Create a new playlist']");
+    private final By newPlaylistBtnLocator = By.cssSelector("[data-testid='playlist-context-menu-create-simple']");
+    private final By newPlaylistFieldLocator= By.cssSelector("input[name='name']");
     public void enterPlaylist() {
         WebElement playlist = wait.until(ExpectedConditions.presenceOfElementLocated(playlistLocator));
-        Actions actions = new Actions(driver);
         actions.doubleClick(playlist).perform();
     }
     public void changePlaylistName(String playlist) {
@@ -30,8 +28,10 @@ public class HomePage extends BasePage {
         PlaylistPage playlistPage = new PlaylistPage();
         WebElement playlist= wait.until(ExpectedConditions.elementToBeClickable(playlistLocator));
         playlist.click();
-        WebElement deleteButton = wait.until(ExpectedConditions.elementToBeClickable(playlistPage.deleteButtonLocator));
-        deleteButton.click();
+        WebElement deleteButton = playlistPage.getDeleteButton();
+                deleteButton.click();
+                //wait.until(ExpectedConditions.elementToBeClickable(playlistPage.getDeleteButton()));
+
     }
     public WebElement getNotification(){
        return wait.until(ExpectedConditions.presenceOfElementLocated(NotificationLocator));

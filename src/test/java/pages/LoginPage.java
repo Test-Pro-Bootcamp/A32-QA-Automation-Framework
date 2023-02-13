@@ -5,9 +5,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class LoginPage extends BasePage {
-    By emailFieldLocator = By.cssSelector("[type='email']");
-    By passwordFieldLocator= By.cssSelector("[type='password']");
-    By submitButtonLocator = By.cssSelector("button[type='submit']");
+    private final By emailFieldLocator = By.cssSelector("[type='email']");
+    private final By passwordFieldLocator= By.cssSelector("[type='password']");
+    private final By submitButtonLocator = By.cssSelector("button[type='submit']");
     public void enterEmail(String email) {
        WebElement emailField = wait.until(ExpectedConditions.elementToBeClickable(emailFieldLocator));
        emailField.click();

@@ -20,7 +20,7 @@ public class PageObjectModelTest extends BasePage {
         loginPage.enterPassword("te$t$tudent");
         loginPage.loginSubmit();
         homePage.enterPlaylist();
-        homePage.changePlaylistName("waflio");
+        homePage.changePlaylistName("wafloo132");
         Assert.assertTrue(homePage.getNotification().isDisplayed());
     }
     @Test

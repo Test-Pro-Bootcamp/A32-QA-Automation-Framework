@@ -9,18 +9,14 @@ public class LoginPage extends BasePage {
     private final By passwordFieldLocator= By.cssSelector("[type='password']");
     private final By submitButtonLocator = By.cssSelector("button[type='submit']");
     public void enterEmail(String email) {
-        WebElement emailField = wait.until(ExpectedConditions.elementToBeClickable(emailFieldLocator));
-        emailField.click();
-        emailField.sendKeys(email);
+        click(emailFieldLocator);
+        sendKeys(emailFieldLocator,email);
     }
     public void enterPassword(String password) {
-        WebElement passwordInput = wait.until(ExpectedConditions.elementToBeClickable(passwordFieldLocator));
-        passwordInput.click();
-        passwordInput.sendKeys(password);
+        click(passwordFieldLocator);
+        sendKeys(passwordFieldLocator,password);
     }
     public void loginSubmit() {
-        WebElement button = wait.until(ExpectedConditions.elementToBeClickable(submitButtonLocator));
-        button.click();
-
+        click(submitButtonLocator);
     }
 }

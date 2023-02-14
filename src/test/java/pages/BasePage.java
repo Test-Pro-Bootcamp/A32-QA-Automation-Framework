@@ -1,9 +1,13 @@
 package pages;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -33,7 +37,21 @@ public class BasePage {
     public void tearDown() {
         driver.quit();
     }
+    public WebElement findElement(By locator){
+        return wait.until(ExpectedConditions.elementToBeClickable(locator));
+    }
+    public void doubleClick(By locator){
+        actions.doubleClick(findElement(locator)).perform();
+    }
+    public void click(By locator){
+        actions.click(findElement(locator)).perform();
+    }
+    public void sendKeys(By locator,String text){
+        actions.sendKeys(findElement(locator),text);
+    }
 }
+
+
 
 //        Email("demo@class.com");
 //        Password("te$t$tudent");

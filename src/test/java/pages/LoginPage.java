@@ -15,9 +15,7 @@ public class LoginPage extends BasePage {
     WebElement passwordFieldLocator;
     @FindBy(css = "button[type='submit']" )
     WebElement submitButtonLocator;
-    //private final By emailFieldLocator = By.cssSelector("[type='email']");
-    //private final By passwordFieldLocator= By.cssSelector("[type='password']");
-    //private final By submitButtonLocator = By.cssSelector("button[type='submit']");
+
 
     public LoginPage(WebDriver setDriver) {
         super(setDriver);

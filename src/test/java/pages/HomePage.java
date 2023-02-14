@@ -15,23 +15,20 @@ public class HomePage extends BasePage {
     private final By newPlaylistBtnLocator = By.cssSelector("[data-testid='playlist-context-menu-create-simple']");
     private final By newPlaylistFieldLocator= By.cssSelector("input[name='name']");
     public void enterPlaylist() {
-        WebElement playlist = wait.until(ExpectedConditions.presenceOfElementLocated(playlistLocator));
-        actions.doubleClick(playlist).perform();
+        doubleClick(playlistLocator);
+
     }
     public void changePlaylistName(String playlist) {
-        WebElement playlistField = wait.until(ExpectedConditions.visibilityOfElementLocated(playlistFieldLocator));
+
+        WebElement playlistField = driver.findElement(playlistFieldLocator);
         playlistField.sendKeys(Keys.CONTROL + "a");
         playlistField.sendKeys(Keys.DELETE);
         playlistField.sendKeys(playlist, Keys.ENTER);
     }
     public void deleteActions(){
         PlaylistPage playlistPage = new PlaylistPage();
-        WebElement playlist= wait.until(ExpectedConditions.elementToBeClickable(playlistLocator));
-        playlist.click();
-        WebElement deleteButton = playlistPage.getDeleteButton();
-        deleteButton.click();
-        //wait.until(ExpectedConditions.elementToBeClickable(playlistPage.getDeleteButton()));
-
+        click(playlistLocator);
+        click(playlistPage.getDeleteButton());
     }
     public WebElement getNotification(){
         return wait.until(ExpectedConditions.presenceOfElementLocated(NotificationLocator));
@@ -40,13 +37,10 @@ public class HomePage extends BasePage {
         return wait.until(ExpectedConditions.presenceOfElementLocated(avatarLocator));
     }
     public void createNewPlaylist(){
-        WebElement createPlaylistButton = wait.until(ExpectedConditions.elementToBeClickable(createPlaylistBtnLocator));
-        createPlaylistButton.click();
-        WebElement newPlaylistBtn = wait.until(ExpectedConditions.elementToBeClickable(newPlaylistBtnLocator));
-        newPlaylistBtn.click();
+        click(createPlaylistBtnLocator);
+        click(newPlaylistBtnLocator);
     }
     public void setPlaylistName(String name){
-        WebElement newPlaylistField = wait.until(ExpectedConditions.presenceOfElementLocated(newPlaylistFieldLocator));
-        newPlaylistField.sendKeys(name,Keys.ENTER);
+        driver.findElement(newPlaylistFieldLocator).sendKeys(name,Keys.ENTER);
     }
 }

@@ -14,8 +14,14 @@ public class MainPage extends BasePage {
     String topPlaylist = ".playlist:nth-child(3)";
 
     By searchFieldLocator = By.cssSelector("input[placeholder='Press F to search']");
-    By testPlaylistLocator = By.xpath("//li/a[text()='" + nameNewPlaylist + "']");
+    By testNewPlaylistLocator = By.xpath("//li/a[text()='" + nameNewPlaylist + "']");
     By deletePlaylistLocator = By.xpath("//button[@title='Delete this playlist']");
+    By createPlaylistLocator = By.xpath("//i[@title='Create a new playlist']");
+    By newPlaylistLocator = By.xpath("//li[text()='New Playlist']");
+    By nameFieldLocator = By.xpath("//section[@id='playlists']//input[@name='name']");
+    By testPlaylistNameLocator = By.xpath("//li/a[text()='" + playlistName + "']");
+
+
 
     public MainPage(WebDriver givenDriver) {
         super(givenDriver);
@@ -28,22 +34,21 @@ public class MainPage extends BasePage {
 
     public void searchPlaylist() {
         WebElement testPlaylist;
-        testPlaylist = wait.until(ExpectedConditions.elementToBeClickable(testPlaylistLocator));
+        testPlaylist = wait.until(ExpectedConditions.elementToBeClickable(testNewPlaylistLocator));
         testPlaylist.click();
     }
 
     public void createNewPlayList() {
         wait.until(ExpectedConditions.elementToBeClickable
-                (By.xpath("//i[@title='Create a new playlist']"))).click();
-        WebElement newPlaylist = driver.findElement(By.xpath("//li[text()='New Playlist']"));
+                (createPlaylistLocator)).click();
+        WebElement newPlaylist = driver.findElement(newPlaylistLocator);
         newPlaylist.click();
-        WebElement nameField = driver.findElement(By.xpath("//input[@name='name']"));
+        WebElement nameField = driver.findElement(nameFieldLocator);
         nameField.clear();
         nameField.sendKeys(playlistName, Keys.ENTER);
         WebElement testPlaylist = wait.until(ExpectedConditions.elementToBeClickable
-                (By.xpath("//li/a[text()='" + playlistName + "']")));
+                (testPlaylistNameLocator));
         testPlaylist.click();
-//        System.out.println("");
     }
 
     private WebElement editingField(){

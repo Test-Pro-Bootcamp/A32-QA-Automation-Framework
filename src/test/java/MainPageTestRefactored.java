@@ -4,7 +4,7 @@ import pages.LoginPage;
 import pages.MainPage;
 
 public class MainPageTestRefactored extends BaseTest{
-    @Test(description = "Another Kitty's Test")
+    @Test(description = "Create and Delete playlist test")
 
     public void createAndRenamePlayListTest() {
         MainPage homePage = new MainPage(myDriver);

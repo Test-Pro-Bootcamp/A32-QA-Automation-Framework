@@ -9,9 +9,9 @@ public class SongsTests extends BaseTest {
     public void checkVisibilityTest() {
         LoginPage loginPage = new LoginPage(driver);
         HomePage homePage = new HomePage(driver);
-        loginPage.provideEmail("demo@class.com");
-        loginPage.providePassword("te$t$tudent");
-        loginPage.clickSubmitBtn();
+        loginPage.provideEmail("demo@class.com")
+                .providePassword("te$t$tudent")
+                .clickSubmitBtn();
         String text = homePage.title().getText();
         System.out.println(text);
         System.out.println("Is element invisible? === " + wait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector("title"))));
@@ -22,9 +22,9 @@ public class SongsTests extends BaseTest {
         LoginPage loginPage = new LoginPage(driver);
         HomePage homePage = new HomePage(driver);
         PlaylistPage playlistPage = new PlaylistPage(driver);
-        loginPage.provideEmail("burkovads@mail.ru");
-        loginPage.providePassword("Julka@0721");
-        loginPage.clickSubmitBtn();
+        loginPage.provideEmail("burkovads@mail.ru")
+                .providePassword("Julka@0721")
+                .clickSubmitBtn();
         homePage.clickOnPlaylist();
         playlistPage.playlistDelete();
         homePage.SuccessBanner();

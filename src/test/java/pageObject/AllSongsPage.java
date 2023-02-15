@@ -13,11 +13,13 @@ public class AllSongsPage extends BasePage {
     public AllSongsPage (WebDriver givenDriver) {
         super(givenDriver);
     }
-    public void choosePlayFromList () {
+    public AllSongsPage choosePlayFromList () {
         actions.contextClick(firstSongInList).perform();
+        return this;
     }
-    public void playBtnClick () {
+    public AllSongsPage playBtnClick () {
         playBtnFromList.click();
+        return this;
     }
     public boolean barIsDisplayed () {
         return barLocator.isDisplayed();

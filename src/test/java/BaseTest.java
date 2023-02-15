@@ -30,7 +30,7 @@ public class BaseTest {
         driver = new ChromeDriver(options);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         wait = new WebDriverWait(driver, Duration.ofSeconds(4));
-       // driver.manage().window().maximize();
+        driver.manage().window().maximize();
         driver.get(url);
     }
 

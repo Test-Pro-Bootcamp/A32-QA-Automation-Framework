@@ -13,7 +13,7 @@ public class HomePage extends BasePage {
     private WebElement playButtonLocator;
     @FindBy(css = "[data-testid='pause-btn']")
     private WebElement pauseButtonLocator;
-    @FindBy(css = ".songs")
+    @FindBy(xpath = "//a[text()='All Songs']")
     private WebElement allSongsLocator;
     @FindBy(css = ".playlist:nth-child(3)")
     private WebElement userPlaylistElement3;
@@ -34,21 +34,23 @@ public class HomePage extends BasePage {
         actions.moveToElement(playButtonLocator).perform();
         actions.click(playButtonLocator);
     }
-    public boolean pauseBtnExists() {
-        return pauseButtonLocator.isDisplayed();
+    public WebElement pauseBtnExists() {
+        return pauseButtonLocator;
     }
     public void goToAllSongs() {
         allSongsLocator.click();
     }
-    public void doubleClickChoosePlaylist() {
+    public HomePage doubleClickChoosePlaylist() {
         actions.doubleClick(userPlaylistElement3).perform();
+        return this;
     }
     public void clickOnPlaylist() {
         userPlaylistElement3.click();
     }
-    public void enterPlaylistName(String name) {
+    public HomePage enterPlaylistName(String name) {
         userPlaylistInputField.sendKeys(Keys.HOME, Keys.chord(Keys.SHIFT, Keys.END), name);
         userPlaylistInputField.sendKeys(Keys.ENTER);
+        return this;
     }
 
     public String getPlaylistName() {

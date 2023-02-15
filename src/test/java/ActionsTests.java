@@ -10,11 +10,13 @@ public class ActionsTests extends BaseTest {
         // hover over in clickPlayBtn
         LoginPage loginPage = new LoginPage(driver);
         HomePage homePage = new HomePage(driver);
-        loginPage.provideEmail("burkovads@mail.ru");
-        loginPage.providePassword("Julka@0721");
-        loginPage.clickSubmitBtn();
-        homePage.clickPlayBtn();
-        Assert.assertTrue(homePage.pauseBtnExists());
+        AllSongsPage allSongsPage = new AllSongsPage(driver);
+        loginPage.provideEmail("burkovads@mail.ru")
+                .providePassword("Julka@0721")
+                .clickSubmitBtn();
+        homePage.goToAllSongs();
+        allSongsPage.allShuffle();
+        Assert.assertTrue(allSongsPage.barIsDisplayed());
 
 //        // Comparing numbers of elements example
 //        List<WebElement> songs = driver.findElements(By.cssSelector("[data-test='song-card']"));

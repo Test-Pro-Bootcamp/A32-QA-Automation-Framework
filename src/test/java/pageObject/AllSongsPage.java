@@ -10,6 +10,8 @@ public class AllSongsPage extends BasePage {
     private WebElement playBtnFromList;
     @FindBy(css = "[data-testid='sound-bar-play']")
     private WebElement barLocator;
+    @FindBy(css = "#songsWrapper .fa-random")
+    private WebElement allShuffleLocator;
     public AllSongsPage (WebDriver givenDriver) {
         super(givenDriver);
     }
@@ -23,5 +25,9 @@ public class AllSongsPage extends BasePage {
     }
     public boolean barIsDisplayed () {
         return barLocator.isDisplayed();
+    }
+    public AllSongsPage allShuffle() {
+        allShuffleLocator.click();
+        return this;
     }
 }

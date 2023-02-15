@@ -1,27 +1,25 @@
 package pageObject;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.FindBy;
+
 public class AllSongsPage extends BasePage {
-    private final By firstSongInList = By.cssSelector(".song-item");
-    private final By playBtnFromList = By.cssSelector(".playback");
-    private final By barLocator = By.cssSelector("[data-testid='sound-bar-play']");
+    @FindBy(css = ".song-item")
+    private WebElement firstSongInList;
+    @FindBy(css = ".playback")
+    private WebElement playBtnFromList;
+    @FindBy(css = "[data-testid='sound-bar-play']")
+    private WebElement barLocator;
     public AllSongsPage (WebDriver givenDriver) {
         super(givenDriver);
     }
     public void choosePlayFromList () {
-        WebElement firstSong = driver.findElement(firstSongInList);
-        Actions actions = new Actions(driver);
-        actions.contextClick(firstSong);
-        actions.perform();
+        actions.contextClick(firstSongInList).perform();
     }
     public void playBtnClick () {
-        WebElement playBtn = driver.findElement(playBtnFromList);
-        playBtn.click();
+        playBtnFromList.click();
     }
-    public void barIsDisplayed () {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(barLocator)).isDisplayed();
+    public boolean barIsDisplayed () {
+        return barLocator.isDisplayed();
     }
 }

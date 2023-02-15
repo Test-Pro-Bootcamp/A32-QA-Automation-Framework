@@ -74,9 +74,9 @@ public class LoginTests extends BaseTest {
                 .clickSubmitBtn()
                 .openUserProfile();
         String user = loginPage.generateRandomName();
-        loginPage.setName(user);
-        loginPage.setPassword("Julka@0721");
-        loginPage.saveProfile();
+        loginPage.setName(user)
+                .setPassword("Julka@0721")
+                .saveProfile();
         homePage.SuccessBanner();
         Assert.assertEquals(loginPage.getUsername(), user);
     }

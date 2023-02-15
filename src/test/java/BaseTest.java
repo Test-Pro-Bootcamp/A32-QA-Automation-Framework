@@ -29,7 +29,6 @@ public class BaseTest {
         wait = new WebDriverWait(getMyDriver(), Duration.ofSeconds(3)); //explicit wait
         wait1 = new WebDriverWait(getMyDriver(), Duration.ofSeconds(5, 200));
     }
-
     public static WebDriver getMyDriver() {
         return myDriver;
     }
@@ -38,6 +37,7 @@ public class BaseTest {
     public void tearDown(){
         myDriver.quit();
     }
+
     //Creating Helper Methods
     protected static void openLoginUrl() {
         String url="https://bbb.testpro.io/";

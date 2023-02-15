@@ -14,6 +14,7 @@ public class MainPage extends BasePage {
     String topPlaylist = ".playlist:nth-child(3)";
 
     By searchFieldLocator = By.cssSelector("input[placeholder='Press F to search']");
+    By topPlayListlocator = By.cssSelector(".playlist:nth-child(3)");
     By testNewPlaylistLocator = By.xpath("//li/a[text()='" + nameNewPlaylist + "']");
     By deletePlaylistLocator = By.xpath("//button[@title='Delete this playlist']");
     By createPlaylistLocator = By.xpath("//i[@title='Create a new playlist']");
@@ -32,7 +33,7 @@ public class MainPage extends BasePage {
         return true;
     }
 
-    public void searchPlaylist() {
+    public void searchRenamedPlaylist() {
         WebElement testPlaylist;
         testPlaylist = wait.until(ExpectedConditions.elementToBeClickable(testNewPlaylistLocator));
         testPlaylist.click();
@@ -59,7 +60,7 @@ public class MainPage extends BasePage {
 
     public void renamePlaylist() {
         WebElement playList = wait.until(ExpectedConditions.elementToBeClickable
-                (By.cssSelector(topPlaylist)));
+                (topPlayListlocator));
         Actions actions = new Actions(driver);
         actions.doubleClick(playList).perform();
         editingField().sendKeys(Keys.CONTROL+"A");

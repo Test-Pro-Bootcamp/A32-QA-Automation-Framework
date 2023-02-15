@@ -62,7 +62,7 @@ public class Homework19 extends BaseTest {
         for (WebElement p : playlistNames) {
             String name = p.getText();
             if (name.equals(nameNewPlaylist)) {
-                Assert.assertTrue(false);
+                Assert.fail();
             }
         }
         return true;

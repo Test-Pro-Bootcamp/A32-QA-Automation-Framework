@@ -33,7 +33,7 @@ public class Homework21 extends BaseTest {
         WebElement testPlaylist = wait.until(ExpectedConditions.elementToBeClickable
                 (By.xpath("//li/a[text()='" + playlistName + "']")));
         testPlaylist.click();
-        System.out.println("");
+//        System.out.println("");
     }
 
     private WebElement editingField(){
@@ -50,7 +50,6 @@ public class Homework21 extends BaseTest {
         editingField().sendKeys(Keys.CONTROL+"A");
         editingField().sendKeys(newName);
         editingField().sendKeys(Keys.RETURN);
-     //   wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@class='success show' and contains(text(),'"+newName+"')]")));
     }
 
     public boolean confirmPlaylistCreated() {

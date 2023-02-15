@@ -9,8 +9,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import java.security.spec.KeySpec;
 
 public class HomePage extends BasePage {
-
-    private By userAvatarIcon = By.cssSelector("img.avatar");
     private By Playlistone = By.cssSelector(".playlist:nth-child(3)");
     private By playlistInputField = By.cssSelector("input[name='name']");
 
@@ -18,7 +16,7 @@ public class HomePage extends BasePage {
         super(givenDriver);
     }
 
-    public void doubleClickFirstPlaylist() {
+    public void doubleClicktoPlaylist() {
         doubleClick(wait.until(ExpectedConditions.elementToBeClickable(Playlistone)));
     }
     public void enterPlaylistName(String playlistName) {

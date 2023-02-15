@@ -11,7 +11,7 @@ public class PlaylistTest extends BaseTest {
         HomePage homePage = new HomePage(driver);
 
         loginPage.provideLoginSucceed();
-        homePage.doubleClickFirstPlaylist();
+        homePage.doubleClicktoPlaylist();
         homePage.enterPlaylistName(playlistName);
     }
 }

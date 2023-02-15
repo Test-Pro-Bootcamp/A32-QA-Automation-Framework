@@ -5,6 +5,7 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class MainPage extends BasePage {
@@ -13,15 +14,20 @@ public class MainPage extends BasePage {
     String newName = "NuAutomationGuruGroove";
     String topPlaylist = ".playlist:nth-child(3)";
 
-    By searchFieldLocator = By.cssSelector("input[placeholder='Press F to search']");
-    By topPlayListlocator = By.cssSelector(".playlist:nth-child(3)");
-    By testNewPlaylistNametLocator = By.xpath("//li/a[text()='" + nameNewPlaylist + "']");
-    By deletePlaylistLocator = By.xpath("//button[@title='Delete this playlist']");
-    By createPlaylistLocator = By.xpath("//i[@title='Create a new playlist']");
-    By newPlaylistLocator = By.xpath("//li[text()='New Playlist']");
-    By nameFieldLocator = By.xpath("//section[@id='playlists']//input[@name='name']");
+    @FindBy(css = "input[placeholder='Press F to search']")
+    private WebElement searchFieldLocator;
+    @FindBy(css = ".playlist:nth-child(3)")
+    private WebElement topPlayListlocator;
+    @FindBy(xpath = "//button[@title='Delete this playlist']")
+    private WebElement deletePlaylistLocator;
+    @FindBy(xpath = "//i[@title='Create a new playlist']")
+    private WebElement createPlaylistLocator;
+    @FindBy(xpath = "//li[text()='New Playlist']")
+    private WebElement newPlaylistLocator;
+    @FindBy(xpath = "//section[@id='playlists']//input[@name='name']")
+    private WebElement nameFieldLocator;
     By testPlaylistNameLocator = By.xpath("//li/a[text()='" + playlistName + "']");
-
+    By testNewPlaylistNametLocator = By.xpath("//li/a[text()='" + nameNewPlaylist + "']");
 
 
     public MainPage(WebDriver givenDriver) {
@@ -29,7 +35,7 @@ public class MainPage extends BasePage {
     }
 
     public boolean findSearchField() {
-        driver.findElement(searchFieldLocator).isDisplayed();
+        searchFieldLocator.isDisplayed();
         return true;
     }
 
@@ -42,9 +48,9 @@ public class MainPage extends BasePage {
     public void createNewPlayList() {
         wait.until(ExpectedConditions.elementToBeClickable
                 (createPlaylistLocator)).click();
-        WebElement newPlaylist = driver.findElement(newPlaylistLocator);
+        WebElement newPlaylist = newPlaylistLocator;
         newPlaylist.click();
-        WebElement nameField = driver.findElement(nameFieldLocator);
+        WebElement nameField = nameFieldLocator;
         nameField.clear();
         nameField.sendKeys(playlistName, Keys.ENTER);
         WebElement testPlaylist = wait.until(ExpectedConditions.elementToBeClickable
@@ -52,7 +58,7 @@ public class MainPage extends BasePage {
         testPlaylist.click();
     }
 
-    private WebElement editingField(){
+    private WebElement editingField() {
         By editLocator = By.xpath("//*[@data-testid='inline-playlist-name-input']");
         wait.until(ExpectedConditions.visibilityOfElementLocated(editLocator));
         return driver.findElement(editLocator);
@@ -63,16 +69,15 @@ public class MainPage extends BasePage {
                 (topPlayListlocator));
         Actions actions = new Actions(driver);
         actions.doubleClick(playList).perform();
-        editingField().sendKeys(Keys.CONTROL+"A");
+        editingField().sendKeys(Keys.CONTROL + "A");
         editingField().sendKeys(newName);
         editingField().sendKeys(Keys.RETURN);
     }
 
     public boolean confirmPlaylistCreated() {
-        wait.until(ExpectedConditions.visibilityOfElementLocated
-                (topPlayListlocator));
-        return true;
+        return topPlayListlocator.isDisplayed();
     }
+
     public boolean confirmPlaylistExists() {
         wait.until(ExpectedConditions.visibilityOfElementLocated
                 (By.xpath("//li/a[text()='" + newName + "']")));

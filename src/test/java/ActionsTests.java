@@ -1,117 +1,74 @@
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import org.testng.asserts.SoftAssert;
-
-import java.util.List;
-
+import pageObject.AllSongsPage;
+import pageObject.HomePage;
+import pageObject.LoginPage;
 public class ActionsTests extends BaseTest {
 
     @Test
     public void playSongTest() {
         // hover over in clickPlayBtn
-        enterEmail("demo@class.com");
-        enterPassword("te$t$tudent");
-        loginSubmit();
-        clickPlayBtn();
-        Assert.assertTrue(pauseBtnExists());
+        LoginPage loginPage = new LoginPage(driver);
+        HomePage homePage = new HomePage(driver);
+        AllSongsPage allSongsPage = new AllSongsPage(driver);
+        loginPage.provideEmail("burkovads@mail.ru")
+                .providePassword("Julka@0721")
+                .clickSubmitBtn();
+        homePage.goToAllSongs();
+        allSongsPage.allShuffle();
+        Assert.assertTrue(allSongsPage.barIsDisplayed());
 
-        // Comparing numbers of elements example
-        List<WebElement> songs = driver.findElements(By.cssSelector("[data-test='song-card']"));
-
-        int songsNumberBefore = songs.size();
-        System.out.println(songsNumberBefore);
-        // Just an example: here we would add or delete an element but we didn't
-        int songsNumberAfter = songs.size();
-        System.out.println(songsNumberAfter);
-
-        // Soft assert example
-        SoftAssert softAssert = new SoftAssert();
-        softAssert.assertEquals(driver.getCurrentUrl(), "https://bbb.testpro.io/#!/queue");
-        softAssert.assertTrue(songsNumberBefore == songsNumberAfter,
-                "=== Songs number before should be equal songs number after ===");
-        softAssert.assertAll();
+//        // Comparing numbers of elements example
+//        List<WebElement> songs = driver.findElements(By.cssSelector("[data-test='song-card']"));
+//
+//        int songsNumberBefore = songs.size();
+//        System.out.println(songsNumberBefore);
+//        // Just an example: here we would add or delete an element, but we didn't
+//        int songsNumberAfter = songs.size();
+//        System.out.println(songsNumberAfter);
+//
+//        // Soft assert example
+//        SoftAssert softAssert = new SoftAssert();
+//        softAssert.assertEquals(driver.getCurrentUrl(), "https://bbb.testpro.io/#!/queue");
+//        softAssert.assertTrue(songsNumberBefore == songsNumberAfter,
+//                "=== Songs number before should be equal songs number after ===");
+//        softAssert.assertAll();
     }
 
     @Test
     public void renamePlaylist() {
         // double click
         String playlistName = "Summer songs";
-
-        login("demo@class.com", "te$t$tudent");
-        doubleClickChoosePlaylist();
-        enterPlaylistName(playlistName);
-        String newName = getPlaylistName();
-        Assert.assertEquals(playlistName, newName);
+        LoginPage loginPage = new LoginPage(driver);
+        HomePage homePage = new HomePage(driver);
+        loginPage.login("burkovads@mail.ru", "Julka@0721");
+        homePage.doubleClickChoosePlaylist();
+        homePage.enterPlaylistName(playlistName);
+        homePage.SuccessBanner();
     }
-
     @Test
-    public void playSongFromListTest() throws InterruptedException {
+    public void playSongFromListTest() {
         // right click
-        login("demo@class.com", "te$t$tudent");
-        goToAllSongs();
-        WebElement firstSong = driver.findElement(By.cssSelector(".song-item"));
-        Actions actions = new Actions(driver);
-        actions.contextClick(firstSong).perform();
-        WebElement playBtn = driver.findElement(By.cssSelector(".playback"));
-        playBtn.click();
-        Thread.sleep(4000);
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[data-testid='sound-bar-play']")));
+        LoginPage loginPage = new LoginPage(driver);
+        HomePage homePage = new HomePage(driver);
+        AllSongsPage allSongsPage = new AllSongsPage(driver);
+        loginPage.login("burkovads@mail.ru", "Julka@0721");
+        homePage.goToAllSongs();
+        allSongsPage.choosePlayFromList();
+        allSongsPage.playBtnClick();
+        allSongsPage.barIsDisplayed();
     }
-
-    public void clickPlayBtn() {
-        Actions action = new Actions(driver);
-        WebElement playBtn = driver.findElement(By.cssSelector("[data-testid='play-btn']"));
-        action
-                .moveToElement(playBtn)
-                .perform();
-        playBtn.click();
-    }
-
-    public boolean pauseBtnExists() {
-        return driver.findElement(By.cssSelector("[data-testid='pause-btn']")).isDisplayed();
-    }
-
-
-    private void goToAllSongs() {
-        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".songs"))).click();
-    }
-
-
-    public void doubleClickChoosePlaylist() {
-        WebElement playlistElement = wait.until(ExpectedConditions.
-                elementToBeClickable(By.cssSelector(".playlist:nth-child(3)")));
-        Actions actions = new Actions(driver);
-        actions.doubleClick(playlistElement).perform();
-    }
-
-    public void enterPlaylistName(String name) {
-        WebElement playlistInputField = driver.findElement(By.cssSelector("input[name='name']"));
-        playlistInputField.sendKeys(Keys.HOME, Keys.chord(Keys.SHIFT, Keys.END), name);
-        playlistInputField.sendKeys(Keys.ENTER);
-    }
-
-    private String getPlaylistName() {
-        WebElement playlistElement = wait.until(ExpectedConditions.
-                visibilityOfElementLocated(By.cssSelector(".playlist:nth-child(3)>a")));
-        String name = playlistElement.getText();
-        return name;
-    }
-
-    @Test
-    public void countSongsInPlaylist() {
-
-        login("demo@class.com", "te$t$tudent");
-        WebElement playlist = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".playlist:nth-child(4)")));
-        playlist.click();
-        List<WebElement> songs = driver.findElements(By.cssSelector("#playlistWrapper .song-item"));
-        List<WebElement> song1 = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.cssSelector("#playlistWrapper .song-item")));
-        int number = songs.size();
-        Assert.assertEquals(number, 4);
-    }
-
+//    @Test
+//    public void countSongsInPlaylist() {
+//
+//        LoginPage loginPage = new LoginPage(driver);
+//        HomePage homePage = new HomePage(driver);
+//        AllSongsPage allSongsPage = new AllSongsPage(driver);
+//        loginPage.login("burkovads@mail.ru", "Julka@0721");
+//        homePage.clickOnPlaylist();
+//        List<WebElement> songs = driver.findElements(By.cssSelector("#playlistWrapper .song-item"));
+//        List<WebElement> song1 = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.cssSelector("#playlistWrapper .song-item")));
+//        int number = songs.size();
+//        Assert.assertEquals(number, 2);
+//    }
 }

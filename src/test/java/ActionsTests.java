@@ -42,7 +42,7 @@ public class ActionsTests extends BaseTest {
         loginPage.login("burkovads@mail.ru", "Julka@0721");
         homePage.doubleClickChoosePlaylist();
         homePage.enterPlaylistName(playlistName);
-        homePage.getSuccessBanner();
+        homePage.SuccessBanner();
     }
     @Test
     public void playSongFromListTest() {

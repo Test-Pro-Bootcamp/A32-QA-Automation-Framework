@@ -1,66 +1,60 @@
 package pageObject;
-import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.FindBy;
+
 public class HomePage extends BasePage {
-    private final By userAvatarIcon = By.cssSelector("img.avatar");
-    private final By titleLocator = By.cssSelector("title");
-    private final By playButtonLocator = By.cssSelector("[data-testid='play-btn']");
-    private final By pauseButtonLocator = By.cssSelector("[data-testid='pause-btn']");
-    private final By allSongsLocator = By.cssSelector(".songs");
-    private final By userPlaylistElement3 = By.cssSelector(".playlist:nth-child(3)");
-    private final By userPlaylistInputField = By.cssSelector("input[name='name']");
-    private final By successBanerLocator = By.cssSelector(".success");
+    @FindBy(css = "img.avatar")
+    private WebElement userAvatarIcon;
+    @FindBy(css = "title")
+    private WebElement titleLocator;
+    @FindBy(css = "[data-testid='play-btn']")
+    private WebElement playButtonLocator;
+    @FindBy(css = "[data-testid='pause-btn']")
+    private WebElement pauseButtonLocator;
+    @FindBy(css = ".songs")
+    private WebElement allSongsLocator;
+    @FindBy(css = ".playlist:nth-child(3)")
+    private WebElement userPlaylistElement3;
+    @FindBy(css = "input[name='name']")
+    private WebElement userPlaylistInputField;
+    @FindBy(css = ".success")
+    private WebElement successBanerLocator;
     public HomePage(WebDriver givenDriver) {
         super(givenDriver);
     }
     public WebElement getUserAvatar () {
-        return wait.until((ExpectedConditions.visibilityOfElementLocated(userAvatarIcon)));
+        return userAvatarIcon;
     }
-
     public WebElement title() {
-        return wait.until(ExpectedConditions.presenceOfElementLocated(titleLocator));
+        return titleLocator;
     }
     public void clickPlayBtn() {
-        Actions action = new Actions(driver);
-        WebElement playBtn = driver.findElement(playButtonLocator);
-        action
-                .moveToElement(playBtn)
-                .perform();
-        playBtn.click();
+        actions.moveToElement(playButtonLocator).perform();
+        actions.click(playButtonLocator);
     }
     public boolean pauseBtnExists() {
-        return driver.findElement(pauseButtonLocator).isDisplayed();
+        return pauseButtonLocator.isDisplayed();
     }
     public void goToAllSongs() {
-        wait.until(ExpectedConditions.elementToBeClickable(allSongsLocator)).click();
+        allSongsLocator.click();
     }
     public void doubleClickChoosePlaylist() {
-        WebElement playlistElement = wait.until(ExpectedConditions.
-                elementToBeClickable(userPlaylistElement3));
-        Actions actions = new Actions(driver);
-        actions.doubleClick(playlistElement).perform();
+        actions.doubleClick(userPlaylistElement3).perform();
     }
     public void clickOnPlaylist() {
-        WebElement playlistElement = wait.until(ExpectedConditions.
-                elementToBeClickable(userPlaylistElement3));
-        playlistElement.click();
+        userPlaylistElement3.click();
     }
     public void enterPlaylistName(String name) {
-        WebElement playlistInputField = driver.findElement(userPlaylistInputField);
-        playlistInputField.sendKeys(Keys.HOME, Keys.chord(Keys.SHIFT, Keys.END), name);
-        playlistInputField.sendKeys(Keys.ENTER);
+        userPlaylistInputField.sendKeys(Keys.HOME, Keys.chord(Keys.SHIFT, Keys.END), name);
+        userPlaylistInputField.sendKeys(Keys.ENTER);
     }
 
     public String getPlaylistName() {
-        WebElement playlistElement = wait.until(ExpectedConditions.
-                visibilityOfElementLocated(userPlaylistElement3));
-        return playlistElement.getText();
+        return userPlaylistElement3.getText();
     }
-    public void getSuccessBanner() {
-        driver.findElement(successBanerLocator);
+    public boolean SuccessBanner() {
+        return successBanerLocator.isDisplayed();
     }
 }

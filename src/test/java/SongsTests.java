@@ -27,6 +27,6 @@ public class SongsTests extends BaseTest {
         loginPage.clickSubmitBtn();
         homePage.clickOnPlaylist();
         playlistPage.playlistDelete();
-        homePage.getSuccessBanner();
+        homePage.SuccessBanner();
     }
 }

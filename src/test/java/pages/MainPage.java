@@ -15,7 +15,7 @@ public class MainPage extends BasePage {
 
     By searchFieldLocator = By.cssSelector("input[placeholder='Press F to search']");
     By topPlayListlocator = By.cssSelector(".playlist:nth-child(3)");
-    By testNewPlaylistLocator = By.xpath("//li/a[text()='" + nameNewPlaylist + "']");
+    By testNewPlaylistNametLocator = By.xpath("//li/a[text()='" + nameNewPlaylist + "']");
     By deletePlaylistLocator = By.xpath("//button[@title='Delete this playlist']");
     By createPlaylistLocator = By.xpath("//i[@title='Create a new playlist']");
     By newPlaylistLocator = By.xpath("//li[text()='New Playlist']");
@@ -35,7 +35,7 @@ public class MainPage extends BasePage {
 
     public void searchRenamedPlaylist() {
         WebElement testPlaylist;
-        testPlaylist = wait.until(ExpectedConditions.elementToBeClickable(testNewPlaylistLocator));
+        testPlaylist = wait.until(ExpectedConditions.elementToBeClickable(testNewPlaylistNametLocator));
         testPlaylist.click();
     }
 
@@ -70,7 +70,7 @@ public class MainPage extends BasePage {
 
     public boolean confirmPlaylistCreated() {
         wait.until(ExpectedConditions.visibilityOfElementLocated
-                (By.xpath("//li/a[text()='" + playlistName + "']")));
+                (topPlayListlocator));
         return true;
     }
     public boolean confirmPlaylistExists() {

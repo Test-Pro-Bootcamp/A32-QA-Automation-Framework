@@ -15,8 +15,8 @@ import java.time.Duration;
 
 
 public class BaseTest {
-    static WebDriver driver;
-    static WebDriverWait wait;
+    protected static WebDriver driver;
+    protected static WebDriverWait wait;
 
     @BeforeSuite
     static void setupClass() {

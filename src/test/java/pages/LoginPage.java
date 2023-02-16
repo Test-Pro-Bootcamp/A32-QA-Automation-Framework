@@ -6,13 +6,13 @@ import org.openqa.selenium.support.FindBy;
 public class LoginPage extends BasePage {
 
     @FindBy(css = "button[type='submit']")
-    WebElement submitButtonLocator;
+    private WebElement submitButtonLocator;
     @FindBy(css ="[type='email']")
-    WebElement emailField;
+    private WebElement emailField;
     @FindBy(css ="[type='password']")
-    WebElement passwordField;
+    private WebElement passwordField;
     @FindBy(css = "a#hel")
-    WebElement registrationLink;
+    private WebElement registrationLink;
 
     public LoginPage(WebDriver givenDriver) {
         super(givenDriver);

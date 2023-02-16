@@ -9,17 +9,21 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 public class HomePage extends BasePage {
 
     @FindBy(css = ".avatar")
-    WebElement userAvatarIcon;
+    private WebElement userAvatarIcon;
     @FindBy(css = ".playlist:nth-child(3)")
-    WebElement firsPlaylist;
+    private WebElement firsPlaylist;
     @FindBy(css = "input[name='name']")
-    WebElement playlistInputField;
+    private WebElement playlistInputField;
     @FindBy(css = ".fa-plus-circle")
-    WebElement addNewPlaylist;
+    private WebElement addNewPlaylist;
     @FindBy(css = ".btn-delete-playlist")
-    WebElement deletePlaylistBtn;
+    private WebElement deletePlaylistBtn;
     @FindBy(css = ".show.success")
-    WebElement notification;
+    private WebElement notification;
+    @FindBy(css = ".songs")
+    private WebElement allSongs;
+    @FindBy(css = "[data-testid='playlist-context-menu-create-simple']")
+    private WebElement chooseCreateNewPlaylist;
 
 
     public HomePage(WebDriver givenDriver) {
@@ -57,6 +61,17 @@ public class HomePage extends BasePage {
         deletePlaylistBtn.click();
         return this;
     }
+
+    public HomePage addPlaylist() {
+        addNewPlaylist.click();
+        return this;
+    }
+
+    public HomePage selectPlaylist() {
+        chooseCreateNewPlaylist.click();
+        return this;
+    }
+
 
     public boolean notificationText() {
         return notification.isDisplayed();

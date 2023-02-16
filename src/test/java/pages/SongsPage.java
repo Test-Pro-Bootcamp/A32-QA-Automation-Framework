@@ -11,13 +11,15 @@ public class SongsPage extends BasePage {
         super(givenDriver);
     }
     @FindBy(css= ".song-item")
-    WebElement listAllSongs;
+    private WebElement listAllSongs;
     @FindBy(css=".song-item")
-    WebElement firstSongInSongList;
+    private WebElement firstSongInSongList;
     @FindBy(css=".playback")
-    WebElement playBtnFromList;
+    private WebElement playBtnFromList;
     @FindBy(css="[data-testid='sound-bar-play']")
-    WebElement progressBar;
+    private WebElement progressBar;
+    @FindBy(css = ".songs")
+    private WebElement allSongs;
 
     public SongsPage chooseAllSongList() {
         allSongs.click();

@@ -15,7 +15,7 @@ public class PlaylistTests extends BaseTest {
         BasePage basePage = new BasePage(driver);
 
         loginPage.provideLoginSucceed();
-        basePage.addPlaylist()
+        homePage.addPlaylist()
                 .selectPlaylist();
         homePage.enterPlaylistName(playlistName)
                 .doesPlaylistExist(playlistName);

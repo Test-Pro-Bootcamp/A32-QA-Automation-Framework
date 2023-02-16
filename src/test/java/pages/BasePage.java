@@ -17,12 +17,7 @@ public class BasePage {
     protected WebDriverWait wait;
     protected Actions actions;
 
-    @FindBy(css = ".songs")
-    WebElement allSongs;
-    @FindBy(css = ".fa-plus-circle")
-    WebElement addNewPlaylist;
-    @FindBy(css = "[data-testid='playlist-context-menu-create-simple']")
-    WebElement chooseCreateNewPlaylist;
+
 
     public BasePage(WebDriver givenDriver) {
         driver = givenDriver;
@@ -42,15 +37,6 @@ public class BasePage {
         actions.contextClick(locator).perform();
     }
 
-    public BasePage addPlaylist() {
-        addNewPlaylist.click();
-        return this;
-    }
-
-    public BasePage selectPlaylist() {
-        chooseCreateNewPlaylist.click();
-        return this;
-    }
 
     public void click(By locator) {
         wait.until(ExpectedConditions.elementToBeClickable(locator));

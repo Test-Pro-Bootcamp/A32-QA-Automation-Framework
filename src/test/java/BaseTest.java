@@ -1,3 +1,4 @@
+import Pages.LoginPage;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -40,25 +41,22 @@ public class BaseTest {
     }
 
     public void enterEmail(String email) {
-        WebElement emailInput = driver.findElement(By.cssSelector("[type='email']"));
-        emailInput.click();
-        emailInput.sendKeys(email);
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.provideEmail(email);
     }
 
     public void enterPassword(String password) {
-        WebElement passwordInput = driver.findElement(By.cssSelector("[type='password']"));
-        passwordInput.click();
-        passwordInput.sendKeys(password);
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.providePassword(password);
     }
 
     public void loginSubmit() {
-        WebElement submitLogin = driver.findElement(By.cssSelector("button[type='submit']"));
-        submitLogin.click();
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.clickSubmitBtn();
     }
 
     public void login(String email, String password){
-        enterEmail(email);
-        enterPassword(password);
-        loginSubmit();
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.login(email,password);
     }
 }

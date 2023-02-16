@@ -17,9 +17,9 @@ import org.testng.annotations.Parameters;
 import java.time.Duration;
 
 public class BasePage {
-     public static WebDriver driver;
-     public static WebDriverWait wait;
-     public static Actions actions;
+     protected static WebDriver driver;
+     protected  static WebDriverWait wait;
+     protected static Actions actions;
     public BasePage(WebDriver setDriver){
         driver=setDriver;
         actions=new Actions(driver);
@@ -29,11 +29,6 @@ public class BasePage {
     public void doubleClick(WebElement element){
         actions.doubleClick(element).perform();
     }
-
-
 }
-
-
-
 //        Email("demo@class.com");
 //        Password("te$t$tudent");

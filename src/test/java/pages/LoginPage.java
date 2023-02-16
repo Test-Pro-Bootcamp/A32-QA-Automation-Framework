@@ -9,11 +9,11 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import java.time.Duration;
 
 public class LoginPage extends BasePage {
-    @FindBy(css = "[type='email']")
+    private @FindBy(css = "[type='email']")
     WebElement emailFieldLocator;
-    @FindBy(css = "[type='password']")
+    private @FindBy(css = "[type='password']")
     WebElement passwordFieldLocator;
-    @FindBy(css = "button[type='submit']" )
+    private @FindBy(css = "button[type='submit']" )
     WebElement submitButtonLocator;
 
 
@@ -32,8 +32,9 @@ public class LoginPage extends BasePage {
         return this;
     }
     public LoginPage loginSubmit() {
+        HomePage homePage = new HomePage(driver);
         submitButtonLocator.click();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(4));
+        wait.until(ExpectedConditions.elementToBeClickable(homePage.getAvatar()));
         return this;
     }
 }

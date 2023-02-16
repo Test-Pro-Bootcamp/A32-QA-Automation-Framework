@@ -8,7 +8,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class PlaylistPage extends BasePage{
     @FindBy(css = "button[title='Delete this playlist']")
-    WebElement deleteButtonLocator;
+    private WebElement deleteButtonLocator;
 
 
     public PlaylistPage(WebDriver setDriver) {

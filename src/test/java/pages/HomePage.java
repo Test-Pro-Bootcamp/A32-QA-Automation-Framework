@@ -10,19 +10,19 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class HomePage extends BasePage {
     @FindBy(css = "[class='success show']" )
-    WebElement NotificationLocator;
+    private WebElement NotificationLocator;
     @FindBy(css ="[data-testid='inline-playlist-name-input']")
-    WebElement playlistFieldLocator;
+    private WebElement playlistFieldLocator;
     @FindBy(xpath = "//li[@class='playlist playlist']")
-    WebElement playlistLocator;
+    private WebElement playlistLocator;
     @FindBy(css = ".avatar")
-    WebElement avatarLocator;
+    private WebElement avatarLocator;
     @FindBy(css ="[title='Create a new playlist']")
-    WebElement createPlaylistBtnLocator;
+    private WebElement createPlaylistBtnLocator;
     @FindBy(css ="[data-testid='playlist-context-menu-create-simple']" )
-    WebElement newPlaylistBtnLocator;
+    private WebElement newPlaylistBtnLocator;
     @FindBy(css ="input[name='name']")
-    WebElement newPlaylistFieldLocator;
+    private WebElement newPlaylistFieldLocator;
     public HomePage(WebDriver setDriver) {
         super(setDriver);
     }

@@ -10,8 +10,14 @@
             <class name="BaseTest"/>
             <class name="SongsTests"/>
             <class name="CSVDataProviderTest"/>
-            <class name="Homework20"/>
-            <class name="Homework21"/>
+            <class name="PlaylistTest"/>
+            <class name="AllSongsPage"/>
+            <class name="BasePage"/>
+            <class name="HomePage"/>
+            <class name="LoginPage"/>
+            <class name="ProfilePrefPage"/>
+            <class name="PlaylistPage"/>
+            <class name="ProfilePrefPage"/>
         </classes>
     </test>
 </suite>

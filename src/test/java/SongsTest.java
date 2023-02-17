@@ -11,9 +11,10 @@ public class SongsTest extends BaseTest {
         SongsPage songsPage = new SongsPage(driver);
 
         loginPage.provideLoginSucceed();
-        songsPage.chooseAllSongList()
-                 .contextClickFirstSong()
-                 .choosePlay();
+        songsPage.clickAllSongs()
+                .chooseAllSongList()
+                .contextClickFirstSong()
+                .choosePlay();
 
         Assert.assertTrue(songsPage.getProgressBar().isDisplayed());
     }

@@ -7,10 +7,12 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class ProfilePrefPage extends BasePage {
     By updateProfileForm = By.cssSelector("[data-testid='update-profile-form'']");
-    public ProfilePrefPage (WebDriver givenDriver)
-    {super(givenDriver);
+
+    public ProfilePrefPage(WebDriver givenDriver) {
+        super(givenDriver);
     }
-    public WebElement getUpdateProfilePref (){
+
+    public WebElement getUpdateProfilePref() {
         return wait.until(ExpectedConditions.visibilityOfElementLocated(updateProfileForm));
     }
 

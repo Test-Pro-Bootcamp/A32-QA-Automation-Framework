@@ -18,6 +18,7 @@
             <class name="POM.ProfilePrefPage"/>
             <class name="POM.PlaylistPage"/>
             <class name="POM.ProfilePrefPage"/>
+            <class name="POM.RegistrationPage"/>
         </classes>
     </test>
 </suite>

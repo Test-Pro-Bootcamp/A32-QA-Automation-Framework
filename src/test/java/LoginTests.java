@@ -1,3 +1,6 @@
+import POM.HomePage;
+import POM.LoginPage;
+import POM.RegistrationPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -24,14 +27,23 @@ public class LoginTests extends BaseTest {
         loginSubmit();
         Assert.assertEquals(driver.getCurrentUrl(), url);
     }
+    @Test
+    public static void registrationNavigation() {
+        LoginPage loginpage = new LoginPage(driver);
+        RegistrationPage registrationPage = new RegistrationPage(driver);
+        loginpage.registrationNavigate();
+        Assert.assertTrue(registrationPage.getRegistrationPage().isDisplayed());
+
+    }
 
     @Test
     public void loginSucceedTest() {
-        enterEmail("demo@class.com");
-        enterPassword("te$t$tudent");
-        loginSubmit();
-        WebElement avatar = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".avatar")));
-        Assert.assertTrue(avatar.isDisplayed());
+        LoginPage loginPage = new LoginPage(driver);
+        HomePage homePage = new HomePage(driver);
+        loginPage.provideEmailEmail("dashazhyrkova@gmail.com");
+        loginPage.providePassword("te$t$tudent28");
+        loginPage.clickSubmitBtn();
+        Assert.assertTrue(homePage.getUsrAvatar().isDisplayed());
     }
 
     @Test

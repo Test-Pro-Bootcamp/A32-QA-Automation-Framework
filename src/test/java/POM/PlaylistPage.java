@@ -8,26 +8,26 @@ import org.testng.Assert;
 
 public class PlaylistPage extends BasePage {
     By playlistSongList = By.cssSelector("[class='song-list-wrap main-scroll-wrap playlist']");
-    public PlaylistPage (WebDriver givenDriver)
-    { super(givenDriver);}
-    public WebElement getPlaylistSongs (){
+    By playlistDeleteButton = By.cssSelector("[class='del btn-delete-playlist']");
+    By successDelete = By.cssSelector("[class='success show']");
+
+    public PlaylistPage(WebDriver givenDriver) {
+        super(givenDriver);
+    }
+
+    public WebElement getPlaylistSongs() {
         return wait.until(ExpectedConditions.visibilityOfElementLocated(playlistSongList));
     }
-    public void verifySongIsAdded() {
-        WebElement songPlaylist = wait.until(ExpectedConditions
-                .elementToBeClickable(By
-                        .xpath("//*[@id='playlistWrapper']/div/div/div[1]/table/tr[2]/td[2]")));
-        songPlaylist.click();
-        Assert.assertTrue(songPlaylist.isDisplayed());
-    }
+
     public void clickDeleteBtn() {
         WebElement playlistDelete = wait.until(ExpectedConditions
-                .elementToBeClickable(By.cssSelector("[class='del btn-delete-playlist']")));
+                .elementToBeClickable(playlistDeleteButton));
         playlistDelete.click();
     }
+
     public void verifySuccessDeleted() {
-        WebElement playlistDelete = wait.until(ExpectedConditions
-                .visibilityOfElementLocated(By.cssSelector("[class='success show']")));
-        Assert.assertTrue(playlistDelete.isDisplayed());
+        WebElement playlistDeleteSuccessShow = wait.until(ExpectedConditions
+                .visibilityOfElementLocated(successDelete));
+        Assert.assertTrue(playlistDeleteSuccessShow.isDisplayed());
     }
 }

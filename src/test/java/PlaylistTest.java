@@ -2,17 +2,10 @@ import POM.AllSongsPage;
 import POM.HomePage;
 import POM.LoginPage;
 import POM.PlaylistPage;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class PlaylistTest extends BaseTest {
-    @Test
-    public static void playSong() {
-        loginpage.provideEmailEmail("dashazhyrkova@gmail.com");
-        loginpage.providePassword("te$t$tudent28");
-        homepage.navigateToAllSongs();
-        allSongsPage.songDoubleClick();
-        homepage.songIsPlaying();
-    }
     @Test
     public static void createPlaylist() {
         loginpage.provideEmailEmail("dashazhyrkova@gmail.com");
@@ -34,6 +27,7 @@ public class PlaylistTest extends BaseTest {
         allSongsPage.selectPlaylist();
         allSongsPage.open_m_Playlist();
         playlistPage.verifySongIsAdded();
+        Assert.assertTrue(allSongsPage.getAllSongs().isDisplayed());
     }
     @Test
     public static void renamePlaylist() {

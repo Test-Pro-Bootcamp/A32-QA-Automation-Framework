@@ -7,9 +7,12 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 
 public class PlaylistPage extends BasePage {
+    By playlistSongList = By.cssSelector("[class='song-list-wrap main-scroll-wrap playlist']");
     public PlaylistPage (WebDriver givenDriver)
     { super(givenDriver);}
-
+    public WebElement getPlaylistSongs (){
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(playlistSongList));
+    }
     public void verifySongIsAdded() {
         WebElement songPlaylist = wait.until(ExpectedConditions
                 .elementToBeClickable(By

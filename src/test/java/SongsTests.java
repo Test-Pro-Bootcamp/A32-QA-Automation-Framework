@@ -27,6 +27,15 @@ public class SongsTests extends BaseTest {
 
     }
     @Test
+    public static void playSong() {
+        loginpage.provideEmailEmail("dashazhyrkova@gmail.com");
+        loginpage.providePassword("te$t$tudent28");
+        loginpage.clickSubmitBtn();
+        homepage.navigateToAllSongs();
+        allSongsPage.songDoubleClick();
+        homepage.songIsPlaying();
+    }
+    @Test
     public void playSongTest() {
         enterEmail("demo@class.com");
         enterPassword("te$t$tudent");

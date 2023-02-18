@@ -10,7 +10,7 @@ public class ProfilePrefPage extends BasePage {
     public ProfilePrefPage (WebDriver givenDriver)
     {super(givenDriver);
     }
-    public WebElement getupdateProfilePref (){
+    public WebElement getUpdateProfilePref (){
         return wait.until(ExpectedConditions.visibilityOfElementLocated(updateProfileForm));
     }
 

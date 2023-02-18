@@ -12,7 +12,7 @@ public class AllSongsPage extends BasePage {
     public AllSongsPage (WebDriver givenDriver) {
         super(givenDriver);
     }
-    public WebElement getallSongs (){
+    public WebElement getAllSongs (){
         return wait.until(ExpectedConditions.visibilityOfElementLocated(allSongList));
     }
     public void songDoubleClick() {

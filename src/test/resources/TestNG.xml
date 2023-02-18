@@ -11,13 +11,13 @@
             <class name="SongsTests"/>
             <class name="CSVDataProviderTest"/>
             <class name="PlaylistTest"/>
-            <class name="AllSongsPage"/>
-            <class name="BasePage"/>
-            <class name="HomePage"/>
-            <class name="LoginPage"/>
-            <class name="ProfilePrefPage"/>
-            <class name="PlaylistPage"/>
-            <class name="ProfilePrefPage"/>
+            <class name="POM.AllSongsPage"/>
+            <class name="POM.BasePage"/>
+            <class name="POM.HomePage"/>
+            <class name="POM.LoginPage"/>
+            <class name="POM.ProfilePrefPage"/>
+            <class name="POM.PlaylistPage"/>
+            <class name="POM.ProfilePrefPage"/>
         </classes>
     </test>
 </suite>

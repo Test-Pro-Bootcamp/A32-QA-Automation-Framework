@@ -1,9 +1,6 @@
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.apache.hc.core5.annotation.Contract;
-import org.jetbrains.annotations.NotNull;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -12,35 +9,19 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
-import org.testng.annotations.DataProvider;
 import pageObject.LoginPage;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.time.Duration;
 public class BaseTest {
-    WebDriver driver;
-    WebDriverWait wait;
+    protected static WebDriver driver;
+    protected static WebDriverWait wait;
 
     public String url = "https://bbb.testpro.io/";
-    @BeforeSuite
-//    public static void chromeConfigs() {
-//
-//        if (System.getProperty("os.name").toLowerCase().contains("win")) {
-//            System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
-//        }
+//    @BeforeSuite
+//    static void setupClass() {
+//        WebDriverManager.chromedriver().setup();
 //    }
-//    @DataProvider(name = "invalidCredentials")
-//    public static Object[] @NotNull [] getCredentials() {
-//
-//        return new Object[][]{
-//                {"invalid@class.com", "invalidPass"},
-//                {"d@class.com", ""},
-//                {"", ""}
-//        };
-//    }
-    static void setupClass() {
-        WebDriverManager.chromedriver().setup();
-    }
 
     @BeforeMethod
     public void setUpBrowser() throws MalformedURLException {

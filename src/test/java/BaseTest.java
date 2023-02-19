@@ -18,10 +18,10 @@ public class BaseTest {
     protected static WebDriverWait wait;
 
     public String url = "https://bbb.testpro.io/";
-//    @BeforeSuite
-//    static void setupClass() {
-//        WebDriverManager.chromedriver().setup();
-//    }
+    @BeforeSuite
+    static void setupClass() {
+        WebDriverManager.chromedriver().setup();
+    }
 
     @BeforeMethod
     public void setUpBrowser() throws MalformedURLException {

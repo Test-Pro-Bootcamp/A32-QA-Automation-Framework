@@ -1,4 +1,6 @@
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.apache.hc.core5.annotation.Contract;
+import org.jetbrains.annotations.NotNull;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -10,16 +12,32 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.DataProvider;
 import pageObject.LoginPage;
-
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.time.Duration;
 public class BaseTest {
-    static WebDriver driver;
+    WebDriver driver;
     WebDriverWait wait;
+
     public String url = "https://bbb.testpro.io/";
     @BeforeSuite
+//    public static void chromeConfigs() {
+//
+//        if (System.getProperty("os.name").toLowerCase().contains("win")) {
+//            System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
+//        }
+//    }
+//    @DataProvider(name = "invalidCredentials")
+//    public static Object[] @NotNull [] getCredentials() {
+//
+//        return new Object[][]{
+//                {"invalid@class.com", "invalidPass"},
+//                {"d@class.com", ""},
+//                {"", ""}
+//        };
+//    }
     static void setupClass() {
         WebDriverManager.chromedriver().setup();
     }
@@ -41,7 +59,7 @@ public class BaseTest {
         String gridURL = "http://192.168.24.184:4444";
         switch (browser) {
             case "firefox":
-                System.setProperty("webdriver.gecko.driver","geckodriver");
+                System.setProperty("webdriver.gecko.driver","geckodriver.exe");
                 return driver = new FirefoxDriver();
             case "edge":
                 return driver = new EdgeDriver();

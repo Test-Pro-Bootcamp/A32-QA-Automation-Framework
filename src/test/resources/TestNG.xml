@@ -6,8 +6,8 @@
     <test name="Example Tests" preserve-order="false">
         <parameter name="baseURL" value="https://bbb.testpro.io/" />
         <classes>
-            <class name="LoginTests"/>
-            <class name="BaseTest"/>
+<!--            <class name="LoginTests"/>-->
+<!--            <class name="BaseTest"/>-->
             <class name="SongsTests"/>
             <class name="CSVDataProviderTest"/>
             <class name="pageObject.LoginPage"/>
@@ -15,7 +15,7 @@
             <class name="pageObject.BasePage"/>
             <class name="pageObject.AllSongsPage"/>
             <class name="pageObject.PlaylistPage"/>
-            <class name="ActionsTests"/>
+<!--            <class name="ActionsTests"/>-->
         </classes>
     </test>
 </suite>

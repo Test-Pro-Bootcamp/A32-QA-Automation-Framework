@@ -38,7 +38,7 @@ public class ActionsTests extends BaseTest {
     @Test
     public void renamePlaylist() {
         // double click
-        String playlistName = "Summer songs";
+        String playlistName = "New name";
         LoginPage loginPage = new LoginPage(driver);
         HomePage homePage = new HomePage(driver);
         loginPage.login("burkovads@mail.ru", "Julka@0721");

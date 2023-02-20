@@ -35,7 +35,7 @@ public class MainPage extends BasePage {
     }
 
     public boolean findSearchField() {
-        searchFieldLocator.isDisplayed();
+        wait.until(ExpectedConditions.visibilityOf(searchFieldLocator));
         return true;
     }
 

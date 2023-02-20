@@ -13,6 +13,7 @@ public class BasePage {
     protected WebDriver driver;
     protected WebDriverWait wait;
     protected Actions actions;
+    ThreadLocal<WebDriver> threadDriver;
 
     public BasePage(WebDriver givenDriver) {
         driver = givenDriver;

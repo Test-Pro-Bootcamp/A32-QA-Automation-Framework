@@ -37,6 +37,6 @@ public class CSVDataProviderTest extends BaseTest {
         enterEmail(email);
         enterPassword(password);
         loginSubmit();
-        Assert.assertEquals(driver.getCurrentUrl(), url);
+        Assert.assertEquals(getThreadDriver().getCurrentUrl(), url);
     }
 }

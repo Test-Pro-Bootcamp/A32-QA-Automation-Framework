@@ -5,7 +5,6 @@ import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-import java.util.UUID;
 
 public class LoginTests extends BaseTest {
 
@@ -20,17 +19,17 @@ public class LoginTests extends BaseTest {
 
     @Test(dataProvider = "IncorrectLoginProviders")
     public void negativeLoginTests(String email, String password) {
-        LoginPage loginPage = new LoginPage(driver);
+        LoginPage loginPage = new LoginPage(getThreadDriver());
         loginPage.provideEmail(email)
                 .providePassword(password)
                 .clickSubmitBtn();
-        Assert.assertEquals(driver.getCurrentUrl(), url);
+        Assert.assertEquals(getThreadDriver().getCurrentUrl(), url);
     }
 
     @Test
     public void loginSucceedTest() {
-        LoginPage loginPage = new LoginPage(driver);
-        HomePage homePage = new HomePage(driver);
+        LoginPage loginPage = new LoginPage(getThreadDriver());
+        HomePage homePage = new HomePage(getThreadDriver());
         loginPage.login("kamilakk@bk.ru", "te$t$tudent")
                 .clickSubmitBtn();
         Assert.assertTrue(homePage.getUserAvatar().isDisplayed());
@@ -38,30 +37,30 @@ public class LoginTests extends BaseTest {
 
     @Test
     public void loginWrongPasswordTest() {
-        LoginPage loginPage = new LoginPage(driver);
+        LoginPage loginPage = new LoginPage(getThreadDriver());
         loginPage.login("demo@class.com", "student")
                 .clickSubmitBtn();
-        Assert.assertEquals(driver.getCurrentUrl(), url);
-        WebElement submitLogin = driver.findElement(By.cssSelector("button[type='submit']"));
+        Assert.assertEquals(getThreadDriver().getCurrentUrl(), url);
+        WebElement submitLogin = getThreadDriver().findElement(By.cssSelector("button[type='submit']"));
         Assert.assertTrue(submitLogin.isDisplayed());
     }
 
     @Test
     public void loginEmptyPasswordTest() {
-        LoginPage loginPage = new LoginPage(driver);
+        LoginPage loginPage = new LoginPage(getThreadDriver());
         loginPage.provideEmail("demo@class.com");
-        Assert.assertEquals(driver.getCurrentUrl(), url);
+        Assert.assertEquals(getThreadDriver().getCurrentUrl(), url);
         Assert.assertTrue(loginPage.submitLoginButton().isDisplayed());
         Assert.assertTrue(loginPage.registrationLink().isDisplayed(), "==== Registration link displayed ====");
     }
 
     @Test
     public void loginWrongEmailTest() {
-        LoginPage loginPage = new LoginPage(driver);
+        LoginPage loginPage = new LoginPage(getThreadDriver());
         loginPage.provideEmail("dem@class.com")
                 .providePassword("te$t$tudent")
                 .clickSubmitBtn();
-        Assert.assertEquals(driver.getCurrentUrl(), url);
+        Assert.assertEquals(getThreadDriver().getCurrentUrl(), url);
         Assert.assertTrue(loginPage.submitLoginButton().isDisplayed());
         String link = loginPage.registrationLink().getText();
         System.out.println("==== This is our link text ==== " + link);
@@ -69,8 +68,8 @@ public class LoginTests extends BaseTest {
 
     @Test
     public void changeProfileNameTest() {
-        LoginPage loginPage = new LoginPage(driver);
-        HomePage homePage = new HomePage(driver);
+        LoginPage loginPage = new LoginPage(getThreadDriver());
+        HomePage homePage = new HomePage(getThreadDriver());
         loginPage.provideEmail("kamilakk@bk.ru")
                 .providePassword("te$t$tudent")
                 .clickSubmitBtn()

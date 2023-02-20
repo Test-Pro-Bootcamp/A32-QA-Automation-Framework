@@ -1,15 +1,8 @@
 import Pages.HomePage;
 import Pages.LoginPage;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import org.testng.asserts.SoftAssert;
 
-import java.util.List;
 
 public class ActionsTests extends BaseTest {
 
@@ -18,8 +11,8 @@ public class ActionsTests extends BaseTest {
         LoginPage loginPage = new LoginPage(driver);
         HomePage homePage = new HomePage(driver);
         HomePage allSongsPage = new HomePage(driver);
-        loginPage.provideEmail("burkovads@mail.ru")
-                .providePassword("Julka@0721")
+        loginPage.provideEmail("kamilakk@bk.ru")
+                .providePassword("te$t$tudent")
                 .clickSubmitBtn();
         homePage.goToAllSongs();
         allSongsPage.allShuffle();
@@ -32,7 +25,7 @@ public class ActionsTests extends BaseTest {
         LoginPage loginPage = new LoginPage(driver);
         HomePage homePage = new HomePage(driver);
         HomePage allSongsPage = new HomePage(driver);
-        loginPage.login("burkovads@mail.ru", "Julka@0721");
+        loginPage.login("kamilakk@bk.ru", "te$t$tudent");
         homePage.goToAllSongs();
         allSongsPage.choosePlayFromList();
         allSongsPage.playBtnClick();
@@ -45,7 +38,7 @@ public class ActionsTests extends BaseTest {
         LoginPage loginPage = new LoginPage(driver);
         HomePage homePage = new HomePage(driver);
         HomePage allSongsPage = new HomePage(driver);
-        loginPage.login("burkovads@mail.ru", "Julka@0721");
+        loginPage.login("kamilakk@bk.ru", "te$t$tudent");
         homePage.goToAllSongs();
         allSongsPage.choosePlayFromList();
         allSongsPage.playBtnClick();

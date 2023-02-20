@@ -29,13 +29,11 @@ public class HomePage extends BasePage {
     private WebElement barLocator;
     @FindBy(css = "#songsWrapper .fa-random")
     private WebElement allShuffleLocator;
+    @FindBy(css = ".btn-delete-playlist")
+    private WebElement playlistDeleteButton;
 
     public HomePage(WebDriver givenDriver) {
         super(givenDriver);
-    }
-
-    public static void playlistDelete() {
-
     }
 
     public WebElement getUserAvatar() {
@@ -68,7 +66,7 @@ public class HomePage extends BasePage {
         userPlaylistElement3.click();
     }
 
-    public homePage enterPlaylistName(String name) {
+    public HomePage enterPlaylistName(String name) {
         userPlaylistInputField.sendKeys(Keys.HOME, Keys.chord(Keys.SHIFT, Keys.END), name);
         userPlaylistInputField.sendKeys(Keys.ENTER);
         return this.allShuffle();
@@ -96,22 +94,12 @@ public class HomePage extends BasePage {
         return barLocator.isDisplayed();
     }
 
-    public homePage allShuffle() {
+    public HomePage allShuffle() {
         allShuffleLocator.click();
         return this.allShuffle();
     }
-
-    public class homePage extends BasePage {
-        @FindBy(css = ".btn-delete-playlist")
-        private WebElement playlistDeleteButton;
-
-        public homePage(WebDriver givenDriver) {
-            super(givenDriver);
-        }
-
-        public homePage playlistDelete() {
+        public HomePage playlistDelete() {
             playlistDeleteButton.click();
             return this;
-        }
     }
 }

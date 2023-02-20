@@ -3,12 +3,12 @@ import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-import java.util.UUID;
+import pageObject.HomePage;
+import pageObject.LoginPage;
 
 public class LoginTests extends BaseTest {
-
-    @DataProvider(name="IncorrectLoginProviders")
-    public static Object[][] getDataFromDataProviders(){
+    @DataProvider(name = "IncorrectLoginProviders")
+    public static Object[][] getDataFromDataProviders() {
         return new Object[][]{
                 {"notExisting@email.com", "NotExistingPassword"},
                 {"demo@class.com", ""},
@@ -18,25 +18,27 @@ public class LoginTests extends BaseTest {
 
     @Test(dataProvider = "IncorrectLoginProviders")
     public void negativeLoginTests(String email, String password) {
-        enterEmail(email);
-        enterPassword(password);
-        loginSubmit();
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.provideEmail(email)
+                .providePassword(password)
+                .clickSubmitBtn();
         Assert.assertEquals(driver.getCurrentUrl(), url);
     }
 
     @Test
     public void loginSucceedTest() {
-        enterEmail("demo@class.com");
-        enterPassword("te$t$tudent");
-        loginSubmit();
-        WebElement avatar = driver.findElement(By.cssSelector(".avatar"));
-        Assert.assertTrue(avatar.isDisplayed());
+        LoginPage loginPage = new LoginPage(driver);
+        HomePage homePage = new HomePage(driver);
+        loginPage.login("burkovads@mail.ru", "Julka@0721")
+                .clickSubmitBtn();
+        Assert.assertTrue(homePage.getUserAvatar().isDisplayed());
     }
 
     @Test
     public void loginWrongPasswordTest() {
-        login("demo@class.com", "student");
-        loginSubmit();
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.login("demo@class.com", "student")
+                .clickSubmitBtn();
         Assert.assertEquals(driver.getCurrentUrl(), url);
         WebElement submitLogin = driver.findElement(By.cssSelector("button[type='submit']"));
         Assert.assertTrue(submitLogin.isDisplayed());
@@ -44,81 +46,40 @@ public class LoginTests extends BaseTest {
 
     @Test
     public void loginEmptyPasswordTest() {
-        enterEmail("demo@class.com");
-        WebElement submitLogin = driver.findElement(By.cssSelector("button[type='submit']"));
-        submitLogin.click();
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.provideEmail("demo@class.com");
         Assert.assertEquals(driver.getCurrentUrl(), url);
-        Assert.assertTrue(submitLogin.isDisplayed());
-        WebElement registationLink = driver.findElement(By.id("hel"));
-        Assert.assertTrue(registationLink.isDisplayed(), "==== Registation link displayed ====");
+        Assert.assertTrue(loginPage.submitLoginButton().isDisplayed());
+        Assert.assertTrue(loginPage.registrationLink().isDisplayed(), "==== Registration link displayed ====");
     }
 
     @Test
     public void loginWrongEmailTest() {
-        enterEmail("dem@class.com");
-        enterPassword("te$t$tudent");
-        loginSubmit();
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.provideEmail("dem@class.com")
+                .providePassword("te$t$tudent")
+                .clickSubmitBtn();
         Assert.assertEquals(driver.getCurrentUrl(), url);
-        WebElement submitLogin = driver.findElement(By.cssSelector("button[type='submit']"));
-        Assert.assertTrue(submitLogin.isDisplayed());
-        WebElement registationLink = driver.findElement(By.id("hel"));
-        String link = registationLink.getText();
+        Assert.assertTrue(loginPage.submitLoginButton().isDisplayed());
+        String link = loginPage.registrationLink().getText();
         System.out.println("==== This is our link text ==== " + link);
     }
 
     @Test
     public void changeProfileNameTest() {
-        enterEmail("demo@class.com");
-        enterPassword("te$t$tudent");
-        loginSubmit();
-        openUserProfile();
-        String user = generateRandomName();
-        setName(user);
-        setPassword();
-        saveProfile();
-        getSuccessBanner();
-        Assert.assertEquals(getUsername(), user);
+        LoginPage loginPage = new LoginPage(driver);
+        HomePage homePage = new HomePage(driver);
+        loginPage.provideEmail("burkovads@mail.ru")
+                .providePassword("Julka@0721")
+                .clickSubmitBtn()
+                .openUserProfile();
+        String user = loginPage.generateRandomName();
+        loginPage.setName(user)
+                .setPassword("Julka@0721")
+                .saveProfile();
+        homePage.successBanner();
+        Assert.assertEquals(loginPage.getUsername(), user);
     }
-
-    private WebElement getSuccessBanner() {
-        WebElement successBanner = driver.findElement(By.cssSelector(".success"));
-        return successBanner;
-    }
-
-    private void openUserProfile() {
-        WebElement profile = driver.findElement(By.cssSelector(".view-profile"));
-        profile.click();
-    }
-
-
-    private String getUsername() {
-        String userName = driver.findElement(By.cssSelector(".view-profile .name")).getText();
-        return userName;
-    }
-
-    public void setName(String newName) {
-        WebElement nameInput = driver.findElement(By.cssSelector("#inputProfileName"));
-        nameInput.click();
-        nameInput.clear();
-        nameInput.sendKeys(newName);
-    }
-
-    public void setPassword() {
-        WebElement passwordInput = driver.findElement(By.cssSelector("#inputProfileCurrentPassword"));
-        passwordInput.click();
-        passwordInput.sendKeys("te$t$tudent");
-    }
-
-    public void saveProfile() {
-        WebElement saveButton = driver.findElement(By.cssSelector(".btn-submit"));
-        saveButton.click();
-    }
-
-    public String generateRandomName() {
-        return UUID.randomUUID().toString().replace("-", "");//
-    }
-
-
 }
 //        Email("demo@class.com");
 //        Password("te$t$tudent");

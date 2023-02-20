@@ -22,14 +22,20 @@ import java.time.Duration;
 public class BaseTest {
     protected static WebDriver driver;
     protected static WebDriverWait wait;
+    protected static ThreadLocal<WebDriver> threadDriver;
 
     @BeforeMethod
     @Parameters({"BaseURL"})
     public void setUpBrowser(String BaseURL) throws MalformedURLException {
         driver = pickBrowser(System.getProperty("browser"));
+        threadDriver = new ThreadLocal<>();
+        threadDriver.set(driver);
         wait = new WebDriverWait(driver,Duration.ofSeconds(10));
         String url = BaseURL;
         driver.get(url);
+    }
+    public WebDriver getDriver(){
+        return threadDriver.get();
     }
     public WebDriver pickBrowser(String browser) throws MalformedURLException {
         DesiredCapabilities caps = new DesiredCapabilities();

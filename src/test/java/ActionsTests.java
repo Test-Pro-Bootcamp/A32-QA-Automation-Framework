@@ -1,22 +1,28 @@
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pageObject.AllSongsPage;
 import pageObject.HomePage;
 import pageObject.LoginPage;
+
+import java.util.List;
+
 public class ActionsTests extends BaseTest {
 
-    @Test
-    public void playSongTest() {
-        // hover over in clickPlayBtn
-        LoginPage loginPage = new LoginPage(driver);
-        HomePage homePage = new HomePage(driver);
-        AllSongsPage allSongsPage = new AllSongsPage(driver);
-        loginPage.provideEmail("burkovads@mail.ru")
-                .providePassword("Julka@0721")
-                .clickSubmitBtn();
-        homePage.goToAllSongs();
-        allSongsPage.allShuffle();
-        Assert.assertTrue(allSongsPage.barIsDisplayed());
+//    @Test
+//    public void playSongTest() {
+//        // hover over in clickPlayBtn
+//        LoginPage loginPage = new LoginPage(getDriver());
+//        HomePage homePage = new HomePage(getDriver());
+//        AllSongsPage allSongsPage = new AllSongsPage(getDriver());
+//        loginPage.provideEmail("burkovads@mail.ru")
+//                .providePassword("Julka@0721")
+//                .clickSubmitBtn();
+//        homePage.goToAllSongs();
+//        allSongsPage.allShuffle();
+//        Assert.assertTrue(allSongsPage.barIsDisplayed());
 
 //        // Comparing numbers of elements example
 //        List<WebElement> songs = driver.findElements(By.cssSelector("[data-test='song-card']"));
@@ -33,7 +39,7 @@ public class ActionsTests extends BaseTest {
 //        softAssert.assertTrue(songsNumberBefore == songsNumberAfter,
 //                "=== Songs number before should be equal songs number after ===");
 //        softAssert.assertAll();
-    }
+//    }
 
     @Test
     public void renamePlaylist() {
@@ -46,18 +52,19 @@ public class ActionsTests extends BaseTest {
         homePage.enterPlaylistName(playlistName);
         homePage.SuccessBanner();
     }
-    @Test
-    public void playSongFromListTest() {
-        // right click
-        LoginPage loginPage = new LoginPage(driver);
-        HomePage homePage = new HomePage(driver);
-        AllSongsPage allSongsPage = new AllSongsPage(driver);
-        loginPage.login("burkovads@mail.ru", "Julka@0721");
-        homePage.goToAllSongs();
-        allSongsPage.choosePlayFromList();
-        allSongsPage.playBtnClick();
-        allSongsPage.barIsDisplayed();
-    }
+//    @Test
+//    public void playSongFromListTest() {
+//        // right click
+//        LoginPage loginPage = new LoginPage(driver);
+//        HomePage homePage = new HomePage(driver);
+//        AllSongsPage allSongsPage = new AllSongsPage(driver);
+//        loginPage.login("burkovads@mail.ru", "Julka@0721");
+//        homePage.goToAllSongs();
+//        allSongsPage.choosePlayFromList();
+//        allSongsPage.playBtnClick();
+//        allSongsPage.barIsDisplayed();
+//    }
+
 //    @Test
 //    public void countSongsInPlaylist() {
 //

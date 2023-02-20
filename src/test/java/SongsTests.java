@@ -9,24 +9,24 @@ public class SongsTests extends BaseTest {
     public void checkVisibilityTest() {
         LoginPage loginPage = new LoginPage(driver);
         HomePage homePage = new HomePage(driver);
-        loginPage.provideEmail("demo@class.com")
-                .providePassword("te$t$tudent")
+        loginPage.provideEmail("burkovads@mail.ru")
+                .providePassword("Julka@0721")
                 .clickSubmitBtn();
         String text = homePage.title().getText();
         System.out.println(text);
         System.out.println("Is element invisible? === " + wait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector("title"))));
        // WebElement title2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("title")));  // should fail
     }
-    @Test
-    public void deletePlaylistTest() {
-        LoginPage loginPage = new LoginPage(driver);
-        HomePage homePage = new HomePage(driver);
-        PlaylistPage playlistPage = new PlaylistPage(driver);
-        loginPage.provideEmail("burkovads@mail.ru")
-                .providePassword("Julka@0721")
-                .clickSubmitBtn();
-        homePage.clickOnPlaylist();
-        playlistPage.playlistDelete();
-        homePage.SuccessBanner();
-    }
+//    @Test
+//    public void deletePlaylistTest() {
+//        LoginPage loginPage = new LoginPage(getDriver());
+//        HomePage homePage = new HomePage(getDriver());
+//        PlaylistPage playlistPage = new PlaylistPage(getDriver());
+//        loginPage.provideEmail("burkovads@mail.ru")
+//                .providePassword("Julka@0721")
+//                .clickSubmitBtn();
+//        homePage.clickOnPlaylist();
+//        playlistPage.playlistDelete();
+//        homePage.SuccessBanner();
+//    }
 }

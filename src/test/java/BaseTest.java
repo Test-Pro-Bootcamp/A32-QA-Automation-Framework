@@ -28,15 +28,15 @@ public class BaseTest {
 
     @BeforeMethod
     public void setUpBrowser() throws MalformedURLException {
-//        ChromeOptions options = new ChromeOptions();
-//        options.addArguments("--disable-notifications");
-//        driver = new ChromeDriver(options);
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--disable-notifications");
+        driver = new ChromeDriver(options);
         driver = pickBrowser(System.getProperty("browser"));
 
         threadDriver = new ThreadLocal<>();
         threadDriver.set(driver);
 
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         wait = new WebDriverWait(driver, Duration.ofSeconds(4));
        // driver.manage().window().maximize();
         driver.get(url);

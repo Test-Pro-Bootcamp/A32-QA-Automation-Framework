@@ -21,6 +21,10 @@ public class HomePage extends BasePage {
     private WebElement userPlaylistInputField;
     @FindBy(css = ".success")
     private WebElement successBanerLocator;
+    @FindBy(css = ".fa-plus-circle")
+    private WebElement createPlaylistPlusLocator;
+    @FindBy(css = "[data-testid='playlist-context-menu-create-simple']")
+    private WebElement newPlaylist;
     public HomePage(WebDriver givenDriver) {
         super(givenDriver);
     }
@@ -56,7 +60,21 @@ public class HomePage extends BasePage {
     public String getPlaylistName() {
         return userPlaylistElement3.getText();
     }
-    public boolean SuccessBanner() {
+    public boolean successBanner() {
         return successBanerLocator.isDisplayed();
+    }
+
+    public HomePage createPlaylistButton() {
+        createPlaylistPlusLocator.click();
+        return this;
+    }
+    public HomePage newPlaylistCreate() {
+        newPlaylist.click();
+        return this;
+    }
+    public HomePage enterNewPlaylistName(String name) {
+        userPlaylistInputField.sendKeys(name);
+        userPlaylistInputField.sendKeys(Keys.ENTER);
+        return this;
     }
 }

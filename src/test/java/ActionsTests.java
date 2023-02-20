@@ -41,16 +41,28 @@ public class ActionsTests extends BaseTest {
 //        softAssert.assertAll();
 //    }
 
+//    @Test
+//    public void createPlaylist() {
+//        String createdPlaylistName = "Spring";
+//        LoginPage loginPage = new LoginPage(driver);
+//        HomePage homePage = new HomePage(driver);
+//        loginPage.login("burkovads@mail.ru", "Julka@0721");
+//        homePage.createPlaylistButton();
+//        homePage.newPlaylistCreate();
+//        homePage.enterNewPlaylistName(createdPlaylistName);
+//        homePage.successBanner();
+//    }
+
     @Test
     public void renamePlaylist() {
         // double click
-        String playlistName = "New name";
-        LoginPage loginPage = new LoginPage(driver);
-        HomePage homePage = new HomePage(driver);
+        String playlistName = "Winter";
+        LoginPage loginPage = new LoginPage(getDriver());
+        HomePage homePage = new HomePage(getDriver());
         loginPage.login("burkovads@mail.ru", "Julka@0721");
         homePage.doubleClickChoosePlaylist();
         homePage.enterPlaylistName(playlistName);
-        homePage.SuccessBanner();
+        homePage.successBanner();
     }
 //    @Test
 //    public void playSongFromListTest() {

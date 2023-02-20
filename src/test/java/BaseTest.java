@@ -11,21 +11,18 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.BeforeTest;
-
-import java.net.MalformedURLException;
 import java.time.Duration;
 
 public class BaseTest {
     public WebDriverWait wait = null;
     public WebDriverWait wait1 = null;
     static WebDriver myDriver;
+    ThreadLocal<WebDriver> threadDriver; //parallel testing browser type
 
     @BeforeSuite
     static void setupClass() {
         WebDriverManager.chromedriver().setup();
     }
-
-    ThreadLocal<WebDriver> threadDriver;
 
     @BeforeMethod
 
@@ -58,10 +55,9 @@ public class BaseTest {
         return myDriver;
     }
 
-    public WebDriver getThreadDriver() {
+    public WebDriver getThreadDriver() {    // Creating a method to return driver for parallel testing
         return threadDriver.get();
     }
-
 
     @AfterMethod
     public void tearDown() {

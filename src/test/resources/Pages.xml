@@ -7,6 +7,9 @@
         <classes>
             <class name="BaseTest"/>
             <class name="LoginTest"/>
+            <class name="DeletePlaylist"/>
+            <class name="RenamePlaylist"/>
+            <class name="CreatePlaylist"/>
         </classes>
     </test>
 </suite>

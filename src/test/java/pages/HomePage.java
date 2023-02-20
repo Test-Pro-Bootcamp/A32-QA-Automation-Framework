@@ -8,6 +8,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 
+
+
 public class HomePage extends BasePage {
     @FindBy(css = "[class='success show']" )
     private WebElement NotificationLocator;
@@ -31,15 +33,19 @@ public class HomePage extends BasePage {
         return this;
     }
     public HomePage changePlaylistName(String playlist) {
+        wait.until(ExpectedConditions.visibilityOf(playlistFieldLocator));
         playlistFieldLocator.sendKeys(Keys.CONTROL + "a");
         playlistFieldLocator.sendKeys(Keys.DELETE);
         playlistFieldLocator.sendKeys(playlist, Keys.ENTER);
+        wait.until(ExpectedConditions.visibilityOf(NotificationLocator));
         return this;
     }
     public HomePage deleteActions(){
-        PlaylistPage playlistPage = new PlaylistPage(driver);
         playlistLocator.click();
+        PlaylistPage playlistPage = new PlaylistPage(driver);
+        wait.until(ExpectedConditions.visibilityOf(playlistPage.getDeleteButton()));
         playlistPage.getDeleteButton().click();
+        wait.until(ExpectedConditions.visibilityOf(NotificationLocator));
         return this;
     }
     public WebElement getNotification(){
@@ -48,6 +54,7 @@ public class HomePage extends BasePage {
     public WebElement getAvatar(){
         return avatarLocator;
     }
+    public WebElement getPlaylist(){return playlistLocator;}
     public HomePage createNewPlaylist(){
         createPlaylistBtnLocator.click();
         newPlaylistBtnLocator.click();
@@ -55,6 +62,7 @@ public class HomePage extends BasePage {
     }
     public HomePage setPlaylistName(String name){
         newPlaylistFieldLocator.sendKeys(name,Keys.ENTER);
+        wait.until(ExpectedConditions.visibilityOf(NotificationLocator));
         return this;
     }
 }

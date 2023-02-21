@@ -1,4 +1,4 @@
-.gradle
+java -jar selenium-server-4.7.2.jar hub.gradle
 /build/
 .idea*
 # Ignore Gradle GUI config

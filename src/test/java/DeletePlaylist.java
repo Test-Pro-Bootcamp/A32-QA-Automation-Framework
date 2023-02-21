@@ -6,8 +6,8 @@ import pages.LoginPage;
 public class DeletePlaylist extends  BaseTest {
     @Test
     public void deletePlaylist() {
-        LoginPage loginPage = new LoginPage(getDriver());
-        HomePage homePage = new HomePage(getDriver());
+        LoginPage loginPage = new LoginPage(driver);
+        HomePage homePage = new HomePage(driver);
         loginPage.enterEmail("rumkostia92@gmail.com")
                 .enterPassword("te$t$tudent")
                 .loginSubmit();

@@ -25,7 +25,6 @@ public class HomePage extends BasePage {
     @FindBy(css = "[data-testid='playlist-context-menu-create-simple']")
     private WebElement chooseCreateNewPlaylist;
 
-
     public HomePage(WebDriver givenDriver) {
         super(givenDriver);
     }

@@ -9,8 +9,8 @@ import pages.LoginPage;
 public class LoginTest extends  BaseTest{
     @Test
     public void successLogin() {
-        HomePage homePage = new HomePage(getDriver());
-        LoginPage loginPage = new LoginPage(getDriver());
+        HomePage homePage = new HomePage(driver);
+        LoginPage loginPage = new LoginPage(driver);
         loginPage.enterEmail("rumkostia92@gmail.com")
         .enterPassword("te$t$tudent")
         .loginSubmit();

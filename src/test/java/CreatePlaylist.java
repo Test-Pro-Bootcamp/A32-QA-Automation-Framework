@@ -6,8 +6,8 @@ import pages.LoginPage;
 public class CreatePlaylist extends BaseTest{
     @Test
     public void createPlaylist(){
-        LoginPage loginPage = new LoginPage(driver);
-        HomePage homePage = new HomePage(driver);
+        LoginPage loginPage = new LoginPage(getDriver());
+        HomePage homePage = new HomePage(getDriver());
         loginPage.enterEmail("rumkostia92@gmail.com")
                  .enterPassword("te$t$tudent")
                  .loginSubmit();

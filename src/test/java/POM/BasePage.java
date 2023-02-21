@@ -14,9 +14,6 @@ public class BasePage {
     protected WebDriver driver;
     protected WebDriverWait wait;
     Actions actions;
-    By firstPlaylist = By.cssSelector(".playlist:nth-child(3)");
-    By songTitle = By.cssSelector("[class='title']");
-
     public BasePage(WebDriver givendriver) {
         driver = givendriver;
         wait = new WebDriverWait(driver, Duration.ofSeconds(5));

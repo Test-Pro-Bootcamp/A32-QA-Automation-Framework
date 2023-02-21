@@ -3,14 +3,17 @@ package POM;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 
 public class PlaylistPage extends BasePage {
-    By playlistSongList = By.cssSelector("[class='song-list-wrap main-scroll-wrap playlist']");
-    By playlistDeleteButton = By.cssSelector("[class='del btn-delete-playlist']");
-    By successDelete = By.cssSelector("[class='success show']");
-
+    @FindBy(css="[class='song-list-wrap main-scroll-wrap playlist']")
+    private WebElement playlistSongList;
+    @FindBy(css="[class='del btn-delete-playlist']")
+    private WebElement playlistDeleteButton;
+    @FindBy(css="[class='success show']")
+    private WebElement successDelete;
     public PlaylistPage(WebDriver givenDriver) {
         super(givenDriver);
     }

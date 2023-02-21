@@ -3,6 +3,7 @@ package POM;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.WebDriver;
 
@@ -10,14 +11,26 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.invisibilityOfEl
 import static org.openqa.selenium.support.ui.ExpectedConditions.presenceOfElementLocated;
 
 public class AllSongsPage extends BasePage {
-    By allSongList = By.cssSelector("[class='song-list-wrap main-scroll-wrap all-songs']");
-    By songItem = By.cssSelector("[class='song-item']");
-    By myPlaylist = By.xpath("//a[text()='My playlist']");
-    By mPlaylist = By.xpath("//a[text()='m']");
-    //By songLocator = By.cssSelector("//section[@id='playlistWrapper']//td[@class='title']");
-    By addToButton = By.xpath("//button[@class='btn-add-to']");
-    By playlistSelect = By.xpath("//li[@class='playlist']");
-    By successsongAdded = By.xpath("//div[class='success show']");
+
+    @FindBy(css= "[class='song-list-wrap main-scroll-wrap all-songs']")
+    private WebElement allSongList;
+    @FindBy(css= "[class='song-item']")
+    private WebElement songItem;
+    @FindBy(xpath="//a[text()='My playlist']")
+    private WebElement myPlaylist;
+    @FindBy(xpath="//a[text()='m']")
+    private WebElement mPlaylist;
+
+    @FindBy(xpath="//button[@class='btn-add-to']")
+    private WebElement addToButton;
+    @FindBy(xpath="//li[@class='playlist']")
+    private WebElement playlistSelect;
+    @FindBy(xpath="//div[class='success show']")
+    private WebElement successsongAdded;
+    @FindBy(css = ".playlist:nth-child(3)")
+    private WebElement firstPlaylist;
+    @FindBy(css="[class='title']")
+    private WebElement songTitle;
 
 
     public AllSongsPage(WebDriver givenDriver) {
@@ -25,7 +38,7 @@ public class AllSongsPage extends BasePage {
     }
 
     public WebElement getAllSongs() {
-        return wait.until(ExpectedConditions.visibilityOfElementLocated(allSongList));
+        return wait.until(ExpectedConditions.visibilityOfElementLocated((By) allSongList));
     }
 
     public void songDoubleClick() {
@@ -66,8 +79,6 @@ public class AllSongsPage extends BasePage {
     }
 
     public void verifySongIsAdded() {
-        // WebElement songPlaylist = driver.findElement(successsongAdded);
-        // Assert.assertTrue(songPlaylist.isDisplayed());
         WebElement title = wait.until(presenceOfElementLocated(By.cssSelector("title")));
         String text = title.getText();
         System.out.println(text);

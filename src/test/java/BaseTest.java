@@ -25,10 +25,11 @@ public class BaseTest {
     protected static WebDriverWait wait;
     protected static ThreadLocal<WebDriver> threadDriver;
 
-    @BeforeMethod
+    @BeforeMethod(alwaysRun = true)
     @Parameters({"BaseURL"})
     public void setUpBrowser(String BaseURL) throws MalformedURLException {
-        driver = pickBrowser(System.getProperty("browser"));
+        //driver = pickBrowser(System.getProperty("browser"));
+        driver = pickBrowser(("browser"));
         threadDriver = new ThreadLocal<>();
         threadDriver.set(driver);
         wait = new WebDriverWait(driver,Duration.ofSeconds(10));
@@ -75,7 +76,7 @@ public class BaseTest {
 
         }
     }
-    @AfterMethod
+    @AfterMethod(alwaysRun = true)
     public void tearDown() {
         driver.quit();
     }

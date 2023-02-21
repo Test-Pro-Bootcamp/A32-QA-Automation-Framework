@@ -6,8 +6,8 @@ import pages.LoginPage;
 public class RenamePlaylist extends BaseTest{
     @Test
     public void renamePlaylist() {
-        LoginPage loginPage = new LoginPage(driver);
-        HomePage homePage = new HomePage(driver);
+        LoginPage loginPage = new LoginPage(getDriver());
+        HomePage homePage = new HomePage(getDriver());
         loginPage.enterEmail("rumkostia92@gmail.com")
         .enterPassword("te$t$tudent")
         .loginSubmit();

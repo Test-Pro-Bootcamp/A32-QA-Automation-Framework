@@ -12,24 +12,24 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.presenceOfElemen
 
 public class AllSongsPage extends BasePage {
 
-    @FindBy(css= "[class='song-list-wrap main-scroll-wrap all-songs']")
+    @FindBy(css = "[class='song-list-wrap main-scroll-wrap all-songs']")
     private WebElement allSongList;
-    @FindBy(css= "[class='song-item']")
+    @FindBy(css = "[class='song-item']")
     private WebElement songItem;
-    @FindBy(xpath="//a[text()='My playlist']")
+    @FindBy(xpath = "//a[text()='My playlist']")
     private WebElement myPlaylist;
-    @FindBy(xpath="//a[text()='m']")
+    @FindBy(xpath = "//a[text()='m']")
     private WebElement mPlaylist;
 
-    @FindBy(xpath="//button[@class='btn-add-to']")
+    @FindBy(xpath = "//button[@class='btn-add-to']")
     private WebElement addToButton;
-    @FindBy(xpath="//li[@class='playlist']")
+    @FindBy(xpath = "//li[@class='playlist']")
     private WebElement playlistSelect;
-    @FindBy(xpath="//div[class='success show']")
+    @FindBy(xpath = "//div[class='success show']")
     private WebElement successsongAdded;
     @FindBy(css = ".playlist:nth-child(3)")
     private WebElement firstPlaylist;
-    @FindBy(css="[class='title']")
+    @FindBy(css = "[class='title']")
     private WebElement songTitle;
 
 
@@ -43,45 +43,33 @@ public class AllSongsPage extends BasePage {
 
     public void songDoubleClick() {
         Actions act = new Actions(driver);
-        WebElement songDoubleClick = wait.until(ExpectedConditions
-                .elementToBeClickable(songItem));
-        act.doubleClick(songDoubleClick).perform();
+        act.doubleClick(songItem).perform();
     }
 
     public void openPlaylistPage() {
-        WebElement openMyPlaylist = wait.until(ExpectedConditions
-                .elementToBeClickable(firstPlaylist));
-        openMyPlaylist.click();
+        firstPlaylist.click();
     }
 
     public void open_m_Playlist() {
-        WebElement playlist = wait.until(ExpectedConditions
-                .elementToBeClickable(firstPlaylist));
-        playlist.click();
+        firstPlaylist.click();
     }
 
     public void selectSong() {
-        WebElement song = wait.until(ExpectedConditions
-                .elementToBeClickable(songItem));
-        song.click();
+        songItem.click();
     }
 
     public void addToClick() {
-        WebElement addTo = wait.until(ExpectedConditions
-                .elementToBeClickable(addToButton));
-        addTo.click();
+        addToButton.click();
     }
 
     public void selectPlaylist() {
-        WebElement mPlaylist = wait.until(ExpectedConditions
-                .elementToBeClickable(playlistSelect));
-        mPlaylist.click();
+        playlistSelect.click();
     }
 
     public void verifySongIsAdded() {
-        WebElement title = wait.until(presenceOfElementLocated(By.cssSelector("title")));
+        WebElement title = wait.until(presenceOfElementLocated((By) songTitle));
         String text = title.getText();
         System.out.println(text);
-        System.out.println("Is element visible? === " + wait.until(invisibilityOfElementLocated(By.cssSelector("title"))));
+        System.out.println("Is element visible? === " + wait.until(invisibilityOfElementLocated((By) songTitle)));
     }
 }

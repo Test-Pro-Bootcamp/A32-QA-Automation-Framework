@@ -7,12 +7,13 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+
 import java.util.UUID;
 
 public class LoginTests extends BaseTest {
 
-    @DataProvider(name="IncorrectLoginProviders")
-    public static Object[][] getDataFromDataProviders(){
+    @DataProvider(name = "IncorrectLoginProviders")
+    public static Object[][] getDataFromDataProviders() {
         return new Object[][]{
                 {"notExisting@email.com", "NotExistingPassword"},
                 {"demo@class.com", ""},
@@ -27,6 +28,7 @@ public class LoginTests extends BaseTest {
         loginSubmit();
         Assert.assertEquals(driver.getCurrentUrl(), url);
     }
+
     @Test
     public static void registrationNavigation() {
         LoginPage loginpage = new LoginPage(driver);
@@ -40,7 +42,7 @@ public class LoginTests extends BaseTest {
     public void loginSucceedTest() {
         LoginPage loginPage = new LoginPage(driver);
         HomePage homePage = new HomePage(driver);
-        loginPage.provideEmailEmail("dashazhyrkova@gmail.com");
+        loginPage.provideEmail("dashazhyrkova@gmail.com");
         loginPage.providePassword("te$t$tudent28");
         loginPage.clickSubmitBtn();
         Assert.assertTrue(homePage.getUsrAvatar().isDisplayed());

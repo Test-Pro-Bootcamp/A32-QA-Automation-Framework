@@ -10,25 +10,25 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 
 public class HomePage extends BasePage {
-    @FindBy(css="img.avatar")
+    @FindBy(css = "img.avatar")
     private WebElement userAvatarIcon;
-    @FindBy(xpath="//a[@href='#!/songs']")
+    @FindBy(xpath = "//a[@href='#!/songs']")
     private WebElement allSongsLocator;
-    @FindBy(css=".playlist:nth-child(3)")
+    @FindBy(css = ".playlist:nth-child(3)")
     private WebElement firstPlaylist;
-    @FindBy(xpath="//input[@name='name']")
+    @FindBy(xpath = "//input[@name='name']")
     private WebElement playlistInputField;
-    @FindBy(css="[data-testid='inline-playlist-name-input'")
+    @FindBy(css = "[data-testid='inline-playlist-name-input'")
     private WebElement renamePlaylistInput;
-    @FindBy(xpath="//a[text()='My new playlist']")
+    @FindBy(xpath = "//a[text()='My new playlist']")
     private WebElement myNewPlaylistVerify;
-    @FindBy(css="[data-testid='sidebar-create-playlist-btn']")
+    @FindBy(css = "[data-testid='sidebar-create-playlist-btn']")
     private WebElement createPlaylistButton;
-    @FindBy(css="[alt='Sound bars']")
+    @FindBy(css = "[alt='Sound bars']")
     private WebElement soundBarLocator;
-    @FindBy(css="[data-testid='playlist-context-menu-create-simple']")
+    @FindBy(css = "[data-testid='playlist-context-menu-create-simple']")
     private WebElement selectSimplePlaylist;
-    @FindBy(xpath="//a[text()='My playlist']")
+    @FindBy(xpath = "//a[text()='My playlist']")
     private WebElement myNewPlaylistName;
 
     public HomePage(WebDriver givenDriver) {
@@ -36,68 +36,55 @@ public class HomePage extends BasePage {
     }
 
     public WebElement getUsrAvatar() {
-        return wait.until(ExpectedConditions.visibilityOfElementLocated(userAvatarIcon));
+        return wait.until(ExpectedConditions.visibilityOfElementLocated((By) userAvatarIcon));
     }
 
     public void doubleClickFirstPlaylist() {
-        doubleclick(driver.findElement(firstPlaylist));
+        doubleclick(firstPlaylist);
     }
 
     public void navigateToAllSongs() {
-        WebElement navigateToAllSongsPage = wait.until(ExpectedConditions
-                .elementToBeClickable(allSongsLocator));
-        navigateToAllSongsPage.click();
+
+        allSongsLocator.click();
     }
 
     public void playlistDoubleClick() {
         Actions actn = new Actions(driver);
-        wait.until(ExpectedConditions
-                .elementToBeClickable(firstPlaylist));
-        WebElement playlistDblClick = driver.findElement(firstPlaylist);
-        actn.doubleClick(playlistDblClick).perform();
+        actn.doubleClick(firstPlaylist).perform();
     }
 
     public void renamePlaylistName() {
-        WebElement playlistRenameInput = wait.until(ExpectedConditions.visibilityOfElementLocated(renamePlaylistInput));
-        playlistRenameInput.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.BACK_SPACE));
-        playlistRenameInput.sendKeys("My new playlist");
-        playlistRenameInput.sendKeys(Keys.ENTER);
+        renamePlaylistInput.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.BACK_SPACE));
+        renamePlaylistInput.sendKeys("My new playlist");
+        renamePlaylistInput.sendKeys(Keys.ENTER);
     }
 
     public void verifyPlaylistRenamed() {
-        WebElement myNewPlaylist = wait.until(ExpectedConditions
-                .visibilityOfElementLocated(myNewPlaylistVerify));
-        Assert.assertTrue(myNewPlaylist.isDisplayed());
+        Assert.assertTrue(myNewPlaylistVerify.isDisplayed());
     }
 
     public void songIsPlaying() {
         WebElement songPlaying = wait.until(ExpectedConditions
-                .presenceOfElementLocated(soundBarLocator));
+                .presenceOfElementLocated((By) soundBarLocator));
         Assert.assertTrue(songPlaying.isDisplayed());
     }
 
     public void createNewPlaylist() {
-        WebElement createPlaylist = wait.until(ExpectedConditions
-                .elementToBeClickable(createPlaylistButton));
-        createPlaylist.click();
+        createPlaylistButton.click();
     }
 
     public void selectNewPlaylist() {
-        WebElement newPlaylist = wait.until(ExpectedConditions
-                .elementToBeClickable(selectSimplePlaylist));
-        newPlaylist.click();
+        selectSimplePlaylist.click();
     }
 
     public void enterPlaylistName() {
-        WebElement playlistInput = wait.until(ExpectedConditions
-                .elementToBeClickable(playlistInputField));
-        playlistInput.sendKeys("My playlist");
-        playlistInput.sendKeys(Keys.ENTER);
+        playlistInputField.sendKeys("My playlist");
+        playlistInputField.sendKeys(Keys.ENTER);
     }
 
     public void verifyPlaylistCreated() {
         WebElement playlistName = wait.until(ExpectedConditions
-                .visibilityOfElementLocated(myNewPlaylistName));
+                .visibilityOfElementLocated((By) myNewPlaylistName));
         Assert.assertTrue(playlistName.isDisplayed());
     }
 }

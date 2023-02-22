@@ -8,13 +8,13 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 
 public class LoginPage extends BasePage {
-    @FindBy(css="[type='submit']")
+    @FindBy(xpath = "//button[@type='submit']")
     private WebElement submitButtonLocator;
-    @FindBy(css="[type='email']")
+    @FindBy(css = "[type='email']")
     private WebElement emailField;
-    @FindBy(css="[type='password']")
+    @FindBy(css = "[type='password']")
     private WebElement passwordField;
-    @FindBy(css="[id='hel']")
+    @FindBy(css = "[id='hel']")
     private WebElement registrationSubmitButton;
 
     public LoginPage(WebDriver givenDriver) {
@@ -22,26 +22,32 @@ public class LoginPage extends BasePage {
     }
 
     public WebElement getLoginPage() {
-        return wait.until(ExpectedConditions.visibilityOfElementLocated((By) submitButtonLocator));
+        return wait.until(ExpectedConditions.elementToBeClickable(submitButtonLocator));
     }
 
-    public void clickSubmitBtn(){
+    public void clickSubmitBtn() {
         submitButtonLocator.click();
     }
 
-    public void provideEmailEmail(String email) {
-       // WebElement emailElement = driver.findElement(emailField);
+    public void provideEmail(String email) {
         emailField.sendKeys(email);
     }
+
     public void providePassword(String password) {
         passwordField.sendKeys(password);
     }
 
     public void registrationNavigate() {
-       // WebElement registrationSubmit = driver.findElement(registrationSubmitButton);
         registrationSubmitButton.click();
         WebElement register = driver.findElement(By.cssSelector("[value='Register']"));
         Assert.assertTrue(register.isDisplayed());
 
     }
+
+    public void login() {
+        provideEmail("dashazhyrkova@gmail.com");
+        providePassword("Te$t$tudent28");
+        clickSubmitBtn();
+    }
 }
+

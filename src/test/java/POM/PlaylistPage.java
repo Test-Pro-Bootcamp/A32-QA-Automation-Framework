@@ -8,18 +8,19 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 
 public class PlaylistPage extends BasePage {
-    @FindBy(css="[class='song-list-wrap main-scroll-wrap playlist']")
+    @FindBy(css = "[class='song-list-wrap main-scroll-wrap playlist']")
     private WebElement playlistSongList;
-    @FindBy(css="[class='del btn-delete-playlist']")
+    @FindBy(css = "[class='del btn-delete-playlist']")
     private WebElement playlistDeleteButton;
-    @FindBy(css="[class='success show']")
+    @FindBy(css = "[class='success show']")
     private WebElement successDelete;
+
     public PlaylistPage(WebDriver givenDriver) {
         super(givenDriver);
     }
 
     public WebElement getPlaylistSongs() {
-        return wait.until(ExpectedConditions.visibilityOfElementLocated(playlistSongList));
+        return wait.until(ExpectedConditions.visibilityOfElementLocated((By) playlistSongList));
     }
 
     public void clickDeleteBtn() {
@@ -30,7 +31,7 @@ public class PlaylistPage extends BasePage {
 
     public void verifySuccessDeleted() {
         WebElement playlistDeleteSuccessShow = wait.until(ExpectedConditions
-                .visibilityOfElementLocated(successDelete));
+                .visibilityOfElementLocated((By) successDelete));
         Assert.assertTrue(playlistDeleteSuccessShow.isDisplayed());
     }
 }

@@ -7,7 +7,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class ProfilePrefPage extends BasePage {
-    @FindBy(css="[data-testid='update-profile-form'']")
+    @FindBy(css = "[data-testid='update-profile-form'']")
     private WebElement updateProfileForm;
 
     public ProfilePrefPage(WebDriver givenDriver) {
@@ -15,7 +15,7 @@ public class ProfilePrefPage extends BasePage {
     }
 
     public WebElement getUpdateProfilePref() {
-        return wait.until(ExpectedConditions.visibilityOfElementLocated(updateProfileForm));
+        return wait.until(ExpectedConditions.visibilityOfElementLocated((By) updateProfileForm));
     }
 
 }

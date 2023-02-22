@@ -6,7 +6,7 @@ public class PlaylistTest extends BaseTest {
     public static void createPlaylist() {
         LoginPage loginpage = new LoginPage(driver);
         HomePage homepage = new HomePage(driver);
-        loginpage.provideEmailEmail("dashazhyrkova@gmail.com");
+        loginpage.provideEmail("dashazhyrkova@gmail.com");
         loginpage.providePassword("te$t$tudent28");
         loginpage.clickSubmitBtn();
         homepage.createNewPlaylist();
@@ -20,7 +20,7 @@ public class PlaylistTest extends BaseTest {
         LoginPage loginpage = new LoginPage(driver);
         HomePage homepage = new HomePage(driver);
         AllSongsPage allSongsPage = new AllSongsPage(driver);
-        loginpage.provideEmailEmail("dashazhyrkova@gmail.com");
+        loginpage.provideEmail("dashazhyrkova@gmail.com");
         loginpage.providePassword("te$t$tudent28");
         loginpage.clickSubmitBtn();
         homepage.navigateToAllSongs();
@@ -35,9 +35,7 @@ public class PlaylistTest extends BaseTest {
     public static void renamePlaylist() {
         LoginPage loginpage = new LoginPage(driver);
         HomePage homepage = new HomePage(driver);
-        loginpage.provideEmailEmail("dashazhyrkova@gmail.com");
-        loginpage.providePassword("te$t$tudent28");
-        loginpage.clickSubmitBtn();
+        loginpage.login();
         homepage.playlistDoubleClick();
         homepage.renamePlaylistName();
         homepage.verifyPlaylistRenamed();
@@ -48,7 +46,7 @@ public class PlaylistTest extends BaseTest {
         LoginPage loginpage = new LoginPage(driver);
         AllSongsPage allSongsPage = new AllSongsPage(driver);
         PlaylistPage playlistPage = new PlaylistPage(driver);
-        loginpage.provideEmailEmail("dashazhyrkova@gmail.com");
+        loginpage.provideEmail("dashazhyrkova@gmail.com");
         loginpage.providePassword("te$t$tudent28");
         loginpage.clickSubmitBtn();
         allSongsPage.openPlaylistPage();

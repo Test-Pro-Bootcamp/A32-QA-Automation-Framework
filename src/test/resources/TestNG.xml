@@ -7,7 +7,9 @@
         <parameter name="BaseURL" value="https://bbb.testpro.io/" />
         <classes>
             <class name="LoginTestRefactored"/>
-            <class name="MainPageTestRefactored"/>
+<!--            <class name="MainPageTestRefactored"/>-->
+<!--            <class name="LoginTests"/>-->
+<!--            <class name="Homework20"/>-->
         </classes>
     </test>
 </suite>

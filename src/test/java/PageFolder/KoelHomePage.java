@@ -8,12 +8,13 @@ import org.openqa.selenium.support.FindBy;
 public class KoelHomePage extends KoelBasePage {
     @FindBy(css = "input[name='name']")
     private WebElement playlistInputField;
-    @FindBy(css = ".fa-plus-circle")
+    @FindBy(xpath = "//section[@id='playlists']//i[@role='button']")
     private WebElement addNewPlaylist;
     @FindBy(css = ".show.success")
     private WebElement notification;
     @FindBy(css = "[data-testid='playlist-context-menu-create-simple']")
     private WebElement chooseCreateNewPlaylist;
+
 
     public KoelHomePage(WebDriver givenDriver) {
         super(givenDriver);

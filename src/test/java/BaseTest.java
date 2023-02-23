@@ -18,7 +18,7 @@ import java.time.Duration;
 
 public class BaseTest {
 
-    static WebDriver driver;
+    protected WebDriver driver;
     WebDriverWait wait;
 
     static Actions actions;
@@ -42,7 +42,7 @@ public class BaseTest {
                 .timeouts()
                 .implicitlyWait(Duration.ofSeconds(5));
         driver.get(url);
-        driver.manage().window().maximize();
+       driver.manage().window().maximize();
     }
 
     public static WebDriver getThreadDriver() {

@@ -6,11 +6,16 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.BeforeTest;
+
+import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URL;
 import java.time.Duration;
 
 public class BaseTest {
@@ -26,7 +31,7 @@ public class BaseTest {
 
     @BeforeMethod
 
-    public void setUpBrowser() {
+    public void setUpBrowser() throws MalformedURLException {
         myDriver = pickBrowser(System.getProperty("browser"));
         threadDriver = new ThreadLocal<>();
         threadDriver.set(myDriver);
@@ -34,21 +39,45 @@ public class BaseTest {
 //        wait = new WebDriverWait(getMyDriver(), Duration.ofSeconds(5)); //explicit wait
         wait = new WebDriverWait(getMyDriver(), Duration.ofSeconds(10, 200));
     }
-    public WebDriver pickBrowser(String browser) {
+    public WebDriver pickBrowser(String browser) throws MalformedURLException {
         DesiredCapabilities capabilities = new DesiredCapabilities();
         String gridURL = "http://192.168.1.37:4444";
 
         switch (browser) {
             case "firefox":
                 WebDriverManager.firefoxdriver().setup();
+//                System.setProperty("webdriver.gecko.driver", "geckodriver.exe");
                 return myDriver = new FirefoxDriver();
-            case "edge":
-                WebDriverManager.edgedriver().setup();
-                return myDriver = new EdgeDriver();
+//            case "edge":
+//                WebDriverManager.edgedriver().setup();
+//                return myDriver = new EdgeDriver();
+            case "grid-firefox":
+                capabilities.setCapability("browser name","firefox");
+                return myDriver = new RemoteWebDriver(URI.create(gridURL).toURL(),capabilities);
+            case "grid-chrome":
+                capabilities.setCapability("browser name","chrome");
+                return myDriver = new RemoteWebDriver(URI.create(gridURL).toURL(),capabilities);
+            case "cloud":
+                return lambdaTest();
             default:
                 WebDriverManager.chromedriver().setup();
                 return myDriver = new ChromeDriver();
         }
+    }
+
+    public WebDriver lambdaTest() throws MalformedURLException {
+        String userName = "goldcluster999";
+        String authkey = "odo6dOvU750TquQXWXMxnmszSsk4e0VrMoJ1oIe9W03pe6iUzG";
+        String hub = "@hub.lambdatest.com/wd/hub";
+        DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
+        desiredCapabilities.setCapability("platform", "Windows 10");
+        desiredCapabilities.setCapability("browserName", "Chrome");
+        desiredCapabilities.setCapability("version", "110.0");
+        desiredCapabilities.setCapability("resolution", "1024x768");
+        desiredCapabilities.setCapability("build", "TestNG With Java");
+        desiredCapabilities.setCapability("name", this.getClass().getName());
+        desiredCapabilities.setCapability("plugin", "git-testng");
+        return new RemoteWebDriver(new URL("https://" + userName + ":" + authkey + hub), desiredCapabilities);
     }
 
     public static WebDriver getMyDriver() {

@@ -50,6 +50,7 @@ public class MainPage extends BasePage {
                 (createPlaylistLocator)).click();
         WebElement newPlaylist = newPlaylistLocator;
         newPlaylist.click();
+        wait.until(ExpectedConditions.visibilityOf(nameFieldLocator));
         WebElement nameField = nameFieldLocator;
         nameField.clear();
         nameField.sendKeys(playlistName, Keys.ENTER);

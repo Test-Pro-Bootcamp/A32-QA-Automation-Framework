@@ -7,8 +7,8 @@ public class LoginTests extends BaseTest {
 
     @Test
     public void LoginSucceedTest() {
-        LoginPage loginPage = new LoginPage(driver);
-        HomePage homePage = new HomePage(driver);
+        LoginPage loginPage = new LoginPage(getThreadLocal());
+        HomePage homePage = new HomePage(getThreadLocal());
 
         loginPage.provideLoginSucceed();
 
@@ -17,7 +17,7 @@ public class LoginTests extends BaseTest {
 
     @Test
     public static void LoginEmptyEmailPasswordTest() {
-        LoginPage loginPage = new LoginPage(getThreadDriver());
+        LoginPage loginPage = new LoginPage(getThreadLocal());
 
         loginPage.provideEmail("")
                 .providePassword("te$t$tudent")
@@ -28,7 +28,7 @@ public class LoginTests extends BaseTest {
 
     @Test
     public static void LoginWrongPasswordTest() {
-        LoginPage loginPage = new LoginPage(getThreadDriver());
+        LoginPage loginPage = new LoginPage(getThreadLocal());
 
         loginPage.provideEmail("ksenia.strigkova@gmail.com")
                 .providePassword("te$t123")
@@ -39,7 +39,7 @@ public class LoginTests extends BaseTest {
 
     @Test
     public static void LoginEmptyPasswordTest() {
-        LoginPage loginPage = new LoginPage(getThreadDriver());
+        LoginPage loginPage = new LoginPage(getThreadLocal());
 
         loginPage.provideEmail("ksenia.strigkova@gmail.com")
                 .providePassword("")
@@ -50,7 +50,7 @@ public class LoginTests extends BaseTest {
 
     @Test
     public static void LoginWrongEmailTest() {
-        LoginPage loginPage = new LoginPage(getThreadDriver());
+        LoginPage loginPage = new LoginPage(getThreadLocal());
 
         loginPage.provideEmail("ksenia.strigkova@gmail.c")
                 .providePassword("te$t$tudent")
@@ -59,4 +59,3 @@ public class LoginTests extends BaseTest {
         Assert.assertTrue(loginPage.getRegistrationLink().isDisplayed());
     }
 }
----

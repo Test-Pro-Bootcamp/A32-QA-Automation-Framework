@@ -1,12 +1,12 @@
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import java.net.URL;
@@ -18,38 +18,27 @@ import java.time.Duration;
 
 public class BaseTest {
 
-    protected WebDriver driver;
-    WebDriverWait wait;
-
-    static Actions actions;
-
-   protected static ThreadLocal<WebDriver> threadDriver;
-
+    private static final ThreadLocal<WebDriver> THREAD_LOCAL = new ThreadLocal<>();
     public String url = "https://bbb.testpro.io/";
-    public String urlHome = "https://bbb.testpro.io/#!/home";
+    private WebDriver driver;
+
+    public static WebDriver getThreadLocal() {
+        return THREAD_LOCAL.get();
+    }
 
     @BeforeMethod
     public void setUpBrowser(@Optional String baseURL) throws MalformedURLException {
+        THREAD_LOCAL.set(pickBrowser("browser"));
+        THREAD_LOCAL.get().manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+        THREAD_LOCAL.get().manage().window().maximize();
+        THREAD_LOCAL.get().manage().deleteAllCookies();
+        getThreadLocal().get(url);
+        System.out.println(
+                "Browser setup by Thread " + Thread.currentThread().getId() + " and Driver reference is : " + getThreadLocal());
 
-        driver = pickBrowser(System.getProperty("browser"));
-
-        threadDriver=new ThreadLocal<>();
-        threadDriver.set(driver);
-
-
-        wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-        driver.manage()
-                .timeouts()
-                .implicitlyWait(Duration.ofSeconds(5));
-        driver.get(url);
-       driver.manage().window().maximize();
     }
 
-    public static WebDriver getThreadDriver() {
-        return threadDriver.get();
-    }
-
-    public WebDriver lambdaTest() throws MalformedURLException{
+    public WebDriver lambdaTest() throws MalformedURLException {
         String username = "ksenia.strigkova";
         String authkey = "mEL3Wj73VBBHOev61MB5H5WP4IiQ4xnXSBkVWO9qUrHM0RSqfk";
         String hub = "@hub.lambdatest.com/wd/hub";
@@ -70,11 +59,12 @@ public class BaseTest {
         DesiredCapabilities capabilities = new DesiredCapabilities();
         String gridURL = "http://10.2.127.17:4444";
 
-
         switch (browser) {
             case "firefox":
-                System.setProperty("webdriver.gecko.driver", "geckodriver.exe");
-                return driver = new FirefoxDriver();
+                WebDriverManager.firefoxdriver().setup();
+                FirefoxOptions optionsFirefox = new FirefoxOptions();
+                optionsFirefox.addArguments("-private");
+                return driver = new FirefoxDriver(optionsFirefox);
             case "edge":
                 WebDriverManager.edgedriver().setup();
                 return driver = new EdgeDriver();
@@ -91,12 +81,15 @@ public class BaseTest {
                 return lambdaTest();
             default:
                 WebDriverManager.chromedriver().setup();
-                return driver = new ChromeDriver();
+                ChromeOptions optionsChrome = new ChromeOptions();
+                optionsChrome.addArguments("--incognito");
+                return driver = new ChromeDriver(optionsChrome);
         }
     }
 
     @AfterMethod
     public void tearDown() {
-        driver.quit();
+        THREAD_LOCAL.get().close();
+        THREAD_LOCAL.remove();
     }
 }

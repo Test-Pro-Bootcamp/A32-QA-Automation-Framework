@@ -7,8 +7,8 @@ public class SongsTests extends BaseTest {
 
     @Test
     public void playSong() {
-        LoginPage loginPage = new LoginPage(getThreadDriver());
-        SongsPage songsPage = new SongsPage(getThreadDriver());
+        LoginPage loginPage = new LoginPage(getThreadLocal());
+        SongsPage songsPage = new SongsPage(getThreadLocal());
 
         loginPage.provideLoginSucceed();
         songsPage.clickAllSongs()

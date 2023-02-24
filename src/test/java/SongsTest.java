@@ -1,9 +1,9 @@
 import POM.*;
 import org.testng.annotations.Test;
 
-public class SongsTests extends BaseTest {
+public class SongsTest extends BaseTest {
     @Test
-    public static void playSong() {
+    public static void verifySongIsPlaying() {
         LoginPage loginpage = new LoginPage(driver);
         HomePage homepage = new HomePage(driver);
         AllSongsPage allSongsPage = new AllSongsPage(driver);

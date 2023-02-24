@@ -2,13 +2,11 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
 <suite name="TestNG">
-    <parameter name="baseURL" value="https://bbb.testpro.io/" />
     <test name="Example Tests" preserve-order="false">
-        <parameter name="baseURL" value="https://bbb.testpro.io/" />
         <classes>
-            <class name="LoginTests"/>
+            <class name="LoginTest"/>
             <class name="BaseTest"/>
-            <class name="SongsTests"/>
+            <class name="SongsTest"/>
             <class name="CSVDataProviderTest"/>
             <class name="PlaylistTest"/>
             <class name="POM.AllSongsPage"/>

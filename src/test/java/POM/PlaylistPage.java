@@ -14,24 +14,29 @@ public class PlaylistPage extends BasePage {
     private WebElement playlistDeleteButton;
     @FindBy(css = "[class='success show']")
     private WebElement successDelete;
+    @FindBy(xpath="//button[@class='ok']")
+    private WebElement deleteThePlaylist;
 
     public PlaylistPage(WebDriver givenDriver) {
         super(givenDriver);
     }
 
     public WebElement getPlaylistSongs() {
-        return wait.until(ExpectedConditions.visibilityOfElementLocated((By) playlistSongList));
+        return wait.until(ExpectedConditions.visibilityOf(playlistSongList));
     }
 
     public void clickDeleteBtn() {
-        WebElement playlistDelete = wait.until(ExpectedConditions
+         WebElement playlistDelete = wait.until(ExpectedConditions
                 .elementToBeClickable(playlistDeleteButton));
-        playlistDelete.click();
+        playlistDelete.click();}
+       public void deleteOk() {
+    WebElement msgDeletePlaylist = wait.until(ExpectedConditions.visibilityOf(deleteThePlaylist));
+            msgDeletePlaylist.click();
     }
 
     public void verifySuccessDeleted() {
         WebElement playlistDeleteSuccessShow = wait.until(ExpectedConditions
-                .visibilityOfElementLocated((By) successDelete));
+                .visibilityOf(successDelete));
         Assert.assertTrue(playlistDeleteSuccessShow.isDisplayed());
     }
 }

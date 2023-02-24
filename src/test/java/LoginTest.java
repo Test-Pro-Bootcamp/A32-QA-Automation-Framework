@@ -10,7 +10,7 @@ import org.testng.annotations.Test;
 
 import java.util.UUID;
 
-public class LoginTests extends BaseTest {
+public class LoginTest extends BaseTest {
 
     @DataProvider(name = "IncorrectLoginProviders")
     public static Object[][] getDataFromDataProviders() {

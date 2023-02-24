@@ -27,7 +27,6 @@ public class PlaylistTest extends BaseTest {
         allSongsPage.selectSong();
         allSongsPage.addToClick();
         allSongsPage.selectPlaylist();
-        allSongsPage.openPlaylistPage();
         allSongsPage.verifySongIsAdded();
     }
 
@@ -51,6 +50,7 @@ public class PlaylistTest extends BaseTest {
         loginpage.clickSubmitBtn();
         allSongsPage.openPlaylistPage();
         playlistPage.clickDeleteBtn();
+        playlistPage.deleteOk();
         playlistPage.verifySuccessDeleted();
     }
 }

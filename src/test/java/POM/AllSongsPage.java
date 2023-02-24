@@ -6,6 +6,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.WebDriver;
+import org.testng.Assert;
 
 import static org.openqa.selenium.support.ui.ExpectedConditions.invisibilityOfElementLocated;
 import static org.openqa.selenium.support.ui.ExpectedConditions.presenceOfElementLocated;
@@ -25,11 +26,11 @@ public class AllSongsPage extends BasePage {
     private WebElement addToButton;
     @FindBy(xpath = "//li[@class='playlist']")
     private WebElement playlistSelect;
-    @FindBy(xpath = "//div[class='success show']")
+    @FindBy(xpath = "//div[@class='success show']")
     private WebElement successsongAdded;
     @FindBy(css = ".playlist:nth-child(3)")
     private WebElement firstPlaylist;
-    @FindBy(css = "[class='title']")
+    @FindBy(xpath = "//td[@class='title'][1]")
     private WebElement songTitle;
 
 
@@ -67,9 +68,10 @@ public class AllSongsPage extends BasePage {
     }
 
     public void verifySongIsAdded() {
-        WebElement title = wait.until(presenceOfElementLocated((By) songTitle));
-        String text = title.getText();
-        System.out.println(text);
-        System.out.println("Is element visible? === " + wait.until(invisibilityOfElementLocated((By) songTitle)));
+        WebElement succesShow = wait.until(ExpectedConditions.visibilityOf(successsongAdded));
+        //String text = title.getText();
+       // System.out.println(text);
+       // System.out.println("Is element visible? === " + wait.until(ExpectedConditions.visibilityOf(songTitle)));
+        Assert.assertTrue(succesShow.isDisplayed());
     }
 }

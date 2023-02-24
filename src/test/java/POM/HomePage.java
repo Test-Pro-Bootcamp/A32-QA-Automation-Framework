@@ -36,7 +36,7 @@ public class HomePage extends BasePage {
     }
 
     public WebElement getUsrAvatar() {
-        return wait.until(ExpectedConditions.visibilityOfElementLocated((By) userAvatarIcon));
+        return wait.until(ExpectedConditions.visibilityOf(userAvatarIcon));
     }
 
     public void doubleClickFirstPlaylist() {
@@ -65,7 +65,7 @@ public class HomePage extends BasePage {
 
     public void songIsPlaying() {
         WebElement songPlaying = wait.until(ExpectedConditions
-                .presenceOfElementLocated((By) soundBarLocator));
+                .visibilityOf(soundBarLocator));
         Assert.assertTrue(songPlaying.isDisplayed());
     }
 
@@ -84,7 +84,7 @@ public class HomePage extends BasePage {
 
     public void verifyPlaylistCreated() {
         WebElement playlistName = wait.until(ExpectedConditions
-                .visibilityOfElementLocated((By) myNewPlaylistName));
+                .visibilityOf(myNewPlaylistName));
         Assert.assertTrue(playlistName.isDisplayed());
     }
 }

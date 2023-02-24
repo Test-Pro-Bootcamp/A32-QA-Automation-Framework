@@ -46,8 +46,9 @@ public class LoginPage extends BasePage {
 
     public void login() {
         provideEmail("dashazhyrkova@gmail.com");
-        providePassword("Te$t$tudent28");
+        providePassword("te$t$tudent28");
         clickSubmitBtn();
+       // Assert.assertTrue(getUserAvatar().isDisplayed);
     }
 }
 

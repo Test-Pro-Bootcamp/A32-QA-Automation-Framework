@@ -17,15 +17,14 @@ import pages.LoginPage;
 
 import java.time.Duration;
 
-public class LoginStepDefinition {
-     private WebDriver driver;
-    private WebDriverWait wait;
+public class LoginStepDefinition extends BaseStepDefinition {
     @Given("I open browser")
     public void iOpenBrowser() {
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
         wait = new WebDriverWait(driver, Duration.ofSeconds(5));
     }
+
     @And("I open Login page")
     public void iOpenLoginPage() {
         driver.get("https://bbb.testpro.io/");
@@ -62,4 +61,18 @@ public class LoginStepDefinition {
         Assert.assertTrue(wait.until(ExpectedConditions.visibilityOf(loginPage.getButton())).isDisplayed());
 
     }
+    @When("I click at song")
+    public void iClickAtSong() {
+        HomePage homePage = new HomePage(driver);
+        wait.until(ExpectedConditions.elementToBeClickable(homePage.getSongLocator())).click();
+
+    }
+
+    @Then("Song is playing")
+    public void songIsPlaying() {
+        HomePage homePage = new HomePage(driver);
+        Assert.assertTrue(wait.until(ExpectedConditions.visibilityOf(homePage.getSoundBars())).isDisplayed());
+
+    }
 }
+

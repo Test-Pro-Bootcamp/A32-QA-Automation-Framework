@@ -14,6 +14,6 @@ public class LoginTest extends  BaseTest{
         loginPage.enterEmail("rumkostia92@gmail.com")
         .enterPassword("te$t$tudent")
         .loginSubmit();
-        Assert.assertTrue(homePage.getAvatar().isDisplayed());
+        Assert.assertTrue(wait.until(ExpectedConditions.elementToBeClickable(homePage.getPlaylist())).isDisplayed());
     }
 }

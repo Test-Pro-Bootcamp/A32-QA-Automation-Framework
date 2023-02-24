@@ -48,9 +48,9 @@ public class BaseTest {
                 WebDriverManager.firefoxdriver().setup();
 //                System.setProperty("webdriver.gecko.driver", "geckodriver.exe");
                 return myDriver = new FirefoxDriver();
-//            case "edge":
-//                WebDriverManager.edgedriver().setup();
-//                return myDriver = new EdgeDriver();
+            case "edge":
+                WebDriverManager.edgedriver().setup();
+                return myDriver = new EdgeDriver();
             case "grid-firefox":
                 capabilities.setCapability("browser name","firefox");
                 return myDriver = new RemoteWebDriver(URI.create(gridURL).toURL(),capabilities);

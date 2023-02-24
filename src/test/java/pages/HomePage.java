@@ -25,6 +25,8 @@ public class HomePage extends BasePage {
     private WebElement newPlaylistBtnLocator;
     @FindBy(css ="input[name='name']")
     private WebElement newPlaylistFieldLocator;
+    @FindBy(css="[alt='Sound bars']")
+    private WebElement soundBars;
     public HomePage(WebDriver setDriver) {
         super(setDriver);
     }
@@ -55,6 +57,7 @@ public class HomePage extends BasePage {
         return avatarLocator;
     }
     public WebElement getPlaylist(){return playlistLocator;}
+    public WebElement getSoundBars(){return soundBars;}
     public HomePage createNewPlaylist(){
         createPlaylistBtnLocator.click();
         newPlaylistBtnLocator.click();

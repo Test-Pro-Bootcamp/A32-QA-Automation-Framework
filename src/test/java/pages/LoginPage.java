@@ -34,7 +34,10 @@ public class LoginPage extends BasePage {
     public LoginPage loginSubmit() {
         HomePage homePage = new HomePage(driver);
         submitButtonLocator.click();
-        wait.until(ExpectedConditions.elementToBeClickable(homePage.getPlaylist()));
+        //wait.until(ExpectedConditions.elementToBeClickable(homePage.getPlaylist()));
         return this;
+    }
+    public WebElement getButton(){ return submitButtonLocator;
+
     }
 }

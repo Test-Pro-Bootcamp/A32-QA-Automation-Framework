@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name="Pages" parallel="methods" thread-count="2">
-<parameter name="BaseURL" value="https://bbb.testpro.io/" />
-<test name="Tests" >
+<suite name="Pages">
+<test name="Tests" preserve-order="false" >
     <classes>
-        <class name="CreatePlaylist"/>
-        <class name="RenamePlaylist"/>
+        <class name="CucumberRunner"/>
     </classes>
 </test>
 </suite>

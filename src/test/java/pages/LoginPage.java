@@ -14,6 +14,8 @@ public class LoginPage extends BasePage {
     @FindBy(css = "a#hel")
     private WebElement registrationLink;
 
+
+
     public LoginPage(WebDriver givenDriver) {
         super(givenDriver);
     }
@@ -40,4 +42,6 @@ public class LoginPage extends BasePage {
     public WebElement getRegistrationLink () {
         return registrationLink;
     }
+
+
 }

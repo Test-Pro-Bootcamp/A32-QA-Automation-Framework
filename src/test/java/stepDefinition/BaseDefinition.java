@@ -1,5 +1,4 @@
 package stepDefinition;
-
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -11,11 +10,12 @@ import java.time.Duration;
 
 public class BaseDefinition {
 
-    protected WebDriver driver;
-    protected WebDriverWait wait;
+    WebDriver driver;
+    WebDriverWait wait;
 
     @Before
     public void openBrowser() {
+        WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 

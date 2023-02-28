@@ -9,26 +9,21 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import pages.HomePage;
 import pages.LoginPage;
 import pages.SongsPage;
 
 import java.time.Duration;
 
-public class SongsStepDefinition extends BaseDefinition {
+public class SongsStepDefinition {
 
     WebDriver driver;
     WebDriverWait wait;
 
-    @Given("I open browser")
-    public void openBrowser() {
-        WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
-        wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-    }
 
 
-    @And("I login success")
+    @Given("I login success")
     public void loginSuccess() {
         LoginPage loginPage = new LoginPage(driver);
         loginPage.provideLoginSucceed();
@@ -51,12 +46,7 @@ public class SongsStepDefinition extends BaseDefinition {
     @Then("Song is playing")
     public void songIsPlaying() {
         SongsPage songsPage = new SongsPage(driver);
-        songsPage.getProgressBar();
+        Assert.assertTrue(songsPage.getProgressBar().isDisplayed());
     }
-
-//    @After
-//    public void closeBrowser() {
-//        driver.quit();
-//    }
 
 }

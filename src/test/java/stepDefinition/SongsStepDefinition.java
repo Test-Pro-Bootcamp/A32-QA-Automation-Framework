@@ -1,43 +1,39 @@
 package stepDefinition;
-
-import io.cucumber.java.After;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-import pages.HomePage;
 import pages.LoginPage;
 import pages.SongsPage;
-
-import java.time.Duration;
 
 public class SongsStepDefinition {
 
     WebDriver driver;
     WebDriverWait wait;
 
+    @Given("I open Page")
+    public void openLoginPage() {
+        BaseDefinition.getThreadLocal().get("https://bbb.testpro.io/");
+    }
 
-
-    @Given("I login success")
+    @When("I login success")
     public void loginSuccess() {
-        LoginPage loginPage = new LoginPage(driver);
+        LoginPage loginPage = new LoginPage(BaseDefinition.getThreadLocal());
         loginPage.provideLoginSucceed();
     }
 
     @And("I open Songs Page")
     public void openSongsPage() {
-        SongsPage songsPage = new SongsPage(driver);
+        SongsPage songsPage = new SongsPage(BaseDefinition.getThreadLocal());
         songsPage.clickAllSongs();
     }
 
-    @When("I click on first song")
+    @And("I click on first song")
     public void clickOnFirstSong() {
-        SongsPage songsPage = new SongsPage(driver);
+        SongsPage songsPage = new SongsPage(BaseDefinition.getThreadLocal());
         songsPage.chooseAllSongList()
                 .contextClickFirstSong()
                 .choosePlay();
@@ -45,8 +41,7 @@ public class SongsStepDefinition {
 
     @Then("Song is playing")
     public void songIsPlaying() {
-        SongsPage songsPage = new SongsPage(driver);
+        SongsPage songsPage = new SongsPage(BaseDefinition.getThreadLocal());
         Assert.assertTrue(songsPage.getProgressBar().isDisplayed());
     }
-
 }

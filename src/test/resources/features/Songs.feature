@@ -1,7 +1,10 @@
 Feature: Songs feature
 
+  Background:
+    Given I open Login Page
+
   Scenario: Play a song
-    Given I login success
+    When I login success
     And I open Songs Page
-    When I click on first song
+    And I click on first song
     Then Song is playing

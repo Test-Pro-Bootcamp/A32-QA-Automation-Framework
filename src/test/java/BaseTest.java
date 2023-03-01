@@ -73,7 +73,6 @@ public class BaseTest {
        String gridURL = "http://192.168.1.163:1234";
         switch (browser){
             case "firefox":
-            System.setProperty("webdriver.gecko.driver","geckodriver.exe");
             return driver = new FirefoxDriver();
             case "safari":
                 return driver = new SafariDriver();

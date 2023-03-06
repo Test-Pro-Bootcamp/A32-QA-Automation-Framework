@@ -25,7 +25,7 @@ public class BaseTest {
     private static final ThreadLocal<WebDriver> THREAD_LOCAL = new ThreadLocal<>();
     public String url = "https://bbb.testpro.io/";
     private WebDriver driver;
-    private Actions actions;
+
 
     public static WebDriver getThreadLocal() {
         return THREAD_LOCAL.get();
@@ -37,7 +37,6 @@ public class BaseTest {
         THREAD_LOCAL.get().manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         THREAD_LOCAL.get().manage().window().maximize();
         THREAD_LOCAL.get().manage().deleteAllCookies();
-        actions = new Actions(driver);
         getThreadLocal().get(url);
         System.out.println(
                 "Browser setup by Thread " + Thread.currentThread().getId() + " and Driver reference is : " + getThreadLocal());
@@ -88,7 +87,7 @@ public class BaseTest {
             default:
                 WebDriverManager.chromedriver().setup();
                 ChromeOptions optionsChrome = new ChromeOptions();
-                optionsChrome.addArguments("--incognito");
+                optionsChrome.addArguments("--incognito","--disable-notifications");
                 return driver = new ChromeDriver(optionsChrome);
         }
     }

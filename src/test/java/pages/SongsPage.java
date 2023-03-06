@@ -42,6 +42,12 @@ public class SongsPage extends BasePage {
     @FindBy(css = ".playlist .items .song-item:nth-of-type(1)")
     private WebElement firstSongPlaylist;
 
+    @FindBy(css = ".btn-delete-playlist")
+    private WebElement deletePlaylistButton;
+
+    @FindBy(css = "nav > .ok")
+    private WebElement okDeleteButton;
+
     public SongsPage clickAllSongs() {
         allSongs.click();
         return this;
@@ -101,6 +107,16 @@ public class SongsPage extends BasePage {
 
     public SongsPage deleteSongFromPlaylist() {
         actions.sendKeys(firstSongPlaylist, DELETE).build().perform();
+        return this;
+    }
+
+    public SongsPage clickDeletePlaylistButton() {
+        deletePlaylistButton.click();
+        return this;
+    }
+
+    public SongsPage clickOkDelete() {
+        okDeleteButton.click();
         return this;
     }
 }

@@ -6,7 +6,7 @@ import pages.LoginPage;
 public class LoginTests extends BaseTest {
 
     @Test
-    public void LoginSucceedTest() {
+    public void loginSucceedTest() {
         LoginPage loginPage = new LoginPage(getThreadLocal());
         HomePage homePage = new HomePage(getThreadLocal());
 
@@ -16,7 +16,7 @@ public class LoginTests extends BaseTest {
     }
 
     @Test
-    public static void LoginEmptyEmailPasswordTest() {
+    public static void loginEmptyEmailPasswordTest() {
         LoginPage loginPage = new LoginPage(getThreadLocal());
 
         loginPage.provideEmail("")
@@ -27,7 +27,7 @@ public class LoginTests extends BaseTest {
     }
 
     @Test
-    public static void LoginWrongPasswordTest() {
+    public static void loginWrongPasswordTest() {
         LoginPage loginPage = new LoginPage(getThreadLocal());
 
         loginPage.provideEmail("ksenia.strigkova@gmail.com")
@@ -38,7 +38,7 @@ public class LoginTests extends BaseTest {
     }
 
     @Test
-    public static void LoginEmptyPasswordTest() {
+    public static void loginEmptyPasswordTest() {
         LoginPage loginPage = new LoginPage(getThreadLocal());
 
         loginPage.provideEmail("ksenia.strigkova@gmail.com")
@@ -49,7 +49,7 @@ public class LoginTests extends BaseTest {
     }
 
     @Test
-    public static void LoginWrongEmailTest() {
+    public static void loginWrongEmailTest() {
         LoginPage loginPage = new LoginPage(getThreadLocal());
 
         loginPage.provideEmail("ksenia.strigkova@gmail.c")

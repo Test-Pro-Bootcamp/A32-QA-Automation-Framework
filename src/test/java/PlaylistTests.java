@@ -1,78 +1,60 @@
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.HomePage;
-import pages.LoginPage;
-import pages.SongsPage;
 
 public class PlaylistTests extends BaseTest {
 
     @Test
-    public void a_createPlaylist() {
-        String playlistName = "Test Pro 1";
-
-        LoginPage loginPage = new LoginPage(getThreadLocal());
+    public void createPlaylist() {
+        StepsPlaylist steps = new StepsPlaylist();
         HomePage homePage = new HomePage(getThreadLocal());
 
-        loginPage.provideLoginSucceed();
-        homePage.addPlaylist()
-                .selectPlaylist();
-        homePage.enterPlaylistName(playlistName)
-                .doesPlaylistExist(playlistName);
-    }
-
-    @Test
-    public void b_addSongPlaylist() {
-        LoginPage loginPage = new LoginPage(getThreadLocal());
-        HomePage homePage = new HomePage(getThreadLocal());
-        SongsPage songsPage = new SongsPage(getThreadLocal());
-
-        loginPage.provideLoginSucceed();
-        songsPage.clickAllSongs()
-                .chooseAllSongList()
-                .randomSongsClick()
-                .clickAddButton()
-                .choosePlaylistInAddButton();
+        steps.stepCreatedPlaylist();
+        steps.stepDeletePlaylist();
         Assert.assertTrue(homePage.notificationText());
     }
 
     @Test
-    public void c_deleteSongFromPlaylist() {
-        LoginPage loginPage = new LoginPage(getThreadLocal());
+    public void addSongPlaylist() {
         HomePage homePage = new HomePage(getThreadLocal());
-        SongsPage songsPage = new SongsPage(getThreadLocal());
+        StepsPlaylist steps = new StepsPlaylist();
 
-        loginPage.provideLoginSucceed();
-        homePage.clickFirsPlaylist();
-        songsPage.chooseListSongsInPlaylist()
-                .chooseFirstSongPlaylist()
-                .deleteSongFromPlaylist();
+        steps.stepCreatedPlaylist();
+        steps.stepAddSongPlaylist();
+        steps.stepDeletePlaylistWithOK();
         Assert.assertTrue(homePage.notificationText());
-
     }
 
     @Test
-    public void d_renamePlaylist() {
-        String playlistName = "Test Pro Playlist";
-
-        LoginPage loginPage = new LoginPage(getThreadLocal());
+    public void deleteSongFromPlaylist() {
         HomePage homePage = new HomePage(getThreadLocal());
+        StepsPlaylist steps = new StepsPlaylist();
 
-        loginPage.provideLoginSucceed();
-        homePage.doubleClickFirstPlaylist()
-                .enterPlaylistName(playlistName)
-                .doesPlaylistExist(playlistName);
-        Assert.assertTrue(homePage.doesPlaylistExist(playlistName));
+        steps.stepCreatedPlaylist();
+        steps.stepAddSongPlaylist();
+        steps.stepDeleteSongFromPlaylist();
+        steps.stepDeletePlaylist();
+        Assert.assertTrue(homePage.notificationText());
     }
 
     @Test
-    public void e_deletePlaylist() {
-        LoginPage loginPage = new LoginPage(getThreadLocal());
+    public void renamePlaylist() {
         HomePage homePage = new HomePage(getThreadLocal());
-        SongsPage songsPage = new SongsPage(getThreadLocal());
+        StepsPlaylist steps = new StepsPlaylist();
 
-        loginPage.provideLoginSucceed();
-        homePage.chooseFirstPlaylist()
-                .deletePlaylist();
+        steps.stepCreatedPlaylist();
+        steps.stepRenamePlaylist();
+        steps.stepDeletePlaylist();
+        Assert.assertTrue(homePage.notificationText());
+    }
+
+    @Test
+    public void deletePlaylist() {
+        HomePage homePage = new HomePage(getThreadLocal());
+        StepsPlaylist steps = new StepsPlaylist();
+
+        steps.stepCreatedPlaylist();
+        steps.stepDeletePlaylist();
         Assert.assertTrue(homePage.notificationText());
     }
 }

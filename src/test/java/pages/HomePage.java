@@ -29,7 +29,7 @@ public class HomePage extends BasePage {
     @FindBy(css = "[type='search']")
     private WebElement searchFieldSongs;
 
-    @FindBy(xpath = "//span[@class='name']")
+    @FindBy(xpath = "//a[@class='view-profile']")
     private WebElement profileName;
 
 
@@ -104,7 +104,7 @@ public class HomePage extends BasePage {
     }
 
     public HomePage clickProfileName() {
-        wait.until(ExpectedConditions.visibilityOf(profileName)).click();
+        wait.until(ExpectedConditions.elementToBeClickable(profileName)).click();
         return this;
     }
 

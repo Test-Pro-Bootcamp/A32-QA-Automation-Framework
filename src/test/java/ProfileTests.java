@@ -7,7 +7,7 @@ import pages.ProfilePage;
 public class ProfileTests extends BaseTest {
 
     @Test
-    public void a_changeTheme() {
+    public void changeTheme() {
         LoginPage loginPage = new LoginPage(getThreadLocal());
         HomePage homePage = new HomePage(getThreadLocal());
         ProfilePage profilePage = new ProfilePage(getThreadLocal());
@@ -19,7 +19,7 @@ public class ProfileTests extends BaseTest {
     }
 
     @Test
-    public void b_changeProfileName() {
+    public void changeProfileName() {
         LoginPage loginPage = new LoginPage(getThreadLocal());
         HomePage homePage = new HomePage(getThreadLocal());
         ProfilePage profilePage = new ProfilePage(getThreadLocal());

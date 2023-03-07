@@ -43,8 +43,7 @@ public class AllSongsPage extends BasePage {
     }
 
     public void songDoubleClick() {
-        Actions act = new Actions(driver);
-        act.doubleClick(songItem).perform();
+        actions.doubleClick(songItem).perform();
     }
 
     public void openPlaylistPage() {

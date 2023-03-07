@@ -30,9 +30,9 @@ public class LoginTest extends BaseTest {
     }
 
     @Test
-    public static void registrationNavigation() {
-        LoginPage loginpage = new LoginPage(driver);
-        RegistrationPage registrationPage = new RegistrationPage(driver);
+    public void registrationNavigation() {
+        LoginPage loginpage = new LoginPage(getThreadDriver());
+        RegistrationPage registrationPage = new RegistrationPage(getThreadDriver());
         loginpage.registrationNavigate();
         Assert.assertTrue(registrationPage.getRegistrationPage().isDisplayed());
 
@@ -40,8 +40,8 @@ public class LoginTest extends BaseTest {
 
     @Test
     public void loginSucceedTest() {
-        LoginPage loginPage = new LoginPage(driver);
-        HomePage homePage = new HomePage(driver);
+        LoginPage loginPage = new LoginPage(getThreadDriver());
+        HomePage homePage = new HomePage(getThreadDriver());
         loginPage.provideEmail("dashazhyrkova@gmail.com");
         loginPage.providePassword("te$t$tudent28");
         loginPage.clickSubmitBtn();

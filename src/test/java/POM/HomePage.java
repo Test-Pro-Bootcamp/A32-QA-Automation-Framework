@@ -49,8 +49,7 @@ public class HomePage extends BasePage {
     }
 
     public void playlistDoubleClick() {
-        Actions actn = new Actions(driver);
-        actn.doubleClick(firstPlaylist).perform();
+        actions.doubleClick(firstPlaylist).perform();
     }
 
     public void renamePlaylistName() {

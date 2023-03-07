@@ -3,9 +3,9 @@ import org.testng.annotations.Test;
 
 public class PlaylistTest extends BaseTest {
     @Test
-    public static void createPlaylist() {
-        LoginPage loginpage = new LoginPage(driver);
-        HomePage homepage = new HomePage(driver);
+    public void createPlaylist() {
+        LoginPage loginpage = new LoginPage(getThreadDriver());
+        HomePage homepage = new HomePage(getThreadDriver());
         loginpage.provideEmail("dashazhyrkova@gmail.com");
         loginpage.providePassword("te$t$tudent28");
         loginpage.clickSubmitBtn();
@@ -16,10 +16,10 @@ public class PlaylistTest extends BaseTest {
     }
 
     @Test
-    public static void addSongToPlaylist() {
-        LoginPage loginpage = new LoginPage(driver);
-        HomePage homepage = new HomePage(driver);
-        AllSongsPage allSongsPage = new AllSongsPage(driver);
+    public void addSongToPlaylist() {
+        LoginPage loginpage = new LoginPage(getThreadDriver());
+        HomePage homepage = new HomePage(getThreadDriver());
+        AllSongsPage allSongsPage = new AllSongsPage(getThreadDriver());
         loginpage.provideEmail("dashazhyrkova@gmail.com");
         loginpage.providePassword("te$t$tudent28");
         loginpage.clickSubmitBtn();
@@ -31,9 +31,9 @@ public class PlaylistTest extends BaseTest {
     }
 
     @Test
-    public static void renamePlaylist() {
-        LoginPage loginpage = new LoginPage(driver);
-        HomePage homepage = new HomePage(driver);
+    public void renamePlaylist() {
+        LoginPage loginpage = new LoginPage(getThreadDriver());
+        HomePage homepage = new HomePage(getThreadDriver());
         loginpage.login();
         homepage.playlistDoubleClick();
         homepage.renamePlaylistName();
@@ -41,10 +41,10 @@ public class PlaylistTest extends BaseTest {
     }
 
     @Test
-    public static void deletePlaylist() {
-        LoginPage loginpage = new LoginPage(driver);
-        AllSongsPage allSongsPage = new AllSongsPage(driver);
-        PlaylistPage playlistPage = new PlaylistPage(driver);
+    public void deletePlaylist() {
+        LoginPage loginpage = new LoginPage(getThreadDriver());
+        AllSongsPage allSongsPage = new AllSongsPage(getThreadDriver());
+        PlaylistPage playlistPage = new PlaylistPage(getThreadDriver());
         loginpage.provideEmail("dashazhyrkova@gmail.com");
         loginpage.providePassword("te$t$tudent28");
         loginpage.clickSubmitBtn();

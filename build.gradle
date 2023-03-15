@@ -28,10 +28,10 @@ test {
 
 }
 
-test {
-    useTestNG() {
-        suites "src/test/resources/${suite}.xml"
-        systemProperty "browser", System.getProperty("browser")
-    }
-
-}
+//test {
+//    useTestNG() {
+//        suites "src/test/resources/${suite}.xml"
+//        systemProperty "browser", System.getProperty("browser")
+//    }
+//
+//}

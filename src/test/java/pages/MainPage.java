@@ -26,6 +26,9 @@ public class MainPage extends BasePage {
     private WebElement newPlaylistLocator;
     @FindBy(xpath = "//section[@id='playlists']//input[@name='name']")
     private WebElement nameFieldLocator;
+    //    @FindBy(css = "img.avatar")
+    @FindBy(xpath = ".//span[@id='userBadge']")
+    private WebElement userBadge;
     By testPlaylistNameLocator = By.xpath("//li/a[text()='" + playlistName + "']");
     By testNewPlaylistNametLocator = By.xpath("//li/a[text()='" + nameNewPlaylist + "']");
 
@@ -83,6 +86,11 @@ public class MainPage extends BasePage {
         wait.until(ExpectedConditions.visibilityOfElementLocated
                 (By.xpath("//li/a[text()='" + newName + "']")));
         return true;
+    }
+
+    public boolean isUserBadgeVisible() {
+        wait.until(ExpectedConditions.visibilityOf(userBadge));
+        return userBadge.isDisplayed();
     }
 
 }

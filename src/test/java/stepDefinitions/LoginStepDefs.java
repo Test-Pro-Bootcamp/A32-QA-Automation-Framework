@@ -24,7 +24,7 @@ public class LoginStepDefs {
     @Before //("I open browser")
     public void iOpenBrowser(){
         WebDriverManager.chromedriver().setup();
-        ChromeOptions options = new ChromeOptions();
+        ChromeOptions options = new ChromeOptions(); //added ChromeOptions options after Chrome 111 updates
         options.addArguments("--disable-notifications","--remote-allow-origins=*", "--incognito","--start-maximized");
         driver = new ChromeDriver(options);
         wait = new WebDriverWait(driver, Duration.ofSeconds(5),Duration.ofMillis(200));

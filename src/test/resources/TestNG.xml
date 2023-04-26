@@ -10,8 +10,9 @@
             <class name="BaseTest"/>
             <class name="SongsTests"/>
             <class name="CSVDataProviderTest"/>
-            <class name="PlaylistsTests"/>
             <class name="ActionsTests"/>
+            <class name="CucumberRunner"/>
+            <class name="LoginStepDefinitions"></class>
         </classes>
     </test>
 </suite>

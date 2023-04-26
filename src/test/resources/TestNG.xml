@@ -12,7 +12,7 @@
             <class name="CSVDataProviderTest"/>
             <class name="ActionsTests"/>
             <class name="CucumberRunner"/>
-            <class name="LoginStepDefinitions"></class>
+            <class name="LoginStepDefinitions"/>
         </classes>
     </test>
 </suite>

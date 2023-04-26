@@ -2,6 +2,7 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -17,20 +18,21 @@ public class LoginStepDefinitions {
     WebDriverWait wait;
 
     @Given("I open browser")
-    public void openBrowser() {
+    public void iOpenBrowser() {
+        WebDriverManager.chromedriver().setup();
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("--disable-notifications");
-        driver = new ChromeDriver();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        options.addArguments("--disable-notifications","--remote-allow-origins=*", "--incognito","--start-maximized");
+        driver = new ChromeDriver(options);
+//        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        wait = new WebDriverWait(driver, Duration.ofSeconds(5), Duration.ofMillis(200));
     }
 
-    @Given("I open Login Page")
-    public void openLoginPage() {
+    @And("I open Login Page")
+    public void iOpenLoginPage() {
         driver.get("https://bbb.testpro.io");
     }
 
-    @Then("I enter email {string}")
+    @When("I enter email {string}")
     public void enterEmail(String email) {
         wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("[type='email']"))).sendKeys(email);
     }

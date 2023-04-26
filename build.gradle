@@ -29,7 +29,7 @@ test {
 }
 test {
     useTestNG() {
-        suites "src/test/resources/features/Login/feature"
+        suites "src/test/resources/CucumberRunner.xml"
     }
 }
 

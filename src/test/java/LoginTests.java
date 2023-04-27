@@ -65,21 +65,7 @@ public class LoginTests extends BaseTest {
         System.out.println("==== This is our link text ==== " + link);
     }
 
-    @Test
-    public void changeProfileNameTest() {
-        LoginPage loginPage = new LoginPage(driver);
-        HomePage homePage = new HomePage(driver);
-        loginPage.provideEmail("burkovads@mail.ru")
-                .providePassword("Julka@0721")
-                .clickSubmitBtn()
-                .openUserProfile();
-        String user = loginPage.generateRandomName();
-        loginPage.setName(user)
-                .setPassword("Julka@0721")
-                .saveProfile();
-        homePage.successBanner();
-        Assert.assertEquals(loginPage.getUsername(), user);
-    }
+
 }
 //        Email("demo@class.com");
 //        Password("te$t$tudent");

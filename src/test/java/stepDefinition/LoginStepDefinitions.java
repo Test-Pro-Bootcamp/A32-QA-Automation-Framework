@@ -13,7 +13,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-public class LoginStepDefinitions {
+public class LoginStepDefinitions extends BaseDefinition {
     WebDriver driver;
     WebDriverWait wait;
 

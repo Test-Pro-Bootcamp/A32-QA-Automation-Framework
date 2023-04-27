@@ -4,6 +4,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -29,7 +30,8 @@ public class BaseTest {
     @BeforeMethod
     public void setUpBrowser() throws MalformedURLException {
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("--disable-notifications");
+        options.addArguments("--disable-notifications","--remote-allow-origins=*", "--incognito","--start-maximized");
+        // driver.manage().window().maximize();
         driver = new ChromeDriver(options);
         driver = pickBrowser(System.getProperty("browser"));
 
@@ -38,7 +40,7 @@ public class BaseTest {
 
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         wait = new WebDriverWait(driver, Duration.ofSeconds(4));
-       // driver.manage().window().maximize();
+
         driver.get(url);
     }
     public WebDriver getDriver() {
@@ -52,7 +54,7 @@ public class BaseTest {
         DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
         desiredCapabilities.setCapability("platform","Windows 10");
         desiredCapabilities.setCapability("browserName","Chrome");
-        desiredCapabilities.setCapability("version","106.0");
+        desiredCapabilities.setCapability("version","112.0");
         desiredCapabilities.setCapability("resolution","1024x768");
         desiredCapabilities.setCapability("build","TestNG With Java");
         desiredCapabilities.setCapability("name",this.getClass().getName());
@@ -66,9 +68,12 @@ public class BaseTest {
         String gridURL = "http://192.168.24.184:4444";
         switch (browser) {
             case "firefox":
-                System.setProperty("webdriver.gecko.driver","geckodriver.exe");
-                return driver = new FirefoxDriver();
+                WebDriverManager.firefoxdriver().setup();
+                FirefoxOptions optionsFirefox = new FirefoxOptions();
+                optionsFirefox.addArguments("-private");
+                return driver = new FirefoxDriver(optionsFirefox);
             case "edge":
+                WebDriverManager.edgedriver().setup();
                 return driver = new EdgeDriver();
             case "grid-firefox":
                 capabilities.setCapability("browserName","firefox");
@@ -82,7 +87,10 @@ public class BaseTest {
             case "cloud":
                 return lambdaTest();
             default:
-                return driver = new ChromeDriver();
+                WebDriverManager.chromedriver().setup();
+                ChromeOptions optionsChrome = new ChromeOptions();
+                optionsChrome.addArguments("--disable-notifications","--remote-allow-origins=*", "--incognito","--start-maximized");
+                return driver = new ChromeDriver(optionsChrome);
         }
     }
 

@@ -25,32 +25,43 @@ public class HomePage extends BasePage {
     private WebElement createPlaylistPlusLocator;
     @FindBy(css = "[data-testid='playlist-context-menu-create-simple']")
     private WebElement newPlaylist;
+    @FindBy(css = ".view-profile")
+    private WebElement profileLocator;
+
     public HomePage(WebDriver givenDriver) {
         super(givenDriver);
     }
-    public WebElement getUserAvatar () {
+
+    public WebElement getUserAvatar() {
         return userAvatarIcon;
     }
+
     public WebElement title() {
         return titleLocator;
     }
+
     public void clickPlayBtn() {
         actions.moveToElement(playButtonLocator).perform();
         actions.click(playButtonLocator);
     }
+
     public WebElement pauseBtnExists() {
         return pauseButtonLocator;
     }
+
     public void goToAllSongs() {
         allSongsLocator.click();
     }
+
     public HomePage doubleClickChoosePlaylist() {
         actions.doubleClick(userPlaylistElement3).perform();
         return this;
     }
+
     public void clickOnPlaylist() {
         userPlaylistElement3.click();
     }
+
     public HomePage enterPlaylistName(String name) {
         userPlaylistInputField.sendKeys(Keys.HOME, Keys.chord(Keys.SHIFT, Keys.END), name);
         userPlaylistInputField.sendKeys(Keys.ENTER);
@@ -60,6 +71,7 @@ public class HomePage extends BasePage {
     public String getPlaylistName() {
         return userPlaylistElement3.getText();
     }
+
     public boolean successBanner() {
         return successBanerLocator.isDisplayed();
     }
@@ -68,13 +80,20 @@ public class HomePage extends BasePage {
         createPlaylistPlusLocator.click();
         return this;
     }
+
     public HomePage newPlaylistCreate() {
         newPlaylist.click();
         return this;
     }
+
     public HomePage enterNewPlaylistName(String name) {
         userPlaylistInputField.sendKeys(name);
         userPlaylistInputField.sendKeys(Keys.ENTER);
+        return this;
+    }
+
+    public HomePage openUserProfile() {
+        profileLocator.click();
         return this;
     }
 }

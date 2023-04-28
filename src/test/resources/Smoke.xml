@@ -7,11 +7,12 @@
         <classes>
             <class name="LoginTests">
                <methods>
-                   <include name="LoginSucceedTest"/>
+                   <include name="loginSucceedTest"/>
+                   <include name="logOutTest"/>
                </methods>
             </class>
             <class name="SongsTests"/>
-            <class name="PlaylistTest"/>
+            <class name="PlaylistTests"/>
         </classes>
     </test>
 </suite>

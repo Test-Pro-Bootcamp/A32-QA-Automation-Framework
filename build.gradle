@@ -30,6 +30,11 @@ test {
         systemProperty "browser", System.getProperty("browser")
     }
 }
+test {
+    useTestNG() {
+        suites "src/test/resources/CucumberRunner.xml"
+    }
+}
 
 task testRegression(type: Test) {
     useTestNG() {

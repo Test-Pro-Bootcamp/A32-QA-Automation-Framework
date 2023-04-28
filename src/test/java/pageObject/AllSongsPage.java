@@ -1,5 +1,6 @@
 package pageObject;
 import com.beust.ah.A;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -25,7 +26,7 @@ public class AllSongsPage extends BasePage {
     public AllSongsPage (WebDriver givenDriver) {
         super(givenDriver);
     }
-    public AllSongsPage choosePlayFromList () {
+    public AllSongsPage rightClickSong () {
         actions.contextClick(firstSongInList).perform();
         return this;
     }
@@ -51,5 +52,12 @@ public class AllSongsPage extends BasePage {
     public boolean showNotification() {
         return wait.until(ExpectedConditions.visibilityOf(successBanner)).isDisplayed();
     }
-
+    public AllSongsPage doubleClickSong() {
+        actions.doubleClick(firstSongInList).perform();
+        return this;
+    }
+    public AllSongsPage selectFirstSong() {
+        firstSongInList.click();
+        return this;
+    }
 }

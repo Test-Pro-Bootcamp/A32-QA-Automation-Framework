@@ -58,7 +58,7 @@ public class PlaylistStepDefinition extends BaseDefinition {
     @And("I select the first song")
     public void iSelectTheFirstSong() {
         AllSongsPage allSongsPage = new AllSongsPage(driver);
-        allSongsPage.choosePlayFromList();
+        allSongsPage.selectFirstSong();
     }
     @And("I click on AddTo button")
     public void iClickOnAddToButton() {

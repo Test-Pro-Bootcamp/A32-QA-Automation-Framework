@@ -1,20 +1,53 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.testng.Assert;
 import org.testng.annotations.Test;
+import pageObject.AllSongsPage;
 import pageObject.HomePage;
 import pageObject.LoginPage;
 import pageObject.PlaylistPage;
 public class SongsTests extends BaseTest {
+
     @Test
-    public void checkVisibilityTest() {
-        LoginPage loginPage = new LoginPage(getDriver());
-        HomePage homePage = new HomePage(getDriver());
-        loginPage.provideEmail("burkovads@mail.ru")
-                .providePassword("Julka@0721")
-                .clickSubmitBtn();
-        String text = homePage.title().getText();
-        System.out.println(text);
-        System.out.println("Is element invisible? === " + wait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector("title"))));
-       // WebElement title2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("title")));  // should fail
+    public void playSongWithShuffleButtonTest() {
+        LoginPage loginPage = new LoginPage(driver);
+        HomePage homePage = new HomePage(driver);
+        AllSongsPage allSongsPage = new AllSongsPage(driver);
+        loginPage.login();
+        homePage.goToAllSongs();
+        allSongsPage.allShuffle();
+        Assert.assertTrue(allSongsPage.barIsDisplayed());
+    }
+    @Test
+    public void playSongByDoubleClickTest() {
+        LoginPage loginPage = new LoginPage(driver);
+        HomePage homePage = new HomePage(driver);
+        AllSongsPage allSongsPage = new AllSongsPage(driver);
+        loginPage.login();
+        homePage.goToAllSongs();
+        allSongsPage.doubleClickSong();
+        Assert.assertTrue(allSongsPage.barIsDisplayed());
+    }
+    @Test
+    public void playSongFromListTest() {
+        // right click
+        LoginPage loginPage = new LoginPage(driver);
+        HomePage homePage = new HomePage(driver);
+        AllSongsPage allSongsPage = new AllSongsPage(driver);
+        loginPage.login();
+        homePage.goToAllSongs();
+        allSongsPage.rightClickSong();
+        allSongsPage.playBtnClick();
+        allSongsPage.barIsDisplayed();
+    }
+    @Test
+    public void searchSongTest() {
+        LoginPage loginPage = new LoginPage(driver);
+        HomePage homePage = new HomePage(driver);
+        AllSongsPage allSongsPage = new AllSongsPage(driver);
+        loginPage.login();
+        homePage.clickSearchField();
+        homePage.enterSearchSong("Pluto");
+        Assert.assertTrue(homePage.showSearchResultTitle());
     }
 }

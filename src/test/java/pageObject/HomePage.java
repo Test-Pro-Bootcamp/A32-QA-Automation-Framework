@@ -29,8 +29,10 @@ public class HomePage extends BasePage {
     private WebElement profileLocator;
     @FindBy(css = ".fa-sign-out")
     private WebElement logoutButton;
-
-
+    @FindBy(xpath = "//span[text()='Search Results for ']")
+    private WebElement searchResultsTitle;
+    @FindBy(css = "[type=\"search\"]")
+    private WebElement searchField;
 
     public HomePage(WebDriver givenDriver) {
         super(givenDriver);
@@ -52,7 +54,6 @@ public class HomePage extends BasePage {
         actions.moveToElement(userPlaylist3).perform();
         actions.click(userPlaylist3);
     }
-
     public WebElement pauseBtnExists() {
         return pauseButtonLocator;
     }
@@ -70,17 +71,25 @@ public class HomePage extends BasePage {
         userPlaylistInputField.sendKeys(Keys.ENTER);
         return this;
     }
-
     public void clickOnPlaylist3() {userPlaylist3.click();
     }
-
-
-
+    public boolean showSearchResultTitle() {
+        return searchResultsTitle.isDisplayed();
+    }
+    public HomePage clickSearchField() {
+        searchField.click();
+        return this;
+    }
+    public HomePage enterSearchSong(String name) {
+        searchField.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.BACK_SPACE));
+        searchField.sendKeys(name);
+        searchField.sendKeys(Keys.ENTER);
+        return this;
+    }
 
     public boolean showSuccessBanner(String name) {
         return successBanerLocator.isDisplayed();
     } //Playlist
-
 
     public HomePage createPlaylistButton() { //create Playlist
         createPlaylistPlusLocator.click();
@@ -95,9 +104,6 @@ public class HomePage extends BasePage {
         userPlaylistInputField.sendKeys(Keys.ENTER);
         return this;
     }
-
-
-
     public HomePage openUserProfile() {
         profileLocator.click();
         return this;

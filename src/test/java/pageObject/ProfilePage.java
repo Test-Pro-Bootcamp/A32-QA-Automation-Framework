@@ -8,9 +8,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import java.util.UUID;
 
 public class ProfilePage extends BasePage {
-    public ProfilePage(WebDriver givenDriver) {
-        super(givenDriver);
-    }
     @FindBy(css = "[name='name']")
     private WebElement nameInputField;
     @FindBy(css = "#inputProfileCurrentPassword")
@@ -27,6 +24,10 @@ public class ProfilePage extends BasePage {
     private WebElement checkboxNotify;
     @FindBy(css = "input[name='notify']:checked")
     private WebElement selectedCheckboxNotify;
+
+    public ProfilePage(WebDriver givenDriver) {
+        super(givenDriver);
+    }
 
     public ProfilePage setName(String newName) {
         nameInputField.click();

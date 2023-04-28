@@ -27,6 +27,8 @@ public class HomePage extends BasePage {
     private WebElement newPlaylist;
     @FindBy(css = ".view-profile")
     private WebElement profileLocator;
+    @FindBy(css = ".fa-sign-out")
+    private WebElement logoutButton;
 
 
 
@@ -98,6 +100,10 @@ public class HomePage extends BasePage {
 
     public HomePage openUserProfile() {
         profileLocator.click();
+        return this;
+    }
+    public HomePage clickLogoutButton() {
+        logoutButton.click();
         return this;
     }
 }

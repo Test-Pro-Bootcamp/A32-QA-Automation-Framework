@@ -13,7 +13,7 @@ public class LoginPage extends BasePage {
     private WebElement submitButtonLocator;
     @FindBy(css = "button[type='submit']")
     private WebElement submitButtonLoginLocator;
-    @FindBy(id = "hel")
+    @FindBy(id = "a#hel")
     private WebElement registrationLinkLocator;
 
     public LoginPage(WebDriver givenDriver) {

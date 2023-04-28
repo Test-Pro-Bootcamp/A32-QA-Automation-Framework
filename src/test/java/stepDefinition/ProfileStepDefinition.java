@@ -58,7 +58,8 @@ public class ProfileStepDefinition extends BaseDefinition {
         HomePage homePage = new HomePage(driver);
         ProfilePage profilePage = new ProfilePage(driver);
         String user = profilePage.generateRandomName();
-        homePage.successBanner();
+        String notifyProfileUpdated = "Profile updated";
+        homePage.showSuccessBanner(notifyProfileUpdated);
         Assert.assertEquals(profilePage.getUsername(), user);
     }
 

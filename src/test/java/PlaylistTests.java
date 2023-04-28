@@ -1,3 +1,5 @@
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pageObject.AllSongsPage;
@@ -8,7 +10,7 @@ import pageObject.PlaylistPage;
 public class PlaylistTests extends BaseTest {
     @Test(priority = 1)
     public void createPlaylist() {
-        String createdPlaylistName = "Spring vibe";
+        String createdPlaylistName = "Actual";
         String notifyCreatedPlaylist = "Created playlist";
         LoginPage loginPage = new LoginPage(driver);
         HomePage homePage = new HomePage(driver);
@@ -16,7 +18,7 @@ public class PlaylistTests extends BaseTest {
         homePage.createPlaylistButton();
         homePage.newPlaylistCreate();
         homePage.enterNewPlaylistName(createdPlaylistName);
-        homePage.showSuccessBanner();
+        Assert.assertTrue(homePage.showSuccessBanner(notifyCreatedPlaylist));
     }
 
     @Test(priority = 2)
@@ -35,23 +37,25 @@ public class PlaylistTests extends BaseTest {
     public void renamePlaylist() {
         // double click
         String newPlaylistName = "Winter";
+        String notifyUpdatedPlaylist = "Updated playlist";
         LoginPage loginPage = new LoginPage(getDriver());
         HomePage homePage = new HomePage(getDriver());
         loginPage.login();
-        homePage.doubleClickChoosePlaylist();
+        homePage.doubleClickSelectedPlaylist();
         homePage.enterPlaylistName(newPlaylistName);
-        homePage.showSuccessBanner();
+        Assert.assertTrue(homePage.showSuccessBanner(notifyUpdatedPlaylist));
     }
     @Test(priority = 3)
     public void deleteSongFromPlaylist() {
         LoginPage loginPage = new LoginPage(driver);
         HomePage homePage = new HomePage(driver);
         PlaylistPage playlistPage = new PlaylistPage(driver);
+        String notifyRemovedSong = "Removed 1 song from";
         loginPage.login();
         homePage.clickPlaylist();
         playlistPage.clickFirstSong();
         playlistPage.deleteFirstSong();
-        homePage.showSuccessBanner();
+        Assert.assertTrue(homePage.showSuccessBanner(notifyRemovedSong));
 
     }
     @Test(priority = 5)
@@ -59,12 +63,11 @@ public class PlaylistTests extends BaseTest {
         LoginPage loginPage = new LoginPage(getDriver());
         HomePage homePage = new HomePage(getDriver());
         PlaylistPage playlistPage = new PlaylistPage(getDriver());
-        loginPage.provideEmail("burkovads@mail.ru")
-                .providePassword("Julka@0721")
-                .clickSubmitBtn();
-        homePage.clickOnPlaylist();
-        playlistPage.playlistDelete();
-        homePage.SuccessBanner();
+        String notifyDeletedPlaylist = "Deleted playlist";
+        loginPage.login();
+        homePage.clickPlaylist();
+        playlistPage.deletePlaylist();
+        Assert.assertTrue(homePage.showSuccessBanner(notifyDeletedPlaylist));
     }
 
 

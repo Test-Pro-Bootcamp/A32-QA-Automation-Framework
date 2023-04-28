@@ -27,8 +27,8 @@ public class HomePage extends BasePage {
     private WebElement newPlaylist;
     @FindBy(css = ".view-profile")
     private WebElement profileLocator;
-    @FindBy(xpath = "//a[contains(text(),\"Spring\")]")
-    private WebElement createdSpringPlaylist;
+
+
 
     public HomePage(WebDriver givenDriver) {
         super(givenDriver);
@@ -47,8 +47,8 @@ public class HomePage extends BasePage {
         actions.click(playButtonLocator);
     }
     public void clickPlaylist() {
-        actions.moveToElement(createdSpringPlaylist).perform();
-        actions.click(createdSpringPlaylist);
+        actions.moveToElement(userPlaylist3).perform();
+        actions.click(userPlaylist3);
     }
 
     public WebElement pauseBtnExists() {
@@ -59,7 +59,7 @@ public class HomePage extends BasePage {
         allSongsLocator.click();
     }
 
-    public HomePage doubleClickChoosePlaylist() { //Rename playlist
+    public HomePage doubleClickSelectedPlaylist() { //Rename playlist
         actions.doubleClick(userPlaylist3).perform();
         return this;
     }
@@ -75,19 +75,20 @@ public class HomePage extends BasePage {
 
 
 
-    public boolean showSuccessBanner() {
+    public boolean showSuccessBanner(String name) {
         return successBanerLocator.isDisplayed();
     } //Playlist
 
-    public HomePage createPlaylistButton() { //Playlist
+
+    public HomePage createPlaylistButton() { //create Playlist
         createPlaylistPlusLocator.click();
         return this;
     }
-    public HomePage newPlaylistCreate() { //Playlist
+    public HomePage newPlaylistCreate() { //create Playlist
         newPlaylist.click();
         return this;
     }
-    public HomePage enterNewPlaylistName(String name) { //Playlist
+    public HomePage enterNewPlaylistName(String name) { //create Playlist
         userPlaylistInputField.sendKeys(name);
         userPlaylistInputField.sendKeys(Keys.ENTER);
         return this;

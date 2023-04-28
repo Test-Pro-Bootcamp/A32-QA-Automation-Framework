@@ -13,7 +13,7 @@ public class PlaylistPage extends BasePage {
     public PlaylistPage(WebDriver givenDriver) {
         super(givenDriver);
     }
-    public PlaylistPage playlistDelete() {
+    public PlaylistPage deletePlaylist() {
         playlistDeleteButton.click();
         return this;
     }

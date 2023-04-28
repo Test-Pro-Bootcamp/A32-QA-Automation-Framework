@@ -4,6 +4,8 @@ import pageObject.HomePage;
 import pageObject.LoginPage;
 import pageObject.ProfilePage;
 
+import javax.swing.*;
+
 public class ProfileTests extends BaseTest {
 
 
@@ -13,13 +15,14 @@ public class ProfileTests extends BaseTest {
         HomePage homePage = new HomePage(driver);
         ProfilePage profilePage = new ProfilePage(driver);
         String user = profilePage.generateRandomName();
+        String notifyUpdatedProfile = "Profile updated";
 
         loginPage.login();
         homePage.openUserProfile();
         profilePage.setName(user)
                 .setPassword("Julka@0721")
                 .saveProfile();
-        homePage.successBanner();
+        homePage.showSuccessBanner(notifyUpdatedProfile);
         Assert.assertEquals(profilePage.getUsername(), user);
     }
     @Test

@@ -8,7 +8,7 @@ import pageObject.LoginPage;
 import pageObject.PlaylistPage;
 
 public class PlaylistTests extends BaseTest {
-    @Test(priority = 1)
+    @Test
     public void createPlaylist() {
         String createdPlaylistName = "Actual";
         String notifyCreatedPlaylist = "Created playlist";
@@ -21,7 +21,7 @@ public class PlaylistTests extends BaseTest {
         Assert.assertTrue(homePage.showSuccessBanner(notifyCreatedPlaylist));
     }
 
-    @Test(priority = 2)
+    @Test
     public void addSongToPlaylist() {
         LoginPage loginPage =  new LoginPage(driver);
         HomePage homePage = new HomePage(driver);
@@ -33,7 +33,19 @@ public class PlaylistTests extends BaseTest {
         allSongsPage.selectFirstPlaylist();
         Assert.assertTrue(allSongsPage.showNotification());
     }
-    @Test(priority = 4)
+    @Test
+    public void deleteSongFromPlaylist() {
+        LoginPage loginPage = new LoginPage(driver);
+        HomePage homePage = new HomePage(driver);
+        PlaylistPage playlistPage = new PlaylistPage(driver);
+        String notifyRemovedSong = "Removed 1 song from";
+        loginPage.login();
+        homePage.clickPlaylist();
+        playlistPage.clickFirstSong();
+        playlistPage.deleteFirstSong();
+        Assert.assertTrue(homePage.showSuccessBanner(notifyRemovedSong));
+    }
+    @Test
     public void renamePlaylist() {
         // double click
         String newPlaylistName = "Winter";
@@ -45,20 +57,8 @@ public class PlaylistTests extends BaseTest {
         homePage.enterPlaylistName(newPlaylistName);
         Assert.assertTrue(homePage.showSuccessBanner(notifyUpdatedPlaylist));
     }
-    @Test(priority = 3)
-    public void deleteSongFromPlaylist() {
-        LoginPage loginPage = new LoginPage(driver);
-        HomePage homePage = new HomePage(driver);
-        PlaylistPage playlistPage = new PlaylistPage(driver);
-        String notifyRemovedSong = "Removed 1 song from";
-        loginPage.login();
-        homePage.clickPlaylist();
-        playlistPage.clickFirstSong();
-        playlistPage.deleteFirstSong();
-        Assert.assertTrue(homePage.showSuccessBanner(notifyRemovedSong));
 
-    }
-    @Test(priority = 5)
+    @Test
     public void deletePlaylistTest() {
         LoginPage loginPage = new LoginPage(getDriver());
         HomePage homePage = new HomePage(getDriver());
@@ -69,6 +69,4 @@ public class PlaylistTests extends BaseTest {
         playlistPage.deletePlaylist();
         Assert.assertTrue(homePage.showSuccessBanner(notifyDeletedPlaylist));
     }
-
-
 }

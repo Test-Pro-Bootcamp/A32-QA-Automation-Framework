@@ -1,7 +1,11 @@
 package pageObject;
+import com.beust.ah.A;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+
+import java.util.Random;
 
 public class AllSongsPage extends BasePage {
     @FindBy(css = ".song-item")
@@ -12,6 +16,12 @@ public class AllSongsPage extends BasePage {
     private WebElement barLocator;
     @FindBy(css = "#songsWrapper .fa-random")
     private WebElement allShuffleLocator;
+    @FindBy(css = ".btn-add-to")
+    private WebElement addToButton;
+    @FindBy(css = "#songsWrapper ul .playlist:nth-of-type(5)")
+    private WebElement firstPlaylistInDropdownList;
+    @FindBy(css = ".success")
+    private WebElement successBanner;
     public AllSongsPage (WebDriver givenDriver) {
         super(givenDriver);
     }
@@ -30,4 +40,16 @@ public class AllSongsPage extends BasePage {
         allShuffleLocator.click();
         return this;
     }
+    public AllSongsPage clickAddToButton() {
+        addToButton.click();
+        return this;
+    }
+    public AllSongsPage selectFirstPlaylist() {
+        firstPlaylistInDropdownList.click();
+        return this;
+    }
+    public boolean showNotification() {
+        return wait.until(ExpectedConditions.visibilityOf(successBanner)).isDisplayed();
+    }
+
 }

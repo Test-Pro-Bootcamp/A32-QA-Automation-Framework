@@ -98,24 +98,4 @@ public class BaseTest {
     public void tearDown() {
         getDriver().quit();
     }
-
-    public void enterEmail(String email) {
-        LoginPage loginPage = new LoginPage(driver);
-        loginPage.provideEmail(email);
-    }
-
-    public void enterPassword(String password) {
-        LoginPage loginPage = new LoginPage(driver);
-        loginPage.providePassword(password);
-    }
-
-    public void loginSubmit() {
-        LoginPage loginPage = new LoginPage(driver);
-        loginPage.clickSubmitBtn();
-    }
-
-    public void login(String email, String password){
-        LoginPage loginPage = new LoginPage(driver);
-        loginPage.login(email,password);
-    }
 }

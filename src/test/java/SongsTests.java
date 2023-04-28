@@ -17,16 +17,4 @@ public class SongsTests extends BaseTest {
         System.out.println("Is element invisible? === " + wait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector("title"))));
        // WebElement title2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("title")));  // should fail
     }
-//    @Test
-//    public void deletePlaylistTest() {
-//        LoginPage loginPage = new LoginPage(getDriver());
-//        HomePage homePage = new HomePage(getDriver());
-//        PlaylistPage playlistPage = new PlaylistPage(getDriver());
-//        loginPage.provideEmail("burkovads@mail.ru")
-//                .providePassword("Julka@0721")
-//                .clickSubmitBtn();
-//        homePage.clickOnPlaylist();
-//        playlistPage.playlistDelete();
-//        homePage.SuccessBanner();
-//    }
 }

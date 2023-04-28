@@ -16,7 +16,7 @@ public class HomePage extends BasePage {
     @FindBy(xpath = "//a[text()='All Songs']")
     private WebElement allSongsLocator;
     @FindBy(css = ".playlist:nth-child(3)")
-    private WebElement userPlaylistElement3;
+    private WebElement userPlaylist3;
     @FindBy(css = "input[name='name']")
     private WebElement userPlaylistInputField;
     @FindBy(css = ".success")
@@ -27,6 +27,8 @@ public class HomePage extends BasePage {
     private WebElement newPlaylist;
     @FindBy(css = ".view-profile")
     private WebElement profileLocator;
+    @FindBy(xpath = "//a[contains(text(),\"Spring\")]")
+    private WebElement createdSpringPlaylist;
 
     public HomePage(WebDriver givenDriver) {
         super(givenDriver);
@@ -44,6 +46,10 @@ public class HomePage extends BasePage {
         actions.moveToElement(playButtonLocator).perform();
         actions.click(playButtonLocator);
     }
+    public void clickPlaylist() {
+        actions.moveToElement(createdSpringPlaylist).perform();
+        actions.click(createdSpringPlaylist);
+    }
 
     public WebElement pauseBtnExists() {
         return pauseButtonLocator;
@@ -53,44 +59,41 @@ public class HomePage extends BasePage {
         allSongsLocator.click();
     }
 
-    public HomePage doubleClickChoosePlaylist() {
-        actions.doubleClick(userPlaylistElement3).perform();
+    public HomePage doubleClickChoosePlaylist() { //Rename playlist
+        actions.doubleClick(userPlaylist3).perform();
         return this;
     }
-
-    public void clickOnPlaylist() {
-        userPlaylistElement3.click();
-    }
-
-    public HomePage enterPlaylistName(String name) {
+    public HomePage enterPlaylistName(String name) { //Rename playlist
         userPlaylistInputField.sendKeys(Keys.HOME, Keys.chord(Keys.SHIFT, Keys.END), name);
         userPlaylistInputField.sendKeys(Keys.ENTER);
         return this;
     }
 
-    public String getPlaylistName() {
-        return userPlaylistElement3.getText();
+    public void clickOnPlaylist3() {userPlaylist3.click();
     }
 
-    public boolean successBanner() {
+
+
+
+    public boolean showSuccessBanner() {
         return successBanerLocator.isDisplayed();
-    }
+    } //Playlist
 
-    public HomePage createPlaylistButton() {
+    public HomePage createPlaylistButton() { //Playlist
         createPlaylistPlusLocator.click();
         return this;
     }
-
-    public HomePage newPlaylistCreate() {
+    public HomePage newPlaylistCreate() { //Playlist
         newPlaylist.click();
         return this;
     }
-
-    public HomePage enterNewPlaylistName(String name) {
+    public HomePage enterNewPlaylistName(String name) { //Playlist
         userPlaylistInputField.sendKeys(name);
         userPlaylistInputField.sendKeys(Keys.ENTER);
         return this;
     }
+
+
 
     public HomePage openUserProfile() {
         profileLocator.click();

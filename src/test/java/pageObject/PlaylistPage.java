@@ -25,5 +25,4 @@ public class PlaylistPage extends BasePage {
         actions.sendKeys(firstSong, DELETE).build().perform();
         return this;
     }
-
 }

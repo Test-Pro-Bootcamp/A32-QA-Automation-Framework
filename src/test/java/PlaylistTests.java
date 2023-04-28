@@ -20,7 +20,6 @@ public class PlaylistTests extends BaseTest {
         homePage.enterNewPlaylistName(createdPlaylistName);
         Assert.assertTrue(homePage.showSuccessBanner(notifyCreatedPlaylist));
     }
-
     @Test
     public void addSongToPlaylist() {
         LoginPage loginPage =  new LoginPage(driver);
@@ -28,7 +27,7 @@ public class PlaylistTests extends BaseTest {
         AllSongsPage allSongsPage = new AllSongsPage(driver);
         loginPage.login();
         homePage.goToAllSongs();
-        allSongsPage.choosePlayFromList();
+        allSongsPage.selectFirstSong();
         allSongsPage.clickAddToButton();
         allSongsPage.selectFirstPlaylist();
         Assert.assertTrue(allSongsPage.showNotification());
@@ -57,7 +56,6 @@ public class PlaylistTests extends BaseTest {
         homePage.enterPlaylistName(newPlaylistName);
         Assert.assertTrue(homePage.showSuccessBanner(notifyUpdatedPlaylist));
     }
-
     @Test
     public void deletePlaylistTest() {
         LoginPage loginPage = new LoginPage(getDriver());

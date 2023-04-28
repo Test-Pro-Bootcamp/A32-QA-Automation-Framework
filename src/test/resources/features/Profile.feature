@@ -1,19 +1,18 @@
 Feature: ChangeProfileName feature
 
-
   Background I open Login Page
 
-  Scenario: ChangeProfileName Success
+  Scenario: Change Profile Name
     When I login success
     And I open Profile page
     And I enter random name
     And I enter password
     And I click Save
-  Then I get notification
+    Then I get notification
 
 Feature: ChangeColorTheme feature
 
-  Scenario: ChangeColorTheme Success
+  Scenario: Change Color Theme
     When I login success
     And I open Profile page
     And I choose color theme
@@ -22,7 +21,7 @@ Feature: ChangeColorTheme feature
 
 Feature: ChooseCheckboxNotify feature
 
-  Scenario: ChangeColorTheme Success
+  Scenario: Choose Checkbox Notify
     When I login success
     And I open Profile page
     And I click on the first checkbox Notify

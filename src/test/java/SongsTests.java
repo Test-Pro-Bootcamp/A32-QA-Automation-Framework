@@ -7,7 +7,6 @@ import pageObject.HomePage;
 import pageObject.LoginPage;
 import pageObject.PlaylistPage;
 public class SongsTests extends BaseTest {
-
     @Test
     public void playSongWithShuffleButtonTest() {
         LoginPage loginPage = new LoginPage(driver);

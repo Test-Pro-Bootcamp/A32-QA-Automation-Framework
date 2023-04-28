@@ -16,7 +16,6 @@ public class PlaylistStepDefinition extends BaseDefinition {
 
     WebDriver driver;
 
-//    CreatePlaylist Success
     @Given("I open Login Page")
     public void openLoginPage() {
         driver.get("https://bbb.testpro.io");
@@ -48,8 +47,6 @@ public class PlaylistStepDefinition extends BaseDefinition {
         HomePage homePage = new HomePage(driver);
         Assert.assertTrue(homePage.showSuccessBanner(notifyCreatedPlaylist));
     }
-
-//    AddSongToPlaylist Success
     @And("I open AllSongs page")
     public void iOpenAllSongsPage() {
         HomePage homePage = new HomePage(driver);
@@ -75,8 +72,6 @@ public class PlaylistStepDefinition extends BaseDefinition {
         AllSongsPage allSongsPage = new AllSongsPage(driver);
         Assert.assertTrue(allSongsPage.showNotification());
     }
-
-//    DeleteSongFromPlaylist Success
     @And("I click on playlist")
     public void iClickOnPlaylist() {
         HomePage homePage = new HomePage(driver);
@@ -93,7 +88,6 @@ public class PlaylistStepDefinition extends BaseDefinition {
         String notifyRemovedSong = "Removed 1 song from";
         Assert.assertTrue(homePage.showSuccessBanner(notifyRemovedSong));
     }
-//    renamePlaylist Success
     @And("I double click on playlist")
     public void iDoubleClickOnPlaylist() {
         HomePage homePage = new HomePage(getDriver());
@@ -111,7 +105,6 @@ public class PlaylistStepDefinition extends BaseDefinition {
         String notifyUpdatedPlaylist = "Updated playlist";
         Assert.assertTrue(homePage.showSuccessBanner(notifyUpdatedPlaylist));
     }
-//    deletePlaylist Success
     @And("I click on red delete-button")
     public void iClickOnRedDeleteButton() {
         PlaylistPage playlistPage = new PlaylistPage(getDriver());

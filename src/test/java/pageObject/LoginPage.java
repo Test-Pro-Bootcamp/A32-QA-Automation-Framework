@@ -15,7 +15,6 @@ public class LoginPage extends BasePage {
     private WebElement submitButtonLoginLocator;
     @FindBy(id = "a#hel")
     private WebElement registrationLinkLocator;
-
     public LoginPage(WebDriver givenDriver) {
         super(givenDriver);
     }
@@ -38,9 +37,6 @@ public class LoginPage extends BasePage {
         providePassword("julka@0721");
         clickSubmitBtn();
         return this;
-    }
-    public WebElement submitLoginButton() {
-        return submitButtonLoginLocator;
     }
     public WebElement registrationLink() {
         return registrationLinkLocator;

@@ -7,8 +7,6 @@ import pageObject.ProfilePage;
 import javax.swing.*;
 
 public class ProfileTests extends BaseTest {
-
-
     @Test
     public void changeProfileNameTest() {
         LoginPage loginPage = new LoginPage(driver);
@@ -16,7 +14,6 @@ public class ProfileTests extends BaseTest {
         ProfilePage profilePage = new ProfilePage(driver);
         String user = profilePage.generateRandomName();
         String notifyUpdatedProfile = "Profile updated";
-
         loginPage.login();
         homePage.openUserProfile();
         profilePage.setName(user)
@@ -30,7 +27,6 @@ public class ProfileTests extends BaseTest {
         LoginPage loginPage = new LoginPage(driver);
         HomePage homePage = new HomePage(driver);
         ProfilePage profilePage = new ProfilePage(driver);
-
         loginPage.login();
         homePage.openUserProfile();
         profilePage.chooseTheme();
@@ -41,7 +37,6 @@ public class ProfileTests extends BaseTest {
         LoginPage loginPage = new LoginPage(driver);
         HomePage homePage = new HomePage(driver);
         ProfilePage profilePage = new ProfilePage(driver);
-
         loginPage.login();
         homePage.openUserProfile();
         profilePage.selectCheckboxNotify();

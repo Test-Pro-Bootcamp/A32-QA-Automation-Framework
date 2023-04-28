@@ -18,10 +18,6 @@ import java.time.Duration;
 
 public class LoginStepDefinitions extends BaseDefinition {
     WebDriver driver;
-    WebDriverWait wait;
-
-//    Login Success
-
     @Given("I open Login Page")
     public void openLoginPage() { BaseDefinition.driver.get("https://bbb.testpro.io");
     }
@@ -45,8 +41,6 @@ public class LoginStepDefinitions extends BaseDefinition {
         HomePage homePage = new HomePage(driver);
         Assert.assertTrue(homePage.getUserAvatar().isDisplayed());
     }
-
-    //    Login with non-existing email
     @When("I enter non-existing email {string}")
     public void iEnterNonExistingEmail(String email) {
         LoginPage loginPage = new LoginPage(driver);
@@ -72,13 +66,11 @@ public class LoginStepDefinitions extends BaseDefinition {
         LoginPage loginPage = new LoginPage(driver);
         loginPage.providePassword(password);
     }
-
     @When("I click on logout button")
     public void iClickOnLogoutButton() {
         HomePage homePage = new HomePage(driver);
         homePage.clickLogoutButton();
     }
-
     @Then("I am logged out")
     public void iAmLoggedOut() {
         LoginPage loginPage = new LoginPage(driver);

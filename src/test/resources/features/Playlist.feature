@@ -2,7 +2,7 @@ Feature: CreatePlaylist feature
 
   Background I open Login Page
 
-  Scenario: CreatePlaylist Success
+  Scenario: Create Playlist
     When I login success
     And I click on plus-button
     And I select create new playlist
@@ -11,7 +11,7 @@ Feature: CreatePlaylist feature
 
 Feature: AddSongToPlaylist feature
 
-  Scenario: AddSongToPlaylist Success
+  Scenario: Add Song To Playlist
     When I login success
     And I open AllSongs page
     And I select the first song
@@ -22,7 +22,7 @@ Feature: AddSongToPlaylist feature
 
 Feature: DeleteSongFromPlaylist feature
 
-  Scenario: DeleteSongFromPlaylist Success
+  Scenario: Delete Song From Playlist
     When I login success
     And I click on playlist
     And I select the first song
@@ -31,7 +31,7 @@ Feature: DeleteSongFromPlaylist feature
 
 Feature: RenamePlaylist feature
 
-  Scenario: renamePlaylist Success
+  Scenario: rename Playlist
     When I login success
     And I double click on playlist
     And I enter a new name of playlist and click ENTER
@@ -39,7 +39,7 @@ Feature: RenamePlaylist feature
 
 Feature: DeletePlaylist feature
 
-  Scenario: deletePlaylist Success
+  Scenario: delete Playlist
     When I login success
     And I click on playlist
     And I click on red delete-button

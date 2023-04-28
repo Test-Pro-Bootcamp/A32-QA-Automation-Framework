@@ -7,12 +7,6 @@ import org.openqa.selenium.support.FindBy;
 public class HomePage extends BasePage {
     @FindBy(css = "img.avatar")
     private WebElement userAvatarIcon;
-    @FindBy(css = "title")
-    private WebElement titleLocator;
-    @FindBy(css = "[data-testid='play-btn']")
-    private WebElement playButtonLocator;
-    @FindBy(css = "[data-testid='pause-btn']")
-    private WebElement pauseButtonLocator;
     @FindBy(xpath = "//a[text()='All Songs']")
     private WebElement allSongsLocator;
     @FindBy(css = ".playlist:nth-child(3)")
@@ -42,26 +36,13 @@ public class HomePage extends BasePage {
         return userAvatarIcon;
     }
 
-    public WebElement title() {
-        return titleLocator;
-    }
-
-    public void clickPlayBtn() {
-        actions.moveToElement(playButtonLocator).perform();
-        actions.click(playButtonLocator);
-    }
     public void clickPlaylist() {
         actions.moveToElement(userPlaylist3).perform();
         actions.click(userPlaylist3);
     }
-    public WebElement pauseBtnExists() {
-        return pauseButtonLocator;
-    }
-
     public void goToAllSongs() {
         allSongsLocator.click();
     }
-
     public HomePage doubleClickSelectedPlaylist() { //Rename playlist
         actions.doubleClick(userPlaylist3).perform();
         return this;
@@ -70,8 +51,6 @@ public class HomePage extends BasePage {
         userPlaylistInputField.sendKeys(Keys.HOME, Keys.chord(Keys.SHIFT, Keys.END), name);
         userPlaylistInputField.sendKeys(Keys.ENTER);
         return this;
-    }
-    public void clickOnPlaylist3() {userPlaylist3.click();
     }
     public boolean showSearchResultTitle() {
         return searchResultsTitle.isDisplayed();
@@ -86,7 +65,6 @@ public class HomePage extends BasePage {
         searchField.sendKeys(Keys.ENTER);
         return this;
     }
-
     public boolean showSuccessBanner(String name) {
         return successBanerLocator.isDisplayed();
     } //Playlist

@@ -24,11 +24,9 @@ public class ProfilePage extends BasePage {
     private WebElement checkboxNotify;
     @FindBy(css = "input[name='notify']:checked")
     private WebElement selectedCheckboxNotify;
-
     public ProfilePage(WebDriver givenDriver) {
         super(givenDriver);
     }
-
     public ProfilePage setName(String newName) {
         nameInputField.click();
         nameInputField.clear();
@@ -58,7 +56,6 @@ public class ProfilePage extends BasePage {
     public boolean checkSelectedThemeColor() {
         return wait.until(ExpectedConditions.visibilityOf(selectedThemeColor)).isDisplayed();
     }
-
     public ProfilePage selectCheckboxNotify() {
         checkboxNotify.click();
         return this;

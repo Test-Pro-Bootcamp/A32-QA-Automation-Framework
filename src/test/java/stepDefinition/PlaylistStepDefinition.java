@@ -18,101 +18,101 @@ public class PlaylistStepDefinition extends BaseDefinition {
 
     @Given("I open Login Page")
     public void openLoginPage() {
-        driver.get("https://bbb.testpro.io");
+        getThreadLocal().get("https://bbb.testpro.io");
     }
     @When("I login success")
     public void iLoginSuccess() {
-        LoginPage loginPage = new LoginPage(driver);
+        LoginPage loginPage = new LoginPage(getThreadLocal());
         loginPage.login();
     }
     @And("I click on plus-button")
     public void iClickOnPlusButton() {
-        HomePage homePage =new HomePage(driver);
+        HomePage homePage =new HomePage(getThreadLocal());
         homePage.createPlaylistButton();
     }
     @And("I select create new playlist")
     public void iSelectCreateNewPlaylist() {
-        HomePage homePage =new HomePage(driver);
+        HomePage homePage =new HomePage(getThreadLocal());
         homePage.newPlaylistCreate();
     }
     @And("I enter a name of Playlist and click ENTER")
     public void iEnterANameOfPlaylist() {
-        HomePage homePage =new HomePage(driver);
+        HomePage homePage =new HomePage(getThreadLocal());
         String createdPlaylistName = "Actual";
         homePage.enterNewPlaylistName(createdPlaylistName);
     }
     @Then("I get notification 'Created playlist'")
     public void iGetNotificationCreated() {
         String notifyCreatedPlaylist = "Created playlist";
-        HomePage homePage = new HomePage(driver);
+        HomePage homePage = new HomePage(getThreadLocal());
         Assert.assertTrue(homePage.showSuccessBanner(notifyCreatedPlaylist));
     }
     @And("I open AllSongs page")
     public void iOpenAllSongsPage() {
-        HomePage homePage = new HomePage(driver);
+        HomePage homePage = new HomePage(getThreadLocal());
         homePage.goToAllSongs();
     }
     @And("I select the first song")
     public void iSelectTheFirstSong() {
-        AllSongsPage allSongsPage = new AllSongsPage(driver);
+        AllSongsPage allSongsPage = new AllSongsPage(getThreadLocal());
         allSongsPage.selectFirstSong();
     }
     @And("I click on AddTo button")
     public void iClickOnAddToButton() {
-        AllSongsPage allSongsPage = new AllSongsPage(driver);
+        AllSongsPage allSongsPage = new AllSongsPage(getThreadLocal());
         allSongsPage.clickAddToButton();
     }
     @And("I select the first playlist")
     public void iSelectTheFirstPlaylist() {
-        AllSongsPage allSongsPage = new AllSongsPage(driver);
+        AllSongsPage allSongsPage = new AllSongsPage(getThreadLocal());
         allSongsPage.selectFirstPlaylist();
     }
     @Then("I get notification")
     public void iGetNotification() {
-        AllSongsPage allSongsPage = new AllSongsPage(driver);
+        AllSongsPage allSongsPage = new AllSongsPage(getThreadLocal());
         Assert.assertTrue(allSongsPage.showNotification());
     }
     @And("I click on playlist")
     public void iClickOnPlaylist() {
-        HomePage homePage = new HomePage(driver);
+        HomePage homePage = new HomePage(getThreadLocal());
         homePage.clickPlaylist();
     }
     @And("I delete a song by DELETE keybord")
     public void iDeleteASongByDELETEKeybord() {
-        PlaylistPage playlistPage = new PlaylistPage(driver);
+        PlaylistPage playlistPage = new PlaylistPage(getThreadLocal());
         playlistPage.deleteFirstSong();
     }
     @Then("I get notification {string}")
     public void iGetNotificationRemovedSong() {
-        HomePage homePage = new HomePage(driver);
+        HomePage homePage = new HomePage(getThreadLocal());
         String notifyRemovedSong = "Removed 1 song from";
         Assert.assertTrue(homePage.showSuccessBanner(notifyRemovedSong));
     }
     @And("I double click on playlist")
     public void iDoubleClickOnPlaylist() {
-        HomePage homePage = new HomePage(getDriver());
+        HomePage homePage = new HomePage(getThreadLocal());
         homePage.doubleClickSelectedPlaylist();
     }
     @And("I enter a new name of playlist and click ENTER")
     public void iEnterANewNameOfPlaylist() {
         String newPlaylistName = "Winter";
-        HomePage homePage = new HomePage(getDriver());
+        HomePage homePage = new HomePage(getThreadLocal());
         homePage.enterPlaylistName(newPlaylistName);
     }
     @Then("I get notification {string}")
     public void iGetNotificationRenamePlaylist() {
-        HomePage homePage = new HomePage(driver);
+        HomePage homePage = new HomePage(getThreadLocal());
         String notifyUpdatedPlaylist = "Updated playlist";
         Assert.assertTrue(homePage.showSuccessBanner(notifyUpdatedPlaylist));
     }
     @And("I click on red delete-button")
     public void iClickOnRedDeleteButton() {
-        PlaylistPage playlistPage = new PlaylistPage(getDriver());
+        PlaylistPage playlistPage = new PlaylistPage(getThreadLocal());
         playlistPage.deletePlaylist();
     }
     @Then("I get notification {string}")
     public void iGetNotificationDeletePlaylist() {
-        HomePage homePage = new HomePage(getDriver());
+        HomePage homePage = new HomePage(getThreadLocal());
         String notifyDeletedPlaylist = "Deleted playlist";
         Assert.assertTrue(homePage.showSuccessBanner(notifyDeletedPlaylist));
     }

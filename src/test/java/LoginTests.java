@@ -7,14 +7,14 @@ import pageObject.LoginPage;
 public class LoginTests extends BaseTest {
     @Test
     public void loginSucceedTest() {
-        LoginPage loginPage = new LoginPage(driver);
-        HomePage homePage = new HomePage(driver);
+        LoginPage loginPage = new LoginPage(getThreadLocal());
+        HomePage homePage = new HomePage(getThreadLocal());
         loginPage.login();
         Assert.assertTrue(homePage.getUserAvatar().isDisplayed());
     }
     @Test
     public void loginWrongEmailTest() {
-        LoginPage loginPage = new LoginPage(driver);
+        LoginPage loginPage = new LoginPage(getThreadLocal());
         loginPage.provideEmail("burkova@mail.ru")
                 .providePassword("Julka@0721")
                 .clickSubmitBtn();
@@ -22,7 +22,7 @@ public class LoginTests extends BaseTest {
     }
     @Test
     public void loginWrongPasswordTest() {
-        LoginPage loginPage = new LoginPage(driver);
+        LoginPage loginPage = new LoginPage(getThreadLocal());
         loginPage.provideEmail("burkova@mail.ru")
                 .providePassword("Julka")
                 .clickSubmitBtn();
@@ -30,7 +30,7 @@ public class LoginTests extends BaseTest {
     }
     @Test
     public void loginEmptyEmailTest() {
-        LoginPage loginPage = new LoginPage(driver);
+        LoginPage loginPage = new LoginPage(getThreadLocal());
         loginPage.provideEmail("")
                 .providePassword("Julka@0721")
                 .clickSubmitBtn();
@@ -38,7 +38,7 @@ public class LoginTests extends BaseTest {
     }
     @Test
     public void loginEmptyPasswordTest() {
-        LoginPage loginPage = new LoginPage(driver);
+        LoginPage loginPage = new LoginPage(getThreadLocal());
         loginPage.provideEmail("burkovads@mail.ru")
                 .providePassword("")
                 .clickSubmitBtn();
@@ -54,16 +54,17 @@ public class LoginTests extends BaseTest {
     }
     @Test(dataProvider = "IncorrectLoginProviders")
     public void negativeLoginTests(String email, String password) {
-        LoginPage loginPage = new LoginPage(driver);
+        LoginPage loginPage = new LoginPage(getThreadLocal());
         loginPage.provideEmail(email)
                 .providePassword(password)
                 .clickSubmitBtn();
-        Assert.assertEquals(driver.getCurrentUrl(), url);
+        Assert.assertEquals(getThreadLocal().getCurrentUrl(), url);
     }
     @Test
     public void logOutTest() {
-        HomePage homePage = new HomePage(driver);
-        LoginPage loginPage = new LoginPage(driver);
+        HomePage homePage = new HomePage(getThreadLocal());
+        LoginPage loginPage = new LoginPage(getThreadLocal());
+        loginPage.login();
         homePage.clickLogoutButton();
         Assert.assertTrue(loginPage.registrationLink().isDisplayed());
     }

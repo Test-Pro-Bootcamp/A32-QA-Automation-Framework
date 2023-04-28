@@ -9,9 +9,9 @@ import javax.swing.*;
 public class ProfileTests extends BaseTest {
     @Test
     public void changeProfileNameTest() {
-        LoginPage loginPage = new LoginPage(driver);
-        HomePage homePage = new HomePage(driver);
-        ProfilePage profilePage = new ProfilePage(driver);
+        LoginPage loginPage = new LoginPage(getThreadLocal());
+        HomePage homePage = new HomePage(getThreadLocal());
+        ProfilePage profilePage = new ProfilePage(getThreadLocal());
         String user = profilePage.generateRandomName();
         String notifyUpdatedProfile = "Profile updated";
         loginPage.login();
@@ -24,9 +24,10 @@ public class ProfileTests extends BaseTest {
     }
     @Test
     public void changeColorTheme() {
-        LoginPage loginPage = new LoginPage(driver);
-        HomePage homePage = new HomePage(driver);
-        ProfilePage profilePage = new ProfilePage(driver);
+        LoginPage loginPage = new LoginPage(getThreadLocal());
+        HomePage homePage = new HomePage(getThreadLocal());
+        ProfilePage profilePage = new ProfilePage(getThreadLocal()
+        );
         loginPage.login();
         homePage.openUserProfile();
         profilePage.chooseTheme();
@@ -34,9 +35,9 @@ public class ProfileTests extends BaseTest {
     }
     @Test
     public void chooseCheckboxNotify() {
-        LoginPage loginPage = new LoginPage(driver);
-        HomePage homePage = new HomePage(driver);
-        ProfilePage profilePage = new ProfilePage(driver);
+        LoginPage loginPage = new LoginPage(getThreadLocal());
+        HomePage homePage = new HomePage(getThreadLocal());
+        ProfilePage profilePage = new ProfilePage(getThreadLocal());
         loginPage.login();
         homePage.openUserProfile();
         profilePage.selectCheckboxNotify();

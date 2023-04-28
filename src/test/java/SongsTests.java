@@ -9,9 +9,9 @@ import pageObject.PlaylistPage;
 public class SongsTests extends BaseTest {
     @Test
     public void playSongWithShuffleButtonTest() {
-        LoginPage loginPage = new LoginPage(driver);
-        HomePage homePage = new HomePage(driver);
-        AllSongsPage allSongsPage = new AllSongsPage(driver);
+        LoginPage loginPage = new LoginPage(getThreadLocal());
+        HomePage homePage = new HomePage(getThreadLocal());
+        AllSongsPage allSongsPage = new AllSongsPage(getThreadLocal());
         loginPage.login();
         homePage.goToAllSongs();
         allSongsPage.allShuffle();
@@ -19,9 +19,9 @@ public class SongsTests extends BaseTest {
     }
     @Test
     public void playSongByDoubleClickTest() {
-        LoginPage loginPage = new LoginPage(driver);
-        HomePage homePage = new HomePage(driver);
-        AllSongsPage allSongsPage = new AllSongsPage(driver);
+        LoginPage loginPage = new LoginPage(getThreadLocal());
+        HomePage homePage = new HomePage(getThreadLocal());
+        AllSongsPage allSongsPage = new AllSongsPage(getThreadLocal());
         loginPage.login();
         homePage.goToAllSongs();
         allSongsPage.doubleClickSong();
@@ -30,9 +30,9 @@ public class SongsTests extends BaseTest {
     @Test
     public void playSongFromListTest() {
         // right click
-        LoginPage loginPage = new LoginPage(driver);
-        HomePage homePage = new HomePage(driver);
-        AllSongsPage allSongsPage = new AllSongsPage(driver);
+        LoginPage loginPage = new LoginPage(getThreadLocal());
+        HomePage homePage = new HomePage(getThreadLocal());
+        AllSongsPage allSongsPage = new AllSongsPage(getThreadLocal());
         loginPage.login();
         homePage.goToAllSongs();
         allSongsPage.rightClickSong();
@@ -41,9 +41,9 @@ public class SongsTests extends BaseTest {
     }
     @Test
     public void searchSongTest() {
-        LoginPage loginPage = new LoginPage(driver);
-        HomePage homePage = new HomePage(driver);
-        AllSongsPage allSongsPage = new AllSongsPage(driver);
+        LoginPage loginPage = new LoginPage(getThreadLocal());
+        HomePage homePage = new HomePage(getThreadLocal());
+        AllSongsPage allSongsPage = new AllSongsPage(getThreadLocal());
         loginPage.login();
         homePage.clickSearchField();
         homePage.enterSearchSong("Pluto");

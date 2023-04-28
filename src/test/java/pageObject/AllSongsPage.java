@@ -9,7 +9,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import java.util.Random;
 
 public class AllSongsPage extends BasePage {
-    @FindBy(css = ".song-item")
+    @FindBy(css = ".all-songs [draggable='true']:nth-of-type(1) .title")
     private WebElement firstSongInList;
     @FindBy(css = ".playback")
     private WebElement playBtnFromList;

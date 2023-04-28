@@ -36,12 +36,13 @@ public class HomePage extends BasePage {
         return userAvatarIcon;
     }
 
-    public void clickPlaylist() {
-        actions.moveToElement(userPlaylist3).perform();
-        actions.click(userPlaylist3);
+    public HomePage clickPlaylist() {
+        userPlaylist3.click();
+        return this;
     }
-    public void goToAllSongs() {
+    public HomePage goToAllSongs() {
         allSongsLocator.click();
+        return this;
     }
     public HomePage doubleClickSelectedPlaylist() { //Rename playlist
         actions.doubleClick(userPlaylist3).perform();
@@ -87,6 +88,7 @@ public class HomePage extends BasePage {
         return this;
     }
     public HomePage clickLogoutButton() {
+        actions.moveToElement(logoutButton).perform();
         logoutButton.click();
         return this;
     }

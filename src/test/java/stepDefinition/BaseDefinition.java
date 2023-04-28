@@ -13,6 +13,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.Optional;
 
 import java.net.MalformedURLException;
 import java.net.URI;
@@ -21,46 +22,17 @@ import java.time.Duration;
 
 public class BaseDefinition {
 
-    protected static WebDriver driver;
-    protected static WebDriverWait wait;
-    public String url = "https://bbb.testpro.io/";
-    ThreadLocal<WebDriver> threadDriver;
-
-    @BeforeSuite
-    static void setupClass() {
-        WebDriverManager.chromedriver().setup();
+    private static final ThreadLocal<WebDriver> THREAD_LOCAL = new ThreadLocal<>();
+    private  WebDriver driver;
+    public static WebDriver getThreadLocal() {
+        return THREAD_LOCAL.get();
     }
-
     @BeforeMethod
     public void setUpBrowser() throws MalformedURLException {
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--disable-notifications", "--remote-allow-origins=*", "--incognito", "--start-maximized");
-        // driver.manage().window().maximize();
-        driver = new ChromeDriver(options);
-        driver = pickBrowser(System.getProperty("browser"));
-        threadDriver = new ThreadLocal<>();
-        threadDriver.set(driver);
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-        wait = new WebDriverWait(driver, Duration.ofSeconds(4));
-        driver.get(url);
-    }
-    public WebDriver getDriver() {
-        return threadDriver.get();
-    }
-
-    public WebDriver lambdaTest() throws MalformedURLException {
-        String userName = "burkova0721";
-        String authKey = "9JQBuKZzJJUC8sy5TTHjGtdk9C2QQ3RYrxAppSyAXJ1NK90AI9";
-        String hub = "@hub.lambdatest.com/wd/hub";
-        DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
-        desiredCapabilities.setCapability("platform", "Windows 10");
-        desiredCapabilities.setCapability("browserName", "Chrome");
-        desiredCapabilities.setCapability("version", "112.0");
-        desiredCapabilities.setCapability("resolution", "1024x768");
-        desiredCapabilities.setCapability("build", "TestNG With Java");
-        desiredCapabilities.setCapability("name", this.getClass().getName());
-        desiredCapabilities.setCapability("plugin", "git-testng");
-        return new RemoteWebDriver(new URL("https://" + userName + ":" + authKey + hub), desiredCapabilities);
+        THREAD_LOCAL.set(pickBrowser("browser"));
+        THREAD_LOCAL.get().manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+        THREAD_LOCAL.get().manage().window().maximize();
+        THREAD_LOCAL.get().manage().deleteAllCookies();
     }
     public WebDriver pickBrowser(String browser) throws MalformedURLException {
         DesiredCapabilities capabilities = new DesiredCapabilities();
@@ -75,26 +47,24 @@ public class BaseDefinition {
                 WebDriverManager.edgedriver().setup();
                 return driver = new EdgeDriver();
             case "grid-firefox":
-                capabilities.setCapability("browserName", "firefox");
+                capabilities.setCapability("browserName","firefox");
                 return driver = new RemoteWebDriver(URI.create(gridURL).toURL(), capabilities);
             case "grid-edge":
-                capabilities.setCapability("browserName", "edge");
+                capabilities.setCapability("browserName","edge");
                 return driver = new RemoteWebDriver(URI.create(gridURL).toURL(), capabilities);
             case "grid-chrome":
-                capabilities.setCapability("browserName", "chrome");
+                capabilities.setCapability("browserName","chrome");
                 return driver = new RemoteWebDriver(URI.create(gridURL).toURL(), capabilities);
-            case "cloud":
-                return lambdaTest();
             default:
                 WebDriverManager.chromedriver().setup();
                 ChromeOptions optionsChrome = new ChromeOptions();
-                optionsChrome.addArguments("--disable-notifications", "--remote-allow-origins=*", "--incognito", "--start-maximized");
+                optionsChrome.addArguments("--disable-notifications","--remote-allow-origins=*", "--incognito","--start-maximized");
                 return driver = new ChromeDriver(optionsChrome);
         }
     }
     @AfterMethod
     public void tearDown() {
-        getDriver().quit();
+        THREAD_LOCAL.get().close();
+        THREAD_LOCAL.remove();
     }
-
 }

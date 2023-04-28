@@ -15,21 +15,21 @@ public class ProfileStepDefinition extends BaseDefinition {
     WebDriver driver;
     @Given("I open Login Page")
     public void openLoginPage() {
-        driver.get("https://bbb.testpro.io");
+        getThreadLocal().get("https://bbb.testpro.io");
     }
     @When("I login success")
     public void iLoginSuccess() {
-        LoginPage loginPage = new LoginPage(driver);
+        LoginPage loginPage = new LoginPage(getThreadLocal());
         loginPage.login();
     }
     @And("I open Profile page")
     public void iOpenProfilePage() {
-        HomePage homePage = new HomePage(driver);
+        HomePage homePage = new HomePage(getThreadLocal());
         homePage.openUserProfile();
     }
     @And("I enter random name")
     public void iEnterRandomName() {
-        ProfilePage profilePage = new ProfilePage(driver);
+        ProfilePage profilePage = new ProfilePage(getThreadLocal());
         String user = profilePage.generateRandomName();
         profilePage.setName(user)
                 .setPassword("Julka@0721")
@@ -37,19 +37,19 @@ public class ProfileStepDefinition extends BaseDefinition {
     }
     @And("I enter password")
     public void iEnterPassword() {
-        ProfilePage profilePage = new ProfilePage(driver);
+        ProfilePage profilePage = new ProfilePage(getThreadLocal());
         profilePage.setPassword("Julka@0721");
     }
     @And("I click Save")
     public void iClickSave() {
-        ProfilePage profilePage = new ProfilePage(driver);
+        ProfilePage profilePage = new ProfilePage(getThreadLocal());
         profilePage.saveProfile();
     }
 
     @Then("I get notification")
     public void iGetNotification() {
-        HomePage homePage = new HomePage(driver);
-        ProfilePage profilePage = new ProfilePage(driver);
+        HomePage homePage = new HomePage(getThreadLocal());
+        ProfilePage profilePage = new ProfilePage(getThreadLocal());
         String user = profilePage.generateRandomName();
         String notifyProfileUpdated = "Profile updated";
         homePage.showSuccessBanner(notifyProfileUpdated);
@@ -57,22 +57,22 @@ public class ProfileStepDefinition extends BaseDefinition {
     }
     @And("I choose color theme")
     public void iChooseColorTheme() {
-        ProfilePage profilePage = new ProfilePage(driver);
+        ProfilePage profilePage = new ProfilePage(getThreadLocal());
         profilePage.chooseTheme();
     }
     @Then("The color theme is changed")
     public void theColorThemeIsChanged() {
-        ProfilePage profilePage = new ProfilePage(driver);
+        ProfilePage profilePage = new ProfilePage(getThreadLocal());
         Assert.assertTrue(profilePage.checkSelectedThemeColor());
     }
     @And("I click on the first checkbox Notify")
     public void iClickOnTheFirstCheckbox() {
-        ProfilePage profilePage = new ProfilePage(driver);
+        ProfilePage profilePage = new ProfilePage(getThreadLocal());
         profilePage.selectCheckboxNotify();
     }
     @Then("I see the tick inside the box")
     public void iSeeTheTickInsideTheBox() {
-        ProfilePage profilePage = new ProfilePage(driver);
+        ProfilePage profilePage = new ProfilePage(getThreadLocal());
         Assert.assertTrue(profilePage.checkSelectedCheckboxNotify());
     }
 }

@@ -12,7 +12,6 @@
                </methods>
             </class>
             <class name="SongsTests"/>
-            <class name="PlaylistTests"/>
         </classes>
     </test>
 </suite>

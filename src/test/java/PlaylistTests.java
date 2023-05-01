@@ -45,7 +45,7 @@ public class PlaylistTests extends BaseTest {
         Thread.sleep(2000);
         playlistPage.clickFirstSong();
         playlistPage.deleteFirstSong();
-        Assert.assertTrue(playlistPage.showTextNotification());
+        Assert.assertTrue(homePage.showSuccessBanner(notifyRemovedSong));
     }
     @Test(priority = 4)
     public void renamePlaylist() {

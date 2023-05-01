@@ -52,12 +52,12 @@ public class PlaylistStepDefinition extends BaseDefinition {
         homePage.goToAllSongs();
     }
     @And("I select the first song")
-    public void iSelectTheFirstSong() {
+    public void iSelectTheFirstSongAllSongs() {
         AllSongsPage allSongsPage = new AllSongsPage(getThreadLocal());
         allSongsPage.selectFirstSong();
     }
     @And("I click on AddTo button")
-    public void iClickOnAddToButton() {
+    public void iClickOnAddToButtonAllSongs() {
         AllSongsPage allSongsPage = new AllSongsPage(getThreadLocal());
         allSongsPage.clickAddToButton();
     }

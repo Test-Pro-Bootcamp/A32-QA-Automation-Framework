@@ -11,8 +11,9 @@ public class PlaylistPage extends BasePage {
     private WebElement playlistDeleteButton;
     @FindBy(css = ".playlist [draggable]")
     private WebElement firstSong;
-    @FindBy(css = "#playlistWrapper .text")
+    @FindBy(css = ".success")
     private WebElement textNotification;
+
     public PlaylistPage(WebDriver givenDriver) {
         super(givenDriver);
     }
@@ -31,4 +32,5 @@ public class PlaylistPage extends BasePage {
     public boolean showTextNotification() {
         return wait.until(ExpectedConditions.visibilityOf(textNotification)).isDisplayed();
     }
+
 }

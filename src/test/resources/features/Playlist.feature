@@ -1,6 +1,7 @@
-Feature: CreatePlaylist feature
+Feature: Create Playlist feature
 
-  Background I open Login Page
+  Background:
+  Given I open Login Page
 
   Scenario: Create Playlist
     When I login success
@@ -26,8 +27,8 @@ Feature: DeleteSongFromPlaylist feature
     When I login success
     And I click on playlist
     And I select the first song
-    And I delete a song by DELETE keybord
-    Then I get notificationRemovedSong 'Removed song'
+    And I delete a song by DELETE keyboard
+    Then I get notificationEmptyList
 
 Feature: RenamePlaylist feature
 

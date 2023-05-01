@@ -17,9 +17,8 @@ import pageObject.LoginPage;
 import java.time.Duration;
 
 public class LoginStepDefinitions extends BaseDefinition {
-    WebDriver driver;
     @Given("I open Login Page")
-    public void openLoginPage() { getThreadLocal().get("https://bbb.testpro.io");
+    public void openLoginPageLogin() { getThreadLocal().get("https://bbb.testpro.io");
     }
     @When("I enter valid email {string}")
     public void enterEmail(String email) {
@@ -27,7 +26,7 @@ public class LoginStepDefinitions extends BaseDefinition {
         loginPage.provideEmail(email);
     }
     @And("I enter valid password {string}")
-    public void iEnterPassword(String password) {
+    public void iEnterValidPassword(String password) {
         LoginPage loginPage = new LoginPage(getThreadLocal());
         loginPage.providePassword(password);
     }

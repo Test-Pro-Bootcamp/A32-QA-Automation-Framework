@@ -5,7 +5,6 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import pageObject.AllSongsPage;
 import pageObject.HomePage;
@@ -17,11 +16,11 @@ public class PlaylistStepDefinition extends BaseDefinition {
     WebDriver driver;
 
     @Given("I open Login Page")
-    public void openLoginPage() {
+    public void openLoginPagePlaylist() {
         getThreadLocal().get("https://bbb.testpro.io");
     }
     @When("I login success")
-    public void iLoginSuccess() {
+    public void iLoginSuccessPlaylist() {
         LoginPage loginPage = new LoginPage(getThreadLocal());
         loginPage.login();
     }
@@ -48,7 +47,7 @@ public class PlaylistStepDefinition extends BaseDefinition {
         Assert.assertTrue(homePage.showSuccessBanner(notifyCreatedPlaylist));
     }
     @And("I open AllSongs page")
-    public void iOpenAllSongsPage() {
+    public void iOpenAllSongsPagePlaylist() {
         HomePage homePage = new HomePage(getThreadLocal());
         homePage.goToAllSongs();
     }
@@ -68,7 +67,7 @@ public class PlaylistStepDefinition extends BaseDefinition {
         allSongsPage.selectFirstPlaylist();
     }
     @Then("I get notification")
-    public void iGetNotification() {
+    public void iGetNotificationPlaylist() {
         AllSongsPage allSongsPage = new AllSongsPage(getThreadLocal());
         Assert.assertTrue(allSongsPage.showNotification());
     }
@@ -77,16 +76,15 @@ public class PlaylistStepDefinition extends BaseDefinition {
         HomePage homePage = new HomePage(getThreadLocal());
         homePage.clickPlaylist();
     }
-    @And("I delete a song by DELETE keybord")
-    public void iDeleteASongByDELETEKeybord() {
+    @And("I delete a song by DELETE keyboard")
+    public void iDeleteASongByDELETEKeyboard() {
         PlaylistPage playlistPage = new PlaylistPage(getThreadLocal());
         playlistPage.deleteFirstSong();
     }
-    @Then("I get notificationRemovedSong {string}")
-    public void iGetNotificationRemovedSong() {
-        HomePage homePage = new HomePage(getThreadLocal());
-        String notifyRemovedSong = "Removed 1 song from";
-        Assert.assertTrue(homePage.showSuccessBanner(notifyRemovedSong));
+    @Then("I get notificationEmptyList")
+    public void iGetNotificationEmptyList() {
+        PlaylistPage playlistPage = new PlaylistPage(getThreadLocal());
+        Assert.assertTrue(playlistPage.showTextNotification());
     }
     @And("I double click on playlist")
     public void iDoubleClickOnPlaylist() {

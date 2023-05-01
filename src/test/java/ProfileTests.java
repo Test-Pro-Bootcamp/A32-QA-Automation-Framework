@@ -41,6 +41,6 @@ public class ProfileTests extends BaseTest {
         loginPage.login();
         homePage.openUserProfile();
         profilePage.selectCheckboxNotify();
-        Assert.assertTrue(profilePage.checkSelectedCheckboxNotify());
+        Assert.assertTrue(profilePage.checkSelectedCheckboxNotify().is
     }
 }

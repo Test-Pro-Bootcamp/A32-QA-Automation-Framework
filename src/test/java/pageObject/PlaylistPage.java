@@ -2,6 +2,7 @@ package pageObject;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import static org.openqa.selenium.Keys.DELETE;
 
@@ -10,6 +11,8 @@ public class PlaylistPage extends BasePage {
     private WebElement playlistDeleteButton;
     @FindBy(css = ".playlist [draggable]")
     private WebElement firstSong;
+    @FindBy(css = "#playlistWrapper .text")
+    private WebElement textNotification;
     public PlaylistPage(WebDriver givenDriver) {
         super(givenDriver);
     }
@@ -24,5 +27,8 @@ public class PlaylistPage extends BasePage {
     public PlaylistPage deleteFirstSong() {
         actions.sendKeys(firstSong, DELETE).build().perform();
         return this;
+    }
+    public boolean showTextNotification() {
+        return wait.until(ExpectedConditions.visibilityOf(textNotification)).isDisplayed();
     }
 }

@@ -18,7 +18,7 @@ public class ProfileStepDefinition extends BaseDefinition {
         getThreadLocal().get("https://bbb.testpro.io");
     }
     @When("I login success")
-    public void iLoginSuccess() {
+    public void iLoginSuccessProfile() {
         LoginPage loginPage = new LoginPage(getThreadLocal());
         loginPage.login();
     }
@@ -36,7 +36,7 @@ public class ProfileStepDefinition extends BaseDefinition {
                 .saveProfile();
     }
     @And("I enter password")
-    public void iEnterPassword() {
+    public void iEnterCurrentPassword() {
         ProfilePage profilePage = new ProfilePage(getThreadLocal());
         profilePage.setPassword("Julka@0721");
     }
@@ -47,7 +47,7 @@ public class ProfileStepDefinition extends BaseDefinition {
     }
 
     @Then("I get notification")
-    public void iGetNotification() {
+    public void iGetNotificationProfile() {
         HomePage homePage = new HomePage(getThreadLocal());
         ProfilePage profilePage = new ProfilePage(getThreadLocal());
         String user = profilePage.generateRandomName();

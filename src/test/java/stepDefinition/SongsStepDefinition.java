@@ -13,15 +13,15 @@ import pageObject.LoginPage;
 public class SongsStepDefinition extends BaseDefinition {
     WebDriver driver;
     @Given("I open Login Page")
-    public void openLoginPage() { BaseDefinition.getThreadLocal().get("https://bbb.testpro.io");
+    public void openLoginPageSongs() { BaseDefinition.getThreadLocal().get("https://bbb.testpro.io");
     }
     @When("I login success")
-    public void iLoginSuccess() {
+    public void iLoginSuccessSongs() {
         LoginPage loginPage = new LoginPage(getThreadLocal());
         loginPage.login();
     }
     @And("I open AllSongs page")
-    public void iOpenAllSongsPage() {
+    public void iOpenAllSongsPageSongs() {
         HomePage homePage = new HomePage(getThreadLocal());
         homePage.goToAllSongs();
     }

@@ -20,9 +20,9 @@ public class ProfilePage extends BasePage {
     private WebElement themeColor;
     @FindBy(css = ".theme.selected")
     private WebElement selectedThemeColor;
-    @FindBy(css = "[name='notify']")
+    @FindBy(css = "[type='checkbox']")
     private WebElement checkboxNotify;
-    @FindBy(css = "[name='notify']:checked")
+    @FindBy(css = "[[type='checkbox']:checked")
     private WebElement selectedCheckboxNotify;
     public ProfilePage(WebDriver givenDriver) {
         super(givenDriver);
@@ -61,7 +61,7 @@ public class ProfilePage extends BasePage {
         return this;
     }
     public boolean checkSelectedCheckboxNotify() {
-        return selectedCheckboxNotify.isDisplayed();
+        return wait.until(ExpectedConditions.visibilityOf(selectedCheckboxNotify)).isDisplayed();
     }
 }
 

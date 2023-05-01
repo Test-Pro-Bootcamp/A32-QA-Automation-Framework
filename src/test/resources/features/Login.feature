@@ -35,8 +35,6 @@ Feature: Login feature
     And I submit
     Then I am still on the login page
 
-Feature: Logout feature
-
   Scenario: Logout Success
     Given I login success
     When I click on logout button

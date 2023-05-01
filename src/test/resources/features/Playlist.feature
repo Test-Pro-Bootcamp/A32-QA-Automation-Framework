@@ -27,7 +27,7 @@ Feature: DeleteSongFromPlaylist feature
     And I click on playlist
     And I select the first song
     And I delete a song by DELETE keybord
-    Then I get notification 'Removed song'
+    Then I get notificationRemovedSong 'Removed song'
 
 Feature: RenamePlaylist feature
 
@@ -35,7 +35,7 @@ Feature: RenamePlaylist feature
     When I login success
     And I double click on playlist
     And I enter a new name of playlist and click ENTER
-    Then I get notification 'Updated playlist'
+    Then I get notificationRenamePlaylist 'Updated playlist'
 
 Feature: DeletePlaylist feature
 
@@ -43,5 +43,5 @@ Feature: DeletePlaylist feature
     When I login success
     And I click on playlist
     And I click on red delete-button
-    Then I get notification
+    Then I get notificationDeletedPlaylist 'Deleted playlist'
 

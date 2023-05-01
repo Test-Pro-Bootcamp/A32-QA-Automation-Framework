@@ -82,7 +82,7 @@ public class PlaylistStepDefinition extends BaseDefinition {
         PlaylistPage playlistPage = new PlaylistPage(getThreadLocal());
         playlistPage.deleteFirstSong();
     }
-    @Then("I get notification {string}")
+    @Then("I get notificationRemovedSong {string}")
     public void iGetNotificationRemovedSong() {
         HomePage homePage = new HomePage(getThreadLocal());
         String notifyRemovedSong = "Removed 1 song from";
@@ -99,7 +99,7 @@ public class PlaylistStepDefinition extends BaseDefinition {
         HomePage homePage = new HomePage(getThreadLocal());
         homePage.enterPlaylistName(newPlaylistName);
     }
-    @Then("I get notification {string}")
+    @Then("I get notificationRenamePlaylist {string}")
     public void iGetNotificationRenamePlaylist() {
         HomePage homePage = new HomePage(getThreadLocal());
         String notifyUpdatedPlaylist = "Updated playlist";
@@ -110,7 +110,7 @@ public class PlaylistStepDefinition extends BaseDefinition {
         PlaylistPage playlistPage = new PlaylistPage(getThreadLocal());
         playlistPage.deletePlaylist();
     }
-    @Then("I get notification {string}")
+    @Then("I get notificationDeletedPlaylist {string}")
     public void iGetNotificationDeletePlaylist() {
         HomePage homePage = new HomePage(getThreadLocal());
         String notifyDeletedPlaylist = "Deleted playlist";

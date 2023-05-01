@@ -1,5 +1,6 @@
 package pageObject;
 
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -16,7 +17,7 @@ public class ProfilePage extends BasePage {
     private WebElement saveButtonLocator;
     @FindBy(css = ".view-profile .name")
     private WebElement userNameField;
-    @FindBy(css = ".theme")
+    @FindBy(css = ".themes li:nth-of-type(2) .name")
     private WebElement themeColor;
     @FindBy(css = ".theme.selected")
     private WebElement selectedThemeColor;

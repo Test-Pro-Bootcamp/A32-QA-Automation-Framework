@@ -1,6 +1,5 @@
 package pageObject;
 
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -21,9 +20,9 @@ public class ProfilePage extends BasePage {
     private WebElement themeColor;
     @FindBy(css = ".theme.selected")
     private WebElement selectedThemeColor;
-    @FindBy(css = "#profileWrapper div:nth-child(3) .form-row:nth-of-type(1) label")
+    @FindBy(xpath = "//*[contains(text(),'Now Playing')]//input")
     private WebElement checkboxNotify;
-    @FindBy(css = "#profileWrapper .form-row:nth-of-type(1) [type='checkbox']:checked")
+    @FindBy(css = "[name='notify']:checked")
     private WebElement selectedCheckboxNotify;
     public ProfilePage(WebDriver givenDriver) {
         super(givenDriver);
@@ -51,18 +50,17 @@ public class ProfilePage extends BasePage {
     }
 
     public ProfilePage chooseTheme() {
-        themeColor.click();
+        actions.moveToElement(themeColor).click();
         return this;
     }
     public boolean checkSelectedThemeColor() {
         return wait.until(ExpectedConditions.visibilityOf(selectedThemeColor)).isDisplayed();
     }
     public ProfilePage selectCheckboxNotify() {
-        checkboxNotify.click();
+        actions.moveToElement(checkboxNotify).click();
         return this;
     }
     public boolean checkSelectedCheckboxNotify() {
-        return selectedCheckboxNotify.isDisplayed();
-    }
+        return wait.until(ExpectedConditions.visibilityOf(checkboxNotify)).isSelected(); }
 }
 

@@ -32,6 +32,7 @@ public class PlaylistTests extends BaseTest {
         allSongsPage.selectFirstSong();
         allSongsPage.clickAddToButton();
         allSongsPage.selectFirstPlaylist();
+        allSongsPage.showNotification();
         Assert.assertTrue(allSongsPage.showNotification());
     }
     @Test(priority = 3)
@@ -45,6 +46,7 @@ public class PlaylistTests extends BaseTest {
         Thread.sleep(2000);
         playlistPage.clickFirstSong();
         playlistPage.deleteFirstSong();
+        homePage.showSuccessBanner(notifyRemovedSong);
         Assert.assertTrue(homePage.showSuccessBanner(notifyRemovedSong));
     }
     @Test(priority = 4)

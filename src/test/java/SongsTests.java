@@ -43,7 +43,6 @@ public class SongsTests extends BaseTest {
     public void searchSongTest() {
         LoginPage loginPage = new LoginPage(getThreadLocal());
         HomePage homePage = new HomePage(getThreadLocal());
-        AllSongsPage allSongsPage = new AllSongsPage(getThreadLocal());
         loginPage.login();
         homePage.clickSearchField();
         homePage.enterSearchSong("Pluto");

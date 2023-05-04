@@ -10,54 +10,54 @@ import pageObject.AllSongsPage;
 import pageObject.HomePage;
 import pageObject.LoginPage;
 
-public class SongsStepDefinition extends BaseDefinition {
+public class SongsStepDefinition {
     WebDriver driver;
     @Given("I open Login Page")
     public void openLoginPageSongs() { BaseDefinition.getThreadLocal().get("https://bbb.testpro.io");
     }
     @When("I login success")
     public void iLoginSuccessSongs() {
-        LoginPage loginPage = new LoginPage(getThreadLocal());
+        LoginPage loginPage = new LoginPage(BaseDefinition.getThreadLocal());
         loginPage.login();
     }
     @And("I open AllSongs page")
     public void iOpenAllSongsPageSongs() {
-        HomePage homePage = new HomePage(getThreadLocal());
+        HomePage homePage = new HomePage(BaseDefinition.getThreadLocal());
         homePage.goToAllSongs();
     }
     @And("I click on All shuffle button")
     public void iClickOnAllShuffleButton() {
-        AllSongsPage allSongsPage = new AllSongsPage(getThreadLocal());
+        AllSongsPage allSongsPage = new AllSongsPage(BaseDefinition.getThreadLocal());
         allSongsPage.allShuffle();
     }
     @Then("Song is playing")
     public void songIsPlaying() {
-        AllSongsPage allSongsPage = new AllSongsPage(getThreadLocal());
+        AllSongsPage allSongsPage = new AllSongsPage(BaseDefinition.getThreadLocal());
         Assert.assertTrue(allSongsPage.barIsDisplayed());
     }
     @And("I double click on first song")
     public void iDoubleClickOnFirstSong() {
-        AllSongsPage allSongsPage = new AllSongsPage(getThreadLocal());
+        AllSongsPage allSongsPage = new AllSongsPage(BaseDefinition.getThreadLocal());
         allSongsPage.doubleClickSong();
     }
     @And("I right click on first song")
     public void iRightClickOnFirstSong() {
-        AllSongsPage allSongsPage = new AllSongsPage(getThreadLocal());
+        AllSongsPage allSongsPage = new AllSongsPage(BaseDefinition.getThreadLocal());
         allSongsPage.rightClickSong();
     }
     @And("I select Play")
     public void iSelectPlay() {
-        AllSongsPage allSongsPage = new AllSongsPage(getThreadLocal());
+        AllSongsPage allSongsPage = new AllSongsPage(BaseDefinition.getThreadLocal());
         allSongsPage.playBtnClick();
     }
     @And("I click on search field")
     public void iClickOnSearchField() {
-        HomePage homePage = new HomePage(getThreadLocal());
+        HomePage homePage = new HomePage(BaseDefinition.getThreadLocal());
         homePage.clickSearchField();
     }
     @And("I enter name of song and click ENTER")
     public void iEnterNameOfSong() {
-        HomePage homePage = new HomePage(getThreadLocal());
+        HomePage homePage = new HomePage(BaseDefinition.getThreadLocal());
         homePage.enterSearchSong("Pluto");
     }
 }

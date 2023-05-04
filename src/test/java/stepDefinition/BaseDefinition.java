@@ -1,5 +1,7 @@
 package stepDefinition;
 
+import io.cucumber.java.After;
+import io.cucumber.java.Before;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -27,7 +29,7 @@ public class BaseDefinition {
     public static WebDriver getThreadLocal() {
         return THREAD_LOCAL.get();
     }
-    @BeforeMethod
+    @Before
     public void setUpBrowser() throws MalformedURLException {
         THREAD_LOCAL.set(pickBrowser("browser"));
         THREAD_LOCAL.get().manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
@@ -62,7 +64,7 @@ public class BaseDefinition {
                 return driver = new ChromeDriver(optionsChrome);
         }
     }
-    @AfterMethod
+    @After
     public void tearDown() {
         THREAD_LOCAL.get().close();
         THREAD_LOCAL.remove();

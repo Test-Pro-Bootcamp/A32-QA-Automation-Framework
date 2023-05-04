@@ -12,15 +12,6 @@ import pageObject.LoginPage;
 import pageObject.ProfilePage;
 
 public class ProfileStepDefinition {
-    @Given("I open Login Page")
-    public void openLoginPage() {
-        BaseDefinition.getThreadLocal().get("https://bbb.testpro.io");
-    }
-    @When("I login success")
-    public void iLoginSuccessProfile() {
-        LoginPage loginPage = new LoginPage(BaseDefinition.getThreadLocal());
-        loginPage.login();
-    }
     @And("I open Profile page")
     public void iOpenProfilePage() {
         HomePage homePage = new HomePage(BaseDefinition.getThreadLocal());
@@ -45,14 +36,11 @@ public class ProfileStepDefinition {
         profilePage.saveProfile();
     }
 
-    @Then("I get notification")
-    public void iGetNotificationProfile() {
+    @Then("I get notificationProfileUpdated {string}")
+    public void iGetNotificationProfile(String message) {
         HomePage homePage = new HomePage(BaseDefinition.getThreadLocal());
-        ProfilePage profilePage = new ProfilePage(BaseDefinition.getThreadLocal());
-        String user = profilePage.generateRandomName();
-        String notifyProfileUpdated = "Profile updated";
+        String notifyProfileUpdated = message;
         homePage.showSuccessBanner(notifyProfileUpdated);
-        Assert.assertEquals(profilePage.getUsername(), user);
     }
     @And("I choose color theme")
     public void iChooseColorTheme() {

@@ -66,9 +66,10 @@ public class LoginStepDefinitions {
         loginPage.providePassword(password);
     }
     @Given("I login success")
-    public void iLoginSuccess() {
+    public void iLoginSuccess() throws InterruptedException {
         LoginPage loginPage = new LoginPage(BaseDefinition.getThreadLocal());
         loginPage.login();
+        Thread.sleep(2000);
     }
     @When("I click on logout button")
     public void iClickOnLogoutButton() {
@@ -81,3 +82,4 @@ public class LoginStepDefinitions {
         Assert.assertTrue(loginPage.registrationLink().isDisplayed());
     }
 }
+

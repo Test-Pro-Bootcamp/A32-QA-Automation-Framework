@@ -4,24 +4,16 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import pageObject.AllSongsPage;
 import pageObject.HomePage;
 import pageObject.LoginPage;
 import pageObject.PlaylistPage;
 
-public class PlaylistStepDefinition {
 
-    @Given("I open Login Page")
-    public void openLoginPagePlaylist() {
-        BaseDefinition.getThreadLocal().get("https://bbb.testpro.io");
-    }
-    @When("I login success")
-    public void iLoginSuccessPlaylist() {
-        LoginPage loginPage = new LoginPage(BaseDefinition.getThreadLocal());
-        loginPage.login();
-    }
+public class   PlaylistStepDefinition {
+
+
     @And("I click on plus-button")
     public void iClickOnPlusButton() {
         HomePage homePage =new HomePage(BaseDefinition.getThreadLocal());
@@ -49,7 +41,7 @@ public class PlaylistStepDefinition {
         HomePage homePage = new HomePage(BaseDefinition.getThreadLocal());
         homePage.goToAllSongs();
     }
-    @And("I select the first song")
+    @And("I select the first song from AllSongs")
     public void iSelectTheFirstSongAllSongs() {
         AllSongsPage allSongsPage = new AllSongsPage(BaseDefinition.getThreadLocal());
         allSongsPage.selectFirstSong();
@@ -70,9 +62,15 @@ public class PlaylistStepDefinition {
         Assert.assertTrue(allSongsPage.showNotification());
     }
     @And("I click on playlist")
-    public void iClickOnPlaylist() {
+    public void iClickOnPlaylist() throws InterruptedException {
         HomePage homePage = new HomePage(BaseDefinition.getThreadLocal());
         homePage.clickPlaylist();
+        Thread.sleep(2000);
+    }
+    @And("I select the first song from Playlist")
+    public void iSelectTheFirstSongPlaylist() {
+        PlaylistPage playlistPage = new PlaylistPage(BaseDefinition.getThreadLocal());
+        playlistPage.clickFirstSong();
     }
     @And("I delete a song by DELETE keyboard")
     public void iDeleteASongByDELETEKeyboard() {
@@ -96,9 +94,9 @@ public class PlaylistStepDefinition {
         homePage.enterPlaylistName(newPlaylistName);
     }
     @Then("I get notificationRenamePlaylist {string}")
-    public void iGetNotificationRenamePlaylist() {
+    public void iGetNotificationRenamePlaylist(String message) {
         HomePage homePage = new HomePage(BaseDefinition.getThreadLocal());
-        String notifyUpdatedPlaylist = "Updated playlist";
+        String notifyUpdatedPlaylist = message;
         Assert.assertTrue(homePage.showSuccessBanner(notifyUpdatedPlaylist));
     }
     @And("I click on red delete-button")
@@ -107,9 +105,17 @@ public class PlaylistStepDefinition {
         playlistPage.deletePlaylist();
     }
     @Then("I get notificationDeletedPlaylist {string}")
-    public void iGetNotificationDeletePlaylist() {
+    public void iGetNotificationDeletePlaylist(String message) {
         HomePage homePage = new HomePage(BaseDefinition.getThreadLocal());
-        String notifyDeletedPlaylist = "Deleted playlist";
+        String notifyDeletedPlaylist = message;
         Assert.assertTrue(homePage.showSuccessBanner(notifyDeletedPlaylist));
     }
+
+    @And("I see message notification")
+    public void iSeeMessageNotification() {
+        PlaylistPage playlistPage = new PlaylistPage(BaseDefinition.getThreadLocal());
+        Assert.assertTrue(playlistPage.showMessage());
+        playlistPage.clickOkButton();
+    }
 }
+

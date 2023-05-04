@@ -36,6 +36,7 @@ Feature: Login feature
     Then I am still on the login page
 
   Scenario: Logout Success
+    Given I open Login Page
     Given I login success
     When I click on logout button
     Then I am logged out

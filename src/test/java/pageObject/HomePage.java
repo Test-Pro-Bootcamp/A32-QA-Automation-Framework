@@ -1,4 +1,5 @@
 package pageObject;
+import io.cucumber.java.sl.In;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -60,10 +61,11 @@ public class HomePage extends BasePage {
         searchField.click();
         return this;
     }
-    public HomePage enterSearchSong(String name) {
+    public HomePage enterSearchSong(String name) throws InterruptedException {
         searchField.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.BACK_SPACE));
         searchField.sendKeys(name);
         searchField.sendKeys(Keys.ENTER);
+        Thread.sleep(2000);
         return this;
     }
     public boolean showSuccessBanner(String name) {

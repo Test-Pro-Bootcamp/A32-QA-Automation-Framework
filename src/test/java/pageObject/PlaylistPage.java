@@ -13,6 +13,10 @@ public class PlaylistPage extends BasePage {
     private WebElement firstSong;
     @FindBy(css = ".success")
     private WebElement textNotification;
+    @FindBy(css = ".msg")
+    private WebElement messageNotification;
+    @FindBy(css = ".ok")
+    private WebElement okButton;
 
     public PlaylistPage(WebDriver givenDriver) {
         super(givenDriver);
@@ -31,6 +35,13 @@ public class PlaylistPage extends BasePage {
     }
     public boolean showTextNotification() {
         return wait.until(ExpectedConditions.visibilityOf(textNotification)).isDisplayed();
+    }
+    public PlaylistPage clickOkButton() {
+        okButton.click();
+        return this;
+    }
+    public boolean showMessage() {
+        return wait.until(ExpectedConditions.visibilityOf(messageNotification)).isDisplayed();
     }
 
 }

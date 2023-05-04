@@ -5,19 +5,19 @@ Feature: SongsActions feature
 
   Scenario: Play song with Shuffle button
     When I login success
-    And I open AllSongs page
+    And I open AllSongs page for Songs
     And I click on All shuffle button
     Then Song is playing
 
   Scenario: Play song by double click
     When I login success
-    And I open AllSongs page
+    And I open AllSongs page for Songs
     And I double click on first song
     Then Song is playing
 
   Scenario: Play song from dropdown list
     When I login success
-    And I open AllSongs page
+    And I open AllSongs page for Songs
     And I right click on first song
     And I select Play
     Then Song is playing
@@ -26,5 +26,4 @@ Feature: SongsActions feature
     When I login success
     And I click on search field
     And I enter name of song and click ENTER
-    Then Song is playing
-
+    Then I see Title of search results

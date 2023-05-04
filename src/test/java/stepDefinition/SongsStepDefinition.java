@@ -11,16 +11,8 @@ import pageObject.HomePage;
 import pageObject.LoginPage;
 
 public class SongsStepDefinition {
-    WebDriver driver;
-    @Given("I open Login Page")
-    public void openLoginPageSongs() { BaseDefinition.getThreadLocal().get("https://bbb.testpro.io");
-    }
-    @When("I login success")
-    public void iLoginSuccessSongs() {
-        LoginPage loginPage = new LoginPage(BaseDefinition.getThreadLocal());
-        loginPage.login();
-    }
-    @And("I open AllSongs page")
+
+    @And("I open AllSongs page for Songs")
     public void iOpenAllSongsPageSongs() {
         HomePage homePage = new HomePage(BaseDefinition.getThreadLocal());
         homePage.goToAllSongs();
@@ -56,8 +48,15 @@ public class SongsStepDefinition {
         homePage.clickSearchField();
     }
     @And("I enter name of song and click ENTER")
-    public void iEnterNameOfSong() {
+    public void iEnterNameOfSong() throws InterruptedException {
         HomePage homePage = new HomePage(BaseDefinition.getThreadLocal());
         homePage.enterSearchSong("Pluto");
+        Thread.sleep(2000);
+    }
+
+    @Then("I see Title of search results")
+    public void iSeeTitleOfSearchResults() {
+        HomePage homePage = new HomePage(BaseDefinition.getThreadLocal());
+        Assert.assertTrue(homePage.showSearchResultTitle());
     }
 }

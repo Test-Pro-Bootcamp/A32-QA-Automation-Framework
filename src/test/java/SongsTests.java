@@ -40,12 +40,13 @@ public class SongsTests extends BaseTest {
         allSongsPage.barIsDisplayed();
     }
     @Test
-    public void searchSongTest() {
+    public void searchSongTest() throws InterruptedException {
         LoginPage loginPage = new LoginPage(getThreadLocal());
         HomePage homePage = new HomePage(getThreadLocal());
         loginPage.login();
         homePage.clickSearchField();
         homePage.enterSearchSong("Pluto");
+        Thread.sleep(2000);
         Assert.assertTrue(homePage.showSearchResultTitle());
     }
 }
